@@ -11,7 +11,10 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace DAL.Models
-{
+{ 
+
+
+    
     public class Customer : AuditableEntity
     {
         public int Id { get; set; }

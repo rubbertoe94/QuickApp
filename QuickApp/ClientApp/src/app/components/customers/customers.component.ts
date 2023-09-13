@@ -7,6 +7,8 @@
 
 import { Component } from '@angular/core';
 import { fadeInOut } from '../../services/animations';
+import { CustomerService } from 'src/app/services/customer-service';
+import { CustomerViewModel } from 'src/app/models/customer-model';
 
 @Component({
   selector: 'app-customers',
@@ -15,5 +17,25 @@ import { fadeInOut } from '../../services/animations';
   animations: [fadeInOut]
 })
 export class CustomersComponent {
+
+customers: CustomerViewModel[] = [];
+
+  constructor(private customerService: CustomerService) {}
+
+  ngOnInIt(): void {
+    this.loadCustomers();
+  }
+
+  loadCustomers(): void {
+    this.customerService.getCustomers().subscribe({
+  next: (result: CustomerViewModel[]) => {
+    console.log('the result of next in getallcustomers is: ', result);
+    this.customers = result;
+  },
+  error: (er) => {
+    console.log(er);
+  }
+})
+  }
 
 }

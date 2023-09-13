@@ -22,7 +22,7 @@ namespace QuickApp.ViewModels
         public string City { get; set; }
         public string Gender { get; set; }
 
-        public ICollection<OrderViewModel> Orders { get; set; }
+       
     }
 
     public class CustomerViewModelValidator : AbstractValidator<CustomerViewModel>

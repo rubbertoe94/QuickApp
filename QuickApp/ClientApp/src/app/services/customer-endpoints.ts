@@ -17,7 +17,7 @@ import { ConfigurationService } from './configuration.service';
 
 @Injectable()
 export class CustomersEndpoint extends EndpointBase {
-  get getCustomersUrl() { return this.configurations.baseUrl + '/api/customers'; }
+  get getCustomersUrl() { return this.configurations.baseUrl + '/api/customers/allcustomers'; }
  
 
 

@@ -43,6 +43,14 @@ namespace QuickApp.Controllers
             return Ok(_mapper.Map<IEnumerable<CustomerViewModel>>(allCustomers));
         }
 
+        // GET: api/values
+        [HttpGet("allcustomers")]
+        public ActionResult<IEnumerable<CustomerViewModel>> GetAllCustomers()
+        {
+            var allCustomers = _unitOfWork.Customers.GetAllCustomers();
+            return Ok(_mapper.Map<IEnumerable<CustomerViewModel>>(allCustomers));
+        }
+
         [HttpGet("throw")]
         public IEnumerable<CustomerViewModel> Throw()
         {

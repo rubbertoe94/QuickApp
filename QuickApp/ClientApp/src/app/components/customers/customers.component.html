@@ -1,8 +1,6 @@
-<header class="pageHeader">
-  <h3><i class="fa fa-handshake-o fa-lg page-caption" aria-hidden="true"></i> {{'pageHeader.Customers' | translate}}</h3>
-</header>
+<h1>Customers</h1>
 
-<div [@fadeInOut]>
-  <!---- Sample Page Content ---->
-  <app-todo-demo [verticalScrollbar]="true"></app-todo-demo>
+<div *ngFor="let customer of customers">
+  <p>Name: {{ customer.name }}</p>
+  <p>Address: {{ customer.address }}</p>
 </div>

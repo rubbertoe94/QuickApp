@@ -57,6 +57,8 @@ import { UserPreferencesComponent } from './components/controls/user-preferences
 import { UsersManagementComponent } from './components/controls/users-management.component';
 import { RolesManagementComponent } from './components/controls/roles-management.component';
 import { RoleEditorComponent } from './components/controls/role-editor.component';
+import { CustomerService } from './services/customer-service';
+import { CustomersEndpoint } from './services/customer-endpoints';
 
 
 @NgModule({
@@ -114,7 +116,9 @@ import { RoleEditorComponent } from './components/controls/role-editor.component
     AccountService,
     AccountEndpoint,
     LocalStoreManager,
-    OidcHelperService
+    OidcHelperService,
+    CustomerService,
+    CustomersEndpoint
   ],
   bootstrap: [AppComponent]
 })

@@ -1,11 +1,4 @@
-﻿// ======================================
-// Author: Ebenezer Monney
-// Copyright (c) 2023 www.ebenmonney.com
-// 
-// ==> Gun4Hire: contact@ebenmonney.com
-// ======================================
-
-using DAL.Models;
+﻿using DAL.Models;
 using DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -30,6 +23,15 @@ namespace DAL.Repositories
                 .Include(c => c.Orders).ThenInclude(o => o.OrderDetails).ThenInclude(d => d.Product)
                 .Include(c => c.Orders).ThenInclude(o => o.Cashier)
                 .AsSingleQuery()
+                .OrderBy(c => c.Name)
+                .ToList();
+        }
+
+        public IEnumerable<Customer> GetAllCustomers()
+        {
+            return _appContext.Customers
+                .Include(c => c.Orders).ThenInclude(o => o.OrderDetails).ThenInclude(d => d.Product)
+                .Include(c => c.Orders).ThenInclude(o => o.Cashier)
                 .OrderBy(c => c.Name)
                 .ToList();
         }

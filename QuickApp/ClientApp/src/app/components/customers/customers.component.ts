@@ -22,7 +22,7 @@ customers: CustomerViewModel[] = [];
 
   constructor(private customerService: CustomerService) {}
 
-  ngOnInIt(): void {
+  ngOnInit(): void {
     this.loadCustomers();
   }
 

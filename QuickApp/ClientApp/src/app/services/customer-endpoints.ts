@@ -17,7 +17,7 @@ import { ConfigurationService } from './configuration.service';
 
 @Injectable()
 export class CustomersEndpoint extends EndpointBase {
-  get getCustomersUrl() { return this.configurations.baseUrl + '/api/customers/allcustomers'; }
+  get getAllCustomersUrl() { return this.configurations.baseUrl + '/api/Customer/allcustomers'; }
  
 
 
@@ -26,7 +26,7 @@ export class CustomersEndpoint extends EndpointBase {
   }
 
   getCustomerEndpoint<T>(): Observable<T> {
-    const endpointUrl = this.getCustomersUrl;
+    const endpointUrl = this.getAllCustomersUrl;
 
     return this.http.get<T>(endpointUrl, this.requestHeaders);
   }

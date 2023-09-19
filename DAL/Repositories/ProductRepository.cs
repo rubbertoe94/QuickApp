@@ -9,6 +9,7 @@ using DAL.Models;
 using DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace DAL.Repositories
@@ -17,6 +18,13 @@ namespace DAL.Repositories
     {
         public ProductRepository(DbContext context) : base(context)
         { }
+
+        public IEnumerable<Product> GetAllProducts()
+        {
+            return _appContext.Products
+                .OrderBy(p => p.Name) 
+                .ToList();
+        }
 
         private ApplicationDbContext _appContext => (ApplicationDbContext)_context;
     }

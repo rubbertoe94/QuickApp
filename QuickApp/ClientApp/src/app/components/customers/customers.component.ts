@@ -33,6 +33,7 @@ customers: CustomerViewModel[] = [];
     this.customers = result;
   },
   error: (er) => {
+    
     console.log(er);
   }
 })

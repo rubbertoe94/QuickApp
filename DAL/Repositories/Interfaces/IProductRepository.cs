@@ -13,6 +13,6 @@ namespace DAL.Repositories.Interfaces
 {
     public interface IProductRepository : IRepository<Product>
     {
-
+        public IEnumerable<Product> GetAllProducts();
     }
 }

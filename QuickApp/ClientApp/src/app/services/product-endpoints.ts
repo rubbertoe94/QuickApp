@@ -17,7 +17,7 @@ import { ConfigurationService } from './configuration.service';
 
 @Injectable()
 export class ProductEndpoint extends EndpointBase {
-  get getAllProductsUrl() { return this.configurations.baseUrl + '/api/allproducts'; }
+  get getAllProductsUrl() { return this.configurations.baseUrl + '/api/Product/allproducts'; }
  
 
   constructor(private configurations: ConfigurationService, http: HttpClient, authService: AuthService) {

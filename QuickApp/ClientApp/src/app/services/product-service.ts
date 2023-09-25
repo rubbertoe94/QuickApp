@@ -6,15 +6,12 @@
 // ======================================
 
 import { Injectable } from '@angular/core';
-import { Observable, Subject, forkJoin } from 'rxjs';
-import { mergeMap, tap } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+
 
 import { ProductEndpoint } from './product-endpoints';
 import { AuthService } from './auth.service';
-import { User } from '../models/user.model';
 import { Role } from '../models/role.model';
-import { Permission, PermissionValues } from '../models/permission.model';
-import { UserEdit } from '../models/user-edit.model';
 import { ProductViewModel } from '../models/product-model';
 
 export type RolesChangedOperation = 'add' | 'delete' | 'modify';

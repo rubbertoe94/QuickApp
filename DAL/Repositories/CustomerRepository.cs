@@ -36,6 +36,16 @@ namespace DAL.Repositories
                 .ToList();
         }
 
+        public void AddCustomer(Customer customer)
+        {
+            if (customer == null)
+            {
+                throw new ArgumentNullException(nameof(customer));
+            }
+
+            _appContext.Customers.Add(customer);
+        }
+
         private ApplicationDbContext _appContext => (ApplicationDbContext)_context;
     }
 }

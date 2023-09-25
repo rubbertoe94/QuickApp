@@ -26,6 +26,16 @@ namespace DAL.Repositories
                 .ToList();
         }
 
+        public void AddProduct(Product product)
+        {
+            if (product == null)
+            {
+                throw new ArgumentNullException(nameof(product));
+            }
+
+            _appContext.Products.Add(product);
+        }
+
         private ApplicationDbContext _appContext => (ApplicationDbContext)_context;
     }
 }

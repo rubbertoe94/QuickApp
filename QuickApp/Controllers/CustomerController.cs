@@ -7,6 +7,7 @@
 
 using AutoMapper;
 using DAL;
+using DAL.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using QuickApp.Helpers;
@@ -82,8 +83,12 @@ namespace QuickApp.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] CustomerViewModel value)
         {
+            var newcustomer = _mapper.Map<Customer>(value);
+            _unitOfWork.Customers.AddCustomer(newcustomer);
+            _unitOfWork.SaveChanges();
+
         }
 
         // PUT api/values/5

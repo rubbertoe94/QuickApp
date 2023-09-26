@@ -57,7 +57,9 @@ namespace QuickApp.ViewModels
             CreateMap<Product, ProductViewModel>()
                 .ReverseMap();
 
-            CreateMap<Order, OrderViewModel>()
+            CreateMap<Order, OrderViewModelList>()
+                .ReverseMap();
+            CreateMap<Order, OrderViewModelEdit>()
                 .ReverseMap();
         }
     }

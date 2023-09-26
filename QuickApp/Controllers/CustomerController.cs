@@ -94,8 +94,18 @@ namespace QuickApp.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] CustomerViewModel customer)
         {
+            var customerToUpdate = _unitOfWork.Customers.GetCustomerById(id);
+
+            customerToUpdate.Name = customer.Name;
+            customerToUpdate.Address = customer.Address;
+            customerToUpdate.City = customer.City;
+            customerToUpdate.Email = customer.Email;
+            customerToUpdate.PhoneNumber = customer.PhoneNumber;
+            _unitOfWork.SaveChanges();
+       
+
         }
 
         // DELETE api/values/5

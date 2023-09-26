@@ -51,6 +51,13 @@ namespace DAL.Repositories
             _appContext.Customers.Add(customer);
         }
 
+        public void UpdateCustomer(Customer customer)
+        {
+            _appContext.Attach(customer);
+            _appContext.Entry(customer).State = EntityState.Modified;
+            _appContext.SaveChanges();
+        }
+
         private ApplicationDbContext _appContext => (ApplicationDbContext)_context;
     }
 }

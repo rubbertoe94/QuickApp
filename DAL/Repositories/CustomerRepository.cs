@@ -36,6 +36,11 @@ namespace DAL.Repositories
                 .ToList();
         }
 
+        public Customer GetCustomerById(int customerId)
+        {
+            return _appContext.Customers.FirstOrDefault(c => c.Id == customerId);
+        }
+
         public void AddCustomer(Customer customer)
         {
             if (customer == null)

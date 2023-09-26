@@ -76,9 +76,10 @@ namespace QuickApp.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public ActionResult<CustomerViewModel> GetCustomerById(int id)
         {
-            return $"value: {id}";
+           var customer = _unitOfWork.Customers.GetCustomerById(id);
+            return Ok(_mapper.Map<CustomerViewModel>(customer));
         }
 
         // POST api/values
@@ -99,8 +100,12 @@ namespace QuickApp.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            var customer = _unitOfWork.Customers.Get(id);
+            _unitOfWork.Customers.Remove(customer);
+            _unitOfWork.SaveChanges();
+            return NoContent();
         }
     }
 }

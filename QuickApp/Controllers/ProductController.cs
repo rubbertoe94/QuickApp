@@ -63,10 +63,10 @@ namespace QuickApp.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] Product value)
+        public void Post([FromBody] ProductViewModel value)
         {
-           ;
-            _unitOfWork.Products.AddProduct(value);
+            var newproduct = _mapper.Map<Product>(value);
+            _unitOfWork.Products.AddProduct(newproduct);
             _unitOfWork.SaveChanges();
 
             }

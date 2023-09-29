@@ -70,10 +70,13 @@ namespace Pickleball_Website.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Order value)
+        public void Put(int id, [FromBody] OrderViewModelEdit value)
         {
-            var order = _unitOfWork.Orders.Get(id);
-            order = value;
+            var existingOrder = _unitOfWork.Orders.Get(id);
+
+            _mapper.Map(value, existingOrder);
+
+            _unitOfWork.Orders.Update(existingOrder);
             _unitOfWork.SaveChanges();
 
         }

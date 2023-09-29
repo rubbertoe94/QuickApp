@@ -61,6 +61,8 @@ import { CustomerService } from './services/customer-service';
 import { CustomersEndpoint } from './services/customer-endpoints';
 import { ProductEndpoint } from './services/product-endpoints';
 import { ProductService } from './services/product-service';
+import { OrderEndpoint } from './services/order.endpoints';
+import { OrderService } from './services/order.service';
 
 
 @NgModule({
@@ -122,7 +124,9 @@ import { ProductService } from './services/product-service';
     CustomerService,
     CustomersEndpoint,
     ProductEndpoint,
-    ProductService
+    ProductService,
+    OrderEndpoint,
+    OrderService
   ],
   bootstrap: [AppComponent]
 })

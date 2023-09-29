@@ -1,7 +1,28 @@
-<header class="pageHeader">
-  <h3><i class="fa fa-shopping-cart fa-lg page-caption" aria-hidden="true"></i> {{'pageHeader.Orders' | translate}}</h3>
-</header>
+<div *ngIf="orders && orders.length > 0">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Discount</th>
+        <th>Comments</th>
+        <th>Customer ID</th>
+        <th>Cashier ID</th>
+        <th>Customer Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.id }}</td>
+        <td>{{ order.discount }}</td>
+        <td>{{ order.comments }}</td>
+        <td>{{ order.customerId }}</td>
+        <td>{{ order.cashierId }}</td>
+        <td>{{ order.customer.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-<div [@fadeInOut]>
-  <span class="text-muted">-- Sample Page --</span>
+<div *ngIf="!orders || orders.length === 0">
+  <p>No orders available.</p>
 </div>

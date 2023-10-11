@@ -4,4 +4,4 @@
   <p class="customer-address">{{ customer.address }}</p>
 </div>
 
-<app-customer-form></app-customer-form>
+<app-customer-form (customerAdded)="onCustomerAdded()"></app-customer-form>

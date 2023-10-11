@@ -40,4 +40,8 @@ customers: CustomerViewModel[] = [];
 })
   }
 
+  onCustomerAdded() {
+    this.loadCustomers();
+  }
+
 }

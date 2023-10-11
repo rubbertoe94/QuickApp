@@ -1,0 +1,30 @@
+<div>
+    <h2>Customer Form</h2>
+    <form>
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" [(ngModel)]="customer.name" name="name" required>
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" [(ngModel)]="customer.email" name="email" required>
+      </div>
+      <div>
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="tel" id="phoneNumber" [(ngModel)]="customer.phoneNumber" name="phoneNumber" required>
+      </div>
+      <div>
+        <label for="address">Address:</label>
+        <input type="text" id="address" [(ngModel)]="customer.address" name="address" required>
+      </div>
+      <div>
+        <label for="city">City:</label>
+        <input type="text" id="city" [(ngModel)]="customer.city" name="city" required>
+      </div>
+      <div>
+        <label for="gender">Gender:</label>
+        <input type="text" id="gender" [(ngModel)]="customer.gender" name="gender" required>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>

@@ -17,6 +17,7 @@ import { Permission, PermissionValues } from '../models/permission.model';
 import { UserEdit } from '../models/user-edit.model';
 import { CustomersEndpoint } from './customer-endpoints';
 import { CustomerViewModel } from '../models/customer-model';
+import { CustomerViewModelInput } from '../models/customer-model';
 
 
 
@@ -35,6 +36,10 @@ export class CustomerService {
 
     return this.customersEndpoint.getCustomerEndpoint();
 
+  }
+
+  addCustomer(customer: CustomerViewModelInput): Observable<any> {
+    return this.customersEndpoint.addCustomerEndpoint(customer);
   }
 
 

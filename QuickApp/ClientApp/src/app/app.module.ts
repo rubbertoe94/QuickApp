@@ -63,6 +63,7 @@ import { ProductEndpoint } from './services/product-endpoints';
 import { ProductService } from './services/product-service';
 import { OrderEndpoint } from './services/order.endpoints';
 import { OrderService } from './services/order.service';
+import { CustomerFormComponent } from './components/customer-form/customer-form.component';
 
 
 @NgModule({
@@ -84,7 +85,8 @@ import { OrderService } from './services/order.service';
     EqualValidator,
     AutofocusDirective,
     BootstrapTabDirective,
-    GroupByPipe
+    GroupByPipe,
+    CustomerFormComponent
   ],
   imports: [
     BrowserModule,

@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-customer-form',
   templateUrl: './customer-form.component.html',
-  styleUrls: ['./customer-form.component.css']
+  styleUrls: ['./customer-form.component.scss']
 })
 export class CustomerFormComponent {
   customer: CustomerViewModelInput = {
@@ -25,12 +25,22 @@ export class CustomerFormComponent {
   onSubmit() {
     this.customerService.addCustomer(this.customer)
       .subscribe(response => {
-        // Handle successful form submission here
         console.log('Customer added successfully:', response);
+        this.resetForm();
       }, error => {
-        // Handle error here
         console.error('Error adding customer:', error);
       });
+  }
+  resetForm() {
+    this.customer = {
+      id: 0,
+      name: '',
+      email: '',
+      phoneNumber: '',
+      address: '',
+      city: '',
+      gender: ''
+    };
   }
 }
 

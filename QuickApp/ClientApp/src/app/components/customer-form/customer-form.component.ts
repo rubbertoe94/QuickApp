@@ -19,6 +19,7 @@ export class CustomerFormComponent {
     city: '',
     gender: ''
   };
+  
 
   @Output() customerAdded: EventEmitter<void> = new EventEmitter<void>();
 

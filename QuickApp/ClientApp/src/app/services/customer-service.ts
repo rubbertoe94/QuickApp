@@ -32,10 +32,12 @@ export class CustomerService {
 
   }
 
-  getCustomers(): Observable<CustomerViewModel[]> {
-
-    return this.customersEndpoint.getCustomerEndpoint();
-
+  getAllCustomers(): Observable<CustomerViewModel[]> {
+    return this.customersEndpoint.getAllCustomersEndpoint();
+  }
+  
+  getCustomerById(customerId: number): Observable<any> {
+    return this.customersEndpoint.getCustomerByIdEndpoint(customerId);
   }
 
   addCustomer(customer: CustomerViewModelInput): Observable<any> {

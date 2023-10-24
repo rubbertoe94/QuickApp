@@ -21,6 +21,7 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard';
 import { Utilities } from './services/utilities';
 import { CustomerFormComponent } from './components/customer-form/customer-form.component';
+import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
 
 
 @Injectable()
@@ -55,6 +56,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent, title: 'About Us' },
   { path: 'home', redirectTo: '/', pathMatch: 'full' },
   { path: 'customer-form', component: CustomerFormComponent },
+  { path: 'customer-details/:id', component: CustomerDetailsComponent },
   { path: '**', component: NotFoundComponent, title: 'Page Not Found' },
 ];
 

@@ -14,11 +14,13 @@ import { AuthService } from './auth.service';
 import { EndpointBase } from './endpoint-base.service';
 import { ConfigurationService } from './configuration.service';
 import { CustomerViewModelInput } from '../models/customer-model';
+import { id } from '@swimlane/ngx-datatable';
 
 
 @Injectable()
 export class CustomersEndpoint extends EndpointBase {
   get getAllCustomersUrl() { return this.configurations.baseUrl + '/api/Customer/allcustomers'; }
+  get getCustomerByIdUrl() { return this.configurations.baseUrl + `/api/Customer/${id}` }
   get addCustomerUrl() { return this.configurations.baseUrl + '/api/Customer/addcustomer' }
   
  
@@ -28,11 +30,16 @@ export class CustomersEndpoint extends EndpointBase {
     super(http, authService);
   }
 
-  getCustomerEndpoint<T>(): Observable<T> {
+  getAllCustomersEndpoint<T>(): Observable<T> {
     const endpointUrl = this.getAllCustomersUrl;
-
     return this.http.get<T>(endpointUrl, this.requestHeaders);
   }
+
+  getCustomerByIdEndpoint<T>(customerId: number): Observable<T> {
+    const endpointUrl= `${this.configurations.baseUrl}/api/Customer/${customerId}`;
+    return this.http.get<T>(endpointUrl, this.requestHeaders);
+  }
+
   addCustomerEndpoint<T>(customer: CustomerViewModelInput): Observable<T> {
     const endpointUrl = this.addCustomerUrl;
     return this.http.post<T>(endpointUrl, JSON.stringify(customer), this.requestHeaders);

@@ -1,7 +1,12 @@
 <h1>Customers</h1>
 <div *ngFor="let customer of customers" class="customer-card">
+  <button type="button" (click)="onSelect(customer)">
   <h2>{{ customer.name }}</h2>
-  <p class="customer-address">{{ customer.address }}</p>
+  <p class="customer-detail">{{ customer.address }}</p>
+  <button type="button" (click)="deleteCustomer(customer.id)">Delete</button>
+  </button>
 </div>
 
-<app-customer-form (customerAdded)="onCustomerAdded()"></app-customer-form>
+
+<br>
+<button type="button" routerLink="/customer-form">Add Customer</button>

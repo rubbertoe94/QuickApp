@@ -64,6 +64,7 @@ import { ProductService } from './services/product-service';
 import { OrderEndpoint } from './services/order.endpoints';
 import { OrderService } from './services/order.service';
 import { CustomerFormComponent } from './components/customer-form/customer-form.component';
+import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
 
 
 @NgModule({
@@ -86,7 +87,8 @@ import { CustomerFormComponent } from './components/customer-form/customer-form.
     AutofocusDirective,
     BootstrapTabDirective,
     GroupByPipe,
-    CustomerFormComponent
+    CustomerFormComponent,
+    CustomerDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import { CustomerViewModelInput } from 'src/app/models/customer-model';
 import { CustomerService } from 'src/app/services/customer-service';
 import { CustomersEndpoint } from 'src/app/services/customer-endpoints';
 import { FormsModule } from '@angular/forms';
+import { CustomersComponent } from '../customers/customers.component';
 
 @Component({
   selector: 'app-customer-form',
@@ -21,7 +22,6 @@ export class CustomerFormComponent {
   };
   
 
-  @Output() customerAdded: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(private customerService: CustomerService) {}
 
@@ -30,7 +30,7 @@ export class CustomerFormComponent {
       .subscribe(response => {
         console.log('Customer added successfully:', response);
         this.resetForm();
-        this.customerAdded.emit();
+       
       }, error => {
         console.error('Error adding customer:', error);
       });
@@ -46,5 +46,7 @@ export class CustomerFormComponent {
       gender: ''
     };
   }
+
+ 
 }
 

@@ -20,6 +20,7 @@ import { CustomerViewModelInput } from '../models/customer-model';
 export class CustomersEndpoint extends EndpointBase {
   get getAllCustomersUrl() { return this.configurations.baseUrl + '/api/Customer/allcustomers'; }
   get addCustomerUrl() { return this.configurations.baseUrl + '/api/Customer/addcustomer' }
+  
  
 
 
@@ -36,5 +37,11 @@ export class CustomersEndpoint extends EndpointBase {
     const endpointUrl = this.addCustomerUrl;
     return this.http.post<T>(endpointUrl, JSON.stringify(customer), this.requestHeaders);
   }
+
+  deleteCustomerEndpoint<T>(customerId: number): Observable<T> {
+      const endpointUrl= `${this.configurations.baseUrl}/api/Customer/${customerId}`;
+      return this.http.delete<T>(endpointUrl, this.requestHeaders);
+    }
+  
 
 }

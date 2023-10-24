@@ -8,7 +8,7 @@
 import { Component } from '@angular/core';
 import { fadeInOut } from '../../services/animations';
 import { CustomerService } from 'src/app/services/customer-service';
-import { CustomerViewModel } from 'src/app/models/customer-model';
+import { CustomerViewModel, CustomerViewModelInput } from 'src/app/models/customer-model';
 import { CustomerFormComponent } from '../customer-form/customer-form.component';
 
 @Component({
@@ -20,6 +20,8 @@ import { CustomerFormComponent } from '../customer-form/customer-form.component'
 export class CustomersComponent {
 
 customers: CustomerViewModel[] = [];
+
+
 
   constructor(private customerService: CustomerService) {}
 
@@ -40,8 +42,17 @@ customers: CustomerViewModel[] = [];
 })
   }
 
-  onCustomerAdded() {
-    this.loadCustomers();
+  deleteCustomer(customerId: number): void {
+    this.customerService.deleteCustomer(customerId).subscribe({
+      next: () => {
+        this.customers = this.customers.filter((customer) => customer.id !== customerId);
+        console.log("Customer deleted successfully")
+      },
+      error: (error) => {
+        console.error("Error deleting customer:", error);
+      }
+    })
   }
+  
 
 }

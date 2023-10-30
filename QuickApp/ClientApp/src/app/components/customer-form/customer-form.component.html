@@ -25,6 +25,8 @@
         <label for="gender">Gender:</label>
         <input type="text" id="gender" [(ngModel)]="customer.gender" name="gender" required>
       </div>
-      <button type="submit" (click)="onSubmit()" routerLink="/customers">Submit</button>
+      <br>
+      <button *ngIf="!isEditing" type="submit" (click)="onSubmit()">Submit</button>
+      <button *ngIf="isEditing" type="button" (click)="onSaveChanges()">Save Changes</button>
     </form>
   </div>

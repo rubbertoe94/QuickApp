@@ -48,5 +48,8 @@ export class CustomerService {
     return this.customersEndpoint.deleteCustomerEndpoint(customerId)
   }
 
+  updateCustomer(customerId: number, customerData: any): Observable<any> {
+    return this.customersEndpoint.updateCustomerEndpoint(customerId, customerData);
+  }
 
 }

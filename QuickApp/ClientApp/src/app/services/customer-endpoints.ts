@@ -14,13 +14,11 @@ import { AuthService } from './auth.service';
 import { EndpointBase } from './endpoint-base.service';
 import { ConfigurationService } from './configuration.service';
 import { CustomerViewModelInput } from '../models/customer-model';
-import { id } from '@swimlane/ngx-datatable';
 
 
 @Injectable()
 export class CustomersEndpoint extends EndpointBase {
   get getAllCustomersUrl() { return this.configurations.baseUrl + '/api/Customer/allcustomers'; }
-  get getCustomerByIdUrl() { return this.configurations.baseUrl + `/api/Customer/${id}` }
   get addCustomerUrl() { return this.configurations.baseUrl + '/api/Customer/addcustomer' }
   
  
@@ -36,7 +34,9 @@ export class CustomersEndpoint extends EndpointBase {
   }
 
   getCustomerByIdEndpoint<T>(customerId: number): Observable<T> {
-    const endpointUrl= `${this.configurations.baseUrl}/api/Customer/${customerId}`;
+    const endpointUrl = `${this.configurations.baseUrl}/api/Customer/${customerId}`;
+    console.log('Requesting customer with ID:', customerId);
+    console.log('Constructed URL:', endpointUrl);
     return this.http.get<T>(endpointUrl, this.requestHeaders);
   }
 
@@ -50,5 +50,11 @@ export class CustomersEndpoint extends EndpointBase {
       return this.http.delete<T>(endpointUrl, this.requestHeaders);
     }
   
+    updateCustomerEndpoint<T>(customerId: number, customerData: any): Observable<T> {
+      const endpointUrl= `${this.configurations.baseUrl}/api/Customer/${customerId}`;
+      console.log('Requesting customer with ID:', customerId);
+      console.log('Constructed URL:', endpointUrl);
+      return this.http.put<T>(endpointUrl, JSON.stringify(customerData), this.requestHeaders)
+    }
 
 }

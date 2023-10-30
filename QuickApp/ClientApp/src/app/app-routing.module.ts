@@ -57,6 +57,7 @@ const routes: Routes = [
   { path: 'home', redirectTo: '/', pathMatch: 'full' },
   { path: 'customer-form', component: CustomerFormComponent },
   { path: 'customer-details/:id', component: CustomerDetailsComponent },
+  { path: 'customer-form/:id', component: CustomerFormComponent },
   { path: '**', component: NotFoundComponent, title: 'Page Not Found' },
 ];
 

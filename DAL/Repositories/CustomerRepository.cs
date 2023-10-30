@@ -37,9 +37,23 @@ namespace DAL.Repositories
         }
 
         public Customer GetCustomerById(int customerId)
-        {
-            return _appContext.Customers.FirstOrDefault(c => c.Id == customerId);
-        }
+            {
+                var customer = _appContext.Customers.FirstOrDefault(c => c.Id == customerId);
+
+                if (customer == null)
+                {
+                    // Log or print a message indicating that the customer was not found
+                    Console.WriteLine($"Customer with ID {customerId} not found.");
+                }
+                else
+                {
+                    // Log or print the details of the found customer
+                    Console.WriteLine($"Found customer: {customer.Name}, {customer.Email}, {customer.PhoneNumber}");
+                }
+
+                return customer;
+            }
+        
 
         public void AddCustomer(Customer customer)
         {

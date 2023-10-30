@@ -49,7 +49,7 @@ onSaveChanges(): void {
     this.customerService.updateCustomer(this.customerId, this.customer).subscribe(response => {
       console.log('Customer updated successfully.');
       this.router.navigate(['/customers']);
-      this.resetForm();
+     
     }, error => {
       console.error('Error saving changes:', error)
     });

@@ -100,13 +100,28 @@ namespace QuickApp.Controllers
 
             if (customerToUpdate != null)
             {
-                customerToUpdate.Name = customer.Name;
-                customerToUpdate.Address = customer.Address;
-                customerToUpdate.City = customer.City;
-                customerToUpdate.Email = customer.Email;
-                customerToUpdate.PhoneNumber = customer.PhoneNumber;
+                try
+                {
+                    customerToUpdate.Name = customer.Name;
+                    customerToUpdate.Address = customer.Address;
+                    customerToUpdate.City = customer.City;
+                    customerToUpdate.Email = customer.Email;
+                    customerToUpdate.PhoneNumber = customer.PhoneNumber;
 
-                _unitOfWork.SaveChanges();
+                    _unitOfWork.Customers.UpdateCustomer(customerToUpdate);
+                    _unitOfWork.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    // Log the exception for debugging purposes
+                    Console.WriteLine($"An error occurred: {ex.Message}");
+
+                    // You can return an error response to the client if this is an API endpoint
+                    // For example, if this is a Web API controller action:
+                    // return BadRequest("An error occurred while updating the customer.");
+
+                  
+                }
             }
 
         }

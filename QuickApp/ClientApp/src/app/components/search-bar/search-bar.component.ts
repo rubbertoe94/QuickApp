@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CustomerService } from 'src/app/services/customer-service';
 import { CustomerViewModel } from 'src/app/models/customer-model';
+import { CustomerDetailsComponent } from '../customer-details/customer-details.component';
+import { Observable, Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-search-bar',
@@ -8,20 +10,26 @@ import { CustomerViewModel } from 'src/app/models/customer-model';
   styleUrls: ['./search-bar.component.scss']
 })
 export class SearchBarComponent {
-  searchTerm: string = '';
-  searchResults: CustomerViewModel[] = [];
+  searchTerms = new Subject<string>();
+  searchResults: Observable<CustomerViewModel[]>;
+  
+
 
 constructor(private customerService: CustomerService) {};
 
 
-  searchCustomers() {
-    this.customerService.searchCustomers(this.searchTerm).subscribe(
-      (data: CustomerViewModel[]) => {
-        this.searchResults = data
-      }, 
-      error => {
-        console.error('error searching customers:', error);
-      }
-    )
-  }
+ngOnInit(): void {
+  this.searchResults = this.searchTerms.pipe(
+    debounceTime(300), 
+    distinctUntilChanged(),
+    switchMap((term: string) => this.customerService.searchCustomers(term)) 
+  )
+}
+
+
+search(term: string): void {
+  this.searchTerms.next(term);
+}
+
+  
 }

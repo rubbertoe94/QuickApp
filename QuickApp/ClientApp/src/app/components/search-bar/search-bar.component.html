@@ -1,9 +1,13 @@
 <div>
-    <input type="text" [(ngModel)]="searchTerm" placeholder="Search by Name">
-  <button (click)="searchCustomers()">Search</button>
+    <input #searchBox type="text" [(ngModel)]="searchTerms" placeholder="Search by Name" (input)="search(searchBox.value)">
+  <button >Search</button>
 
   
   <ul>
-    <li *ngFor="let customer of searchResults">{{ customer.name }}</li>
+    <li *ngFor="let customer of searchResults | async">
+        <a routerLink="/customer-details/{{customer.id}}">
+        {{ customer.name }}
+        </a>
+    </li>
   </ul>
 </div>

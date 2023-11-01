@@ -7,7 +7,7 @@ export interface CustomerViewModel {
     
 }
 
-export interface CustomerViewModelInput {
+export class CustomerViewModelInput {
     id: number;
     name: string;
     email: string;

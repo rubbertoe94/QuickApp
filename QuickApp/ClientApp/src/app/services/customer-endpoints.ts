@@ -57,4 +57,9 @@ export class CustomersEndpoint extends EndpointBase {
       return this.http.put<T>(endpointUrl, JSON.stringify(customerData), this.requestHeaders)
     }
 
+  searchCustomersEndpoint<T>(searchTerm: string): Observable<T> {
+    const endpointUrl= `${this.configurations.baseUrl}/apiCustomer/search?term=${searchTerm}`;
+    return this.http.get<T>(endpointUrl, this.requestHeaders); 
+  }
+
 }

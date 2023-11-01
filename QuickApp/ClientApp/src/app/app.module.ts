@@ -65,6 +65,7 @@ import { OrderEndpoint } from './services/order.endpoints';
 import { OrderService } from './services/order.service';
 import { CustomerFormComponent } from './components/customer-form/customer-form.component';
 import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
 
 @NgModule({
@@ -88,7 +89,8 @@ import { CustomerDetailsComponent } from './components/customer-details/customer
     BootstrapTabDirective,
     GroupByPipe,
     CustomerFormComponent,
-    CustomerDetailsComponent
+    CustomerDetailsComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,

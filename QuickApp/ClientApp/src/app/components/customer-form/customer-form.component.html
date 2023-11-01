@@ -1,6 +1,6 @@
 <div>
     <h2>Customer Form</h2>
-    <form>
+    <form *ngIf="customer">
       <div>
         <label for="name">Name:</label>
         <input type="text" id="name" [(ngModel)]="customer.name" name="name" required>

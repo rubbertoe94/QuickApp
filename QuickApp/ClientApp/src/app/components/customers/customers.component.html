@@ -1,4 +1,7 @@
 <h1>Customers</h1>
+
+<app-search-bar></app-search-bar>
+
 <div *ngFor="let customer of customers" class="customer-card"
 routerLink="/customer-details/{{customer.id}}">
   

@@ -52,4 +52,7 @@ export class CustomerService {
     return this.customersEndpoint.updateCustomerEndpoint(customerId, customerData);
   }
 
+  searchCustomers(searchTerm: string): Observable<any[]> {
+    return this.customersEndpoint.searchCustomersEndpoint(searchTerm);
+  }
 }

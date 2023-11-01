@@ -15,15 +15,7 @@ export class CustomerFormComponent {
 customerId: number;
 isEditing: boolean = false;
 
-  customer: CustomerViewModelInput = {
-    id: 0,
-    name: '',
-    email: '',
-    phoneNumber: '',
-    address: '',
-    city: '',
-    gender: ''
-  };
+  customer: CustomerViewModelInput;
   
 
   constructor(private route: ActivatedRoute, private customerService: CustomerService, private router: Router) {}
@@ -34,14 +26,16 @@ ngOnInit(): void {
     if (this.customerId) {
       this.isEditing = true;
       this.loadCustomerDetails();
+    } else {
+      this.customer= new CustomerViewModelInput();
     }
   });
 }
 
+
 loadCustomerDetails(): void {
   this.customerService.getCustomerById(this.customerId).subscribe(data => {
     this.customer = data;
-    this.customerId= 0;
   });
 }
 

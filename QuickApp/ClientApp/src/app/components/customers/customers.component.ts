@@ -10,6 +10,7 @@ import { fadeInOut } from '../../services/animations';
 import { CustomerService } from 'src/app/services/customer-service';
 import { CustomerViewModel, CustomerViewModelInput } from 'src/app/models/customer-model';
 import { CustomerFormComponent } from '../customer-form/customer-form.component';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
 
 @Component({
   selector: 'app-customers',
@@ -20,6 +21,7 @@ import { CustomerFormComponent } from '../customer-form/customer-form.component'
 export class CustomersComponent {
 
 customers: CustomerViewModel[] = [];
+
 
 
 
@@ -54,5 +56,6 @@ customers: CustomerViewModel[] = [];
     })
   }
   
+
 
 }

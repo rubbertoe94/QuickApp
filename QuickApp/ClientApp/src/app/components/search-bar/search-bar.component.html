@@ -1,0 +1,9 @@
+<div>
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search by Name">
+  <button (click)="searchCustomers()">Search</button>
+
+  
+  <ul>
+    <li *ngFor="let customer of searchResults">{{ customer.name }}</li>
+  </ul>
+</div>

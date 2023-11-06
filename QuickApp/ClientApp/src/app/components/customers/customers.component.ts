@@ -34,7 +34,6 @@ customers: CustomerViewModel[] = [];
   loadCustomers(): void {
     this.customerService.getAllCustomers().subscribe({
   next: (result: CustomerViewModel[]) => {
-    console.log('the result of next in getallcustomers is: ', result);
     this.customers = result;
   },
   error: (er) => {

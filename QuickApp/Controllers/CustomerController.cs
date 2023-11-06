@@ -87,14 +87,10 @@ namespace QuickApp.Controllers
         [HttpGet("search")]
         public async Task<ActionResult<IEnumerable<Customer>>> SearchCustomers([FromQuery] string term)
         {
-            if (term != null && term.Trim() == "")
-            {
-                return Ok(new List<Customer>());
-            }
 
             if (string.IsNullOrWhiteSpace(term))
             {
-                return Ok("Please provide a valid search term.");
+                return Ok(new List<Customer>());
             }
 
             var customers = await _unitOfWork.Customers.SearchCustomersAsync(term);

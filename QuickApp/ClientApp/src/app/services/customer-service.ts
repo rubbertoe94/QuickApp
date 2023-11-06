@@ -53,7 +53,7 @@ export class CustomerService {
   }
 
   searchCustomers(searchTerm: string): Observable<any[]> {
-    console.log("The term being searched for is:", searchTerm)
+    console.log("The term being searched for is: ", searchTerm)
     return this.customersEndpoint.searchCustomersEndpoint(searchTerm);
   }
   

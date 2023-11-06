@@ -46,6 +46,7 @@ namespace QuickApp.Controllers
             return Ok(_mapper.Map<IEnumerable<ProductViewModel>>(allProducts));
         }
 
+
         [HttpGet("throw")]
         public IEnumerable<CustomerViewModel> Throw()
         {
@@ -56,10 +57,12 @@ namespace QuickApp.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public ActionResult<ProductViewModel> GetProductById(int id)
         {
-            return $"value: {id}";
+          var product = _unitOfWork.Products.GetProductById(id);
+            return Ok(_mapper.Map<ProductViewModel>(product));
         }
+
 
         // POST api/values
         [HttpPost]
@@ -73,14 +76,37 @@ namespace QuickApp.Controllers
 
             // PUT api/values/5
             [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] ProductViewModel product)
         {
+            var productToUpdate = _unitOfWork.Products.GetProductById(id);
+
+            if (productToUpdate != null)
+            {
+                try
+                {
+                    productToUpdate.Name = product.Name;
+                    productToUpdate.Description = product.Description;
+                    productToUpdate.SellingPrice = product.SellingPrice;
+                    productToUpdate.ProductCategoryId = product.ProductCategoryId;
+
+                    _unitOfWork.Products.UpdateProduct(productToUpdate);
+                    _unitOfWork.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"An error occurred: {ex.Message}");
+                }
+            }
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            var product = _unitOfWork.Products.GetProductById(id);
+            _unitOfWork.Products.Remove(product);
+            _unitOfWork.SaveChanges();
+            return NoContent();
         }
     }
 }

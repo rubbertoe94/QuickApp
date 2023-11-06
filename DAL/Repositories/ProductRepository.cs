@@ -36,6 +36,25 @@ namespace DAL.Repositories
             _appContext.Products.Add(product);
         }
 
+        public Product GetProductById(int productId)
+        {
+            var product = _appContext.Products.FirstOrDefault(p => p.Id == productId);
+            if (product == null)
+            {
+                Console.WriteLine($"Product with ID {productId} was not found");
+            } else
+            {
+                Console.WriteLine($"Found product: {product.Name}");
+            }
+            return product;
+        }
+
+        public void UpdateProduct(Product product)
+        {
+            _appContext.Attach(product);
+            _appContext.Entry(product).State = EntityState.Modified;
+        }
+
         private ApplicationDbContext _appContext => (ApplicationDbContext)_context;
     }
 }

@@ -1,6 +1,6 @@
 <div>
-    <input #searchBox type="text" [(ngModel)]="searchTerms" placeholder="Search by Name" (input)="search(searchBox.value)">
-  <button >Search</button>
+    <input #searchBox type="text" [(ngModel)]="searchTerm" placeholder="Search by Name" (ngModelChange)="search(searchBox.value)">
+    
 
   
   <ul>

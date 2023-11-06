@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
@@ -70,6 +71,20 @@ namespace DAL.Repositories
             _appContext.Attach(customer);
             _appContext.Entry(customer).State = EntityState.Modified;
         }
+
+        public async Task<List<Customer>> SearchCustomersAsync(string term)
+        {
+            term = term.ToLower(); 
+
+            var customers = await _appContext.Customers
+                .Where(c => c.Name.ToLower().Contains(term))
+                .ToListAsync();
+
+            return customers;
+        }
+
+
+
 
         private ApplicationDbContext _appContext => (ApplicationDbContext)_context;
     }

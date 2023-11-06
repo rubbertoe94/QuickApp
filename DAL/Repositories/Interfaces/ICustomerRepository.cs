@@ -9,6 +9,7 @@ using DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DAL.Repositories.Interfaces
 {
@@ -20,6 +21,7 @@ namespace DAL.Repositories.Interfaces
         public Customer GetCustomerById(int id);
         public void AddCustomer(Customer customer);
         public void UpdateCustomer(Customer customer);
+        Task<List<Customer>> SearchCustomersAsync(string term);
 
 
 

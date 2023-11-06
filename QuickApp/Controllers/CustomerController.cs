@@ -74,6 +74,7 @@ namespace QuickApp.Controllers
             return $"Error: {errorMsg}";
         }
 
+
         // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<CustomerViewModel> GetCustomerById(int id)
@@ -82,6 +83,26 @@ namespace QuickApp.Controllers
             return Ok(_mapper.Map<CustomerViewModel>(customer));
         }
 
+
+        [HttpGet("search")]
+        public async Task<ActionResult<IEnumerable<Customer>>> SearchCustomers([FromQuery] string term)
+        {
+            if (term != null && term.Trim() == "")
+            {
+                return Ok(new List<Customer>());
+            }
+
+            if (string.IsNullOrWhiteSpace(term))
+            {
+                return Ok("Please provide a valid search term.");
+            }
+
+            var customers = await _unitOfWork.Customers.SearchCustomersAsync(term);
+            return Ok(customers);
+        }
+
+
+
         // POST api/values
         [HttpPost("addcustomer")]
         public void Post([FromBody] CustomerViewModel value)
@@ -89,8 +110,8 @@ namespace QuickApp.Controllers
             var newcustomer = _mapper.Map<Customer>(value);
             _unitOfWork.Customers.AddCustomer(newcustomer);
             _unitOfWork.SaveChanges();
-
         }
+
 
         // PUT api/values/5
         [HttpPut("{id}")]
@@ -113,14 +134,7 @@ namespace QuickApp.Controllers
                 }
                 catch (Exception ex)
                 {
-                    // Log the exception for debugging purposes
-                    Console.WriteLine($"An error occurred: {ex.Message}");
-
-                    // You can return an error response to the client if this is an API endpoint
-                    // For example, if this is a Web API controller action:
-                    // return BadRequest("An error occurred while updating the customer.");
-
-                  
+                    Console.WriteLine($"An error occurred: {ex.Message}");   
                 }
             }
 

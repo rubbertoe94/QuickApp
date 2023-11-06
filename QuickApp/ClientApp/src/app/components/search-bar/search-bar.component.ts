@@ -12,6 +12,7 @@ import { Observable, Subject, debounceTime, distinctUntilChanged, switchMap } fr
 export class SearchBarComponent {
   searchTerms = new Subject<string>();
   searchResults: Observable<CustomerViewModel[]>;
+  searchTerm: string;
   
 
 
@@ -27,8 +28,8 @@ ngOnInit(): void {
 }
 
 
-search(term: string): void {
-  this.searchTerms.next(term);
+search(event: any): void {
+  this.searchTerms.next(event);
 }
 
   

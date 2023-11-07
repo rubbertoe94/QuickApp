@@ -6,7 +6,7 @@
 // ======================================
 
 import { Component } from '@angular/core';
-import { fadeInOut } from '../../services/animations';
+import { fadeInOut } from '../../../services/animations';
 import { ProductViewModel } from 'src/app/models/product-model';
 import { ProductService } from 'src/app/services/product-service';
 

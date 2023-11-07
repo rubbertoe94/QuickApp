@@ -10,8 +10,8 @@ import { RouterModule, Routes, DefaultUrlSerializer, UrlSerializer, UrlTree, Tit
 
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
-import { CustomersComponent } from './components/customers/customers.component';
-import { ProductsComponent } from './components/products/products.component';
+import { CustomersComponent } from './components/Customer/customers/customers.component';
+import { ProductsComponent } from './components/Product/products/products.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { AboutComponent } from './components/about/about.component';
@@ -20,9 +20,9 @@ import { AppTitleService } from './services/app-title.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard';
 import { Utilities } from './services/utilities';
-import { CustomerFormComponent } from './components/customer-form/customer-form.component';
-import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
-
+import { CustomerFormComponent } from './components/Customer/customer-form/customer-form.component';
+import { CustomerDetailsComponent } from './components/Customer/customer-details/customer-details.component';
+import { ProductDetailsComponent } from './components/Product/product-details/product-details.component';
 
 @Injectable()
 export class LowerCaseUrlSerializer extends DefaultUrlSerializer {
@@ -58,6 +58,7 @@ const routes: Routes = [
   { path: 'customer-form', component: CustomerFormComponent },
   { path: 'customer-details/:id', component: CustomerDetailsComponent },
   { path: 'customer-form/:id', component: CustomerFormComponent },
+  { path: 'product-details/:id', component: ProductDetailsComponent },
   { path: '**', component: NotFoundComponent, title: 'Page Not Found' },
 ];
 

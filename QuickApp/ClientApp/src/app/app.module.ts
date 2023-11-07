@@ -40,8 +40,8 @@ import { GroupByPipe } from './pipes/group-by.pipe';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
-import { CustomersComponent } from './components/customers/customers.component';
-import { ProductsComponent } from './components/products/products.component';
+import { CustomersComponent } from './components/Customer/customers/customers.component';
+import { ProductsComponent } from './components/Product/products/products.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { AboutComponent } from './components/about/about.component';
@@ -63,9 +63,10 @@ import { ProductEndpoint } from './services/product-endpoints';
 import { ProductService } from './services/product-service';
 import { OrderEndpoint } from './services/order.endpoints';
 import { OrderService } from './services/order.service';
-import { CustomerFormComponent } from './components/customer-form/customer-form.component';
-import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
-import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { CustomerFormComponent } from './components/Customer/customer-form/customer-form.component';
+import { CustomerDetailsComponent } from './components/Customer/customer-details/customer-details.component';
+import { SearchBarComponent } from './components/Customer/search-bar/search-bar.component';
+import { ProductDetailsComponent } from './components/product/product-details/product-details.component';
 
 
 @NgModule({
@@ -90,7 +91,8 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     GroupByPipe,
     CustomerFormComponent,
     CustomerDetailsComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,

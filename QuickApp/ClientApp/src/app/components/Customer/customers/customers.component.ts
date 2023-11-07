@@ -6,7 +6,7 @@
 // ======================================
 
 import { Component } from '@angular/core';
-import { fadeInOut } from '../../services/animations';
+import { fadeInOut } from '../../../services/animations';
 import { CustomerService } from 'src/app/services/customer-service';
 import { CustomerViewModel, CustomerViewModelInput } from 'src/app/models/customer-model';
 import { CustomerFormComponent } from '../customer-form/customer-form.component';

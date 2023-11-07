@@ -35,5 +35,8 @@ export class ProductService {
     return this.productEndpoint.getAllProductsEndpoint();
   }
 
+  getProductById(productId: number): Observable<any> {
+    return this.productEndpoint.getProductByIdEndpoint(productId);
+  }
   
 }

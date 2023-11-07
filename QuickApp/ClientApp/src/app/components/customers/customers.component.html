@@ -2,10 +2,12 @@
 
 <app-search-bar></app-search-bar>
 
-<div *ngFor="let customer of customers" class="customer-card"
-routerLink="/customer-details/{{customer.id}}">
-  
+<div *ngFor="let customer of customers" class="customer-card">
+
+  <span class="customer-name" routerLink="/customer-details/{{customer.id}}">
   <h2>{{ customer.name }}</h2>
+  </span>
+
   <p class="customer-detail">{{ customer.address }}</p>
   <button type="button" (click)="deleteCustomer(customer.id)">Delete</button>
   

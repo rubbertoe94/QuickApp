@@ -5,17 +5,30 @@
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   
   }
   
   .customer-card h2 {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 5px;
+    color: black;
+    
   }
   
   .customer-detail {
     font-size: 14px;
     color: #777;
   }
+
+  .customer-name {
+    color: black;
+    cursor: pointer;
+    
+  }
+  .customer-name :hover {
+    color: #d7cfcf
+  }
+ 

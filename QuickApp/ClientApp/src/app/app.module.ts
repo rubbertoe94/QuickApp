@@ -66,7 +66,7 @@ import { OrderService } from './services/order.service';
 import { CustomerFormComponent } from './components/Customer/customer-form/customer-form.component';
 import { CustomerDetailsComponent } from './components/Customer/customer-details/customer-details.component';
 import { SearchBarComponent } from './components/Customer/search-bar/search-bar.component';
-import { ProductDetailsComponent } from './components/product/product-details/product-details.component';
+import { ProductDetailsComponent } from './components/Product/product-details/product-details.component';
 
 
 @NgModule({

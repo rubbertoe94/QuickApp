@@ -1,7 +1,11 @@
 <h1>Products</h1>
 <div *ngFor="let product of products" class="product-card">
-  <h2>{{ product.name }}</h2>
+
+  <h2 routerLink="/product-details/{{product.id}}">
+    {{ product.name }}
+  </h2>
+
   <p class="description">{{ product.description }}</p>
-  <p class="price">Price: {{ product.sellingPrice | currency:'USD':true }}</p>
+  <p class="price">Price: {{ product.sellingPrice | currency:'USD':code }}</p>
 </div>
 

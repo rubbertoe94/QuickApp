@@ -4,6 +4,6 @@
         <br>
         <p><strong>Name: </strong>{{ productDetails.name }}</p>
         <p><strong>Description: </strong>{{ productDetails.description }}</p>
-        <p><strong>Price: </strong>{{ productDetails.sellingPrice }}</p>
+        <p><strong>Price: </strong>{{ productDetails.sellingPrice | currency: 'USD' }}</p>
     </div>
 </div>

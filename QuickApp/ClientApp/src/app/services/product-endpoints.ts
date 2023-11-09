@@ -35,6 +35,8 @@ export class ProductEndpoint extends EndpointBase {
 
   getProductByIdEndpoint<T>(productId:number): Observable<T> {
     const endpointUrl = `${this.configurations.baseUrl}/api/Product/${productId}` ;
+    console.log('requesting product with id: ', productId);
+    console.log('constructed URL: ', endpointUrl);
     return this.http.get<T>(endpointUrl, this.requestHeaders);
   }
 

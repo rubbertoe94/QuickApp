@@ -30,6 +30,8 @@ ngOnInit(): void {
 
 search(event: any): void {
   this.searchTerms.next(event);
+  console.log("The newest value has been pushed into the searchTerms Observable: ", event);
+  console.log("searchResults: ", this.searchResults)
 }
 
   

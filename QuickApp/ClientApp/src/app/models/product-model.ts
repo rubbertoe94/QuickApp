@@ -1,4 +1,4 @@
-export interface ProductViewModel {
+export class ProductViewModel {
     id: number;
     name: string;
     description: string;

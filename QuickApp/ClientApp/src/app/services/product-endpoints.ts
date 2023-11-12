@@ -17,7 +17,8 @@ import { ConfigurationService } from './configuration.service';
 
 @Injectable()
 export class ProductEndpoint extends EndpointBase {
-  get getAllProductsUrl() { return this.configurations.baseUrl + '/api/Product/allproducts'; }
+  get getAllProductsUrl() { return this.configurations.baseUrl + '/api/Product/allproducts' }
+  get addProductUrl() { return this.configurations.baseUrl + '/api/Product/addproduct' }
 
  
 
@@ -40,5 +41,14 @@ export class ProductEndpoint extends EndpointBase {
     return this.http.get<T>(endpointUrl, this.requestHeaders);
   }
 
+  addProductEndpoint<T>(): Observable<T> {
+    const endpointUrl = this.addProductUrl;
+    return this.http.post<T>(endpointUrl, this.requestHeaders);
+  }
+
+  updateProductEndpoint<T>(productId: number, productData: any): Observable<T> {
+    const endpointUrl = `${this.configurations.baseUrl}/api/Product/${productId}`;
+    return this.http.put<T>(endpointUrl, JSON.stringify(productData,), this.requestHeaders);
+  }
  
 }

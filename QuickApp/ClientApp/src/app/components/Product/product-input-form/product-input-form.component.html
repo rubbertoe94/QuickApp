@@ -1,0 +1,19 @@
+<div>
+    <h2>Product Form</h2>
+    <form *ngIf="product">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" [(ngModel)]="product.name" name="name" required>
+      </div>
+      <div>
+        <label for="description">Description:</label>
+        <input type="text" id="description" [(ngModel)]="product.description" name="description">
+      </div>
+      <div>
+        <label for="price">Price:</label>
+        <input type="number" id="price" [(ngModel)]="product.price" name="price" required>
+      </div>
+      <br>
+      <button type="button" (click)="onSave()">Save</button>
+    </form>
+  </div>

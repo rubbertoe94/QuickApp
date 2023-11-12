@@ -1,9 +1,6 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { CustomerViewModelInput } from 'src/app/models/customer-model';
 import { CustomerService } from 'src/app/services/customer-service';
-import { CustomersEndpoint } from 'src/app/services/customer-endpoints';
-import { FormsModule } from '@angular/forms';
-import { CustomersComponent } from '../customers/customers.component';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -14,8 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class CustomerFormComponent {
 customerId: number;
 isEditing: boolean = false;
-
-  customer: CustomerViewModelInput;
+customer: CustomerViewModelInput;
   
 
   constructor(private route: ActivatedRoute, private customerService: CustomerService, private router: Router) {}

@@ -67,6 +67,7 @@ import { CustomerFormComponent } from './components/Customer/customer-form/custo
 import { CustomerDetailsComponent } from './components/Customer/customer-details/customer-details.component';
 import { SearchBarComponent } from './components/Customer/search-bar/search-bar.component';
 import { ProductDetailsComponent } from './components/Product/product-details/product-details.component';
+import { ProductInputFormComponent } from './components/Product/product-input-form/product-input-form.component';
 
 
 @NgModule({
@@ -92,7 +93,8 @@ import { ProductDetailsComponent } from './components/Product/product-details/pr
     CustomerFormComponent,
     CustomerDetailsComponent,
     SearchBarComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    ProductInputFormComponent
   ],
   imports: [
     BrowserModule,

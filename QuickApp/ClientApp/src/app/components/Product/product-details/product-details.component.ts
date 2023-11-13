@@ -25,5 +25,10 @@ this.route.params.subscribe(params => {
       this.productDetails = data || {};
   })
   }
+
+onEditDetails(): void {
+  this.router.navigate(['/product-input-form', this.productId])
+}
+
 }
 

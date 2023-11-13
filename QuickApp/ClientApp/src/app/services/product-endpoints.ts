@@ -13,6 +13,7 @@ import { catchError } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { EndpointBase } from './endpoint-base.service';
 import { ConfigurationService } from './configuration.service';
+import { ProductViewModel } from '../models/product-model';
 
 
 @Injectable()
@@ -41,9 +42,9 @@ export class ProductEndpoint extends EndpointBase {
     return this.http.get<T>(endpointUrl, this.requestHeaders);
   }
 
-  addProductEndpoint<T>(): Observable<T> {
+  addProductEndpoint<T>(product: ProductViewModel): Observable<T> {
     const endpointUrl = this.addProductUrl;
-    return this.http.post<T>(endpointUrl, this.requestHeaders);
+    return this.http.post<T>(endpointUrl, JSON.stringify(product), this.requestHeaders);
   }
 
   updateProductEndpoint<T>(productId: number, productData: any): Observable<T> {

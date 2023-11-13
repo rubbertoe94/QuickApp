@@ -39,8 +39,8 @@ export class ProductService {
     return this.productEndpoint.getProductByIdEndpoint(productId);
   }
 
-  addProduct(): Observable<any> {
-    return this.productEndpoint.addProductEndpoint();
+  addProduct(product: ProductViewModel): Observable<any> {
+    return this.productEndpoint.addProductEndpoint(product);
   }
 
   updateProduct(productId: number, productData: any): Observable<any> {

@@ -40,7 +40,8 @@ onSave(): void {
 }
 
 addProduct(): void {
-  this.productService.addProduct().subscribe(response => {
+  this.product.productCategoryId = 1;
+  this.productService.addProduct(this.product).subscribe(() => {
     this.router.navigate(['/products'])
   })
 }

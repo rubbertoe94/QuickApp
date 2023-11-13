@@ -61,6 +61,7 @@ const routes: Routes = [
   { path: 'customer-form/:id', component: CustomerFormComponent },
   { path: 'product-details/:id', component: ProductDetailsComponent },
   { path: 'product-input-form', component: ProductInputFormComponent },
+  { path: 'product-input-form/:id', component: ProductInputFormComponent },
   { path: '**', component: NotFoundComponent, title: 'Page Not Found' },
 ];
 

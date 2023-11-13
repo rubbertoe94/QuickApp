@@ -3,4 +3,5 @@ export class ProductViewModel {
     name: string;
     description: string;
     sellingPrice: number;
+    productCategoryId: number;
 }

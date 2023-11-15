@@ -24,10 +24,10 @@ orders: OrderViewModelList[];
 constructor(private orderService: OrderService) {}
 
 ngOnInit():void {
-  this.loadProducts();
+  this.loadOrders();
 }
 
-loadProducts(): void {
+loadOrders(): void {
   this.orderService.getOrders().subscribe({
     next: (result: OrderViewModelList[]) => {
       console.log('the result of next in getOrders is:', result);

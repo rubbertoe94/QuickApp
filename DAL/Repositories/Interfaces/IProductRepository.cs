@@ -18,5 +18,6 @@ namespace DAL.Repositories.Interfaces
         public Product GetProductById(int id);
         public void AddProduct(Product product);
         public void UpdateProduct(Product product);
+        public IEnumerable<Product> SearchProducts(string text);
     }
 }

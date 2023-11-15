@@ -30,5 +30,15 @@ onEditDetails(): void {
   this.router.navigate(['/product-input-form', this.productId])
 }
 
+deleteProduct(): void {
+  this.productService.deleteProduct(this.productId).subscribe({
+    next: response => {
+      console.log('product deleted successfully');
+      this.router.navigate(['/products']);
+    }, 
+    error: err => {console.log(err)}
+  })
+}
+
 }
 

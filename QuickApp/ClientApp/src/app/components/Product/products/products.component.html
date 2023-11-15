@@ -1,12 +1,31 @@
 <h1>Products</h1>
-<div *ngFor="let product of products" class="product-card">
 
-  <h2 routerLink="/product-details/{{product.id}}">
+<input type="text" placeholder="Filter by name" [(ngModel)]="searchTerm">
+<button type="button" (click)="filterResults()">Search</button>
+<button type="button" *ngIf="isFiltering" (click)="clearFilter()">Clear</button>
+
+<div *ngIf="!filteredProducts">
+  <div  *ngFor="let product of products" class="product-card">
+
+  <h2 [routerLink]="['/product-details', product.id]">
     {{ product.name }}
   </h2>
 
   <p class="description">{{ product.description }}</p>
   <p class="price">Price: {{ product.sellingPrice | currency:'USD':code }}</p>
+  </div>
+</div>
+
+<div *ngIf="filteredProducts">
+  <div  *ngFor="let product of filteredProducts" class="product-card">
+
+  <h2 [routerLink]="['/product-details', product.id]">
+    {{ product.name }}
+  </h2>
+
+  <p class="description">{{ product.description }}</p>
+  <p class="price">Price: {{ product.sellingPrice | currency:'USD':code }}</p>
+  </div>
 </div>
 
 <button type="button" class="product-card" routerLink="/product-input-form">Add Product</button>

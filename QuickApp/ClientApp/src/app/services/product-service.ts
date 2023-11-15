@@ -46,5 +46,13 @@ export class ProductService {
   updateProduct(productId: number, productData: any): Observable<any> {
     return this.productEndpoint.updateProductEndpoint(productId, productData);
   }
+
+  deleteProduct(productId: number): Observable<any> {
+    return this.productEndpoint.deleteProductEndpoint(productId);
+  }
+
+  searchProducts(text: string): Observable<any> {
+    return this.productEndpoint.searchProductsEndpoint(text);
+  }
   
 }

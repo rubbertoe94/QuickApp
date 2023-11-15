@@ -42,6 +42,11 @@ export class ProductEndpoint extends EndpointBase {
     return this.http.get<T>(endpointUrl, this.requestHeaders);
   }
 
+  deleteProductEndpoint<T>(productId: number): Observable<T> {
+    const endpointUrl = `${this.configurations.baseUrl}/api/Product/${productId}`;
+    return this.http.delete<T>(endpointUrl, this.requestHeaders)
+  }
+
   addProductEndpoint<T>(product: ProductViewModel): Observable<T> {
     const endpointUrl = this.addProductUrl;
     return this.http.post<T>(endpointUrl, JSON.stringify(product), this.requestHeaders);
@@ -50,6 +55,11 @@ export class ProductEndpoint extends EndpointBase {
   updateProductEndpoint<T>(productId: number, productData: any): Observable<T> {
     const endpointUrl = `${this.configurations.baseUrl}/api/Product/${productId}`;
     return this.http.put<T>(endpointUrl, JSON.stringify(productData,), this.requestHeaders);
+  }
+
+  searchProductsEndpoint<T>(term: string): Observable<T> {
+    const endpointUrl = `${this.configurations.baseUrl}/api/Product/search?term=${term}`;
+    return this.http.get<T>(endpointUrl, this.requestHeaders);
   }
  
 }

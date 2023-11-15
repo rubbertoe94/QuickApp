@@ -101,11 +101,12 @@ namespace QuickApp.Controllers
 
         // POST api/values
         [HttpPost("addcustomer")]
-        public void Post([FromBody] CustomerViewModel value)
+        public ActionResult<Customer> Post([FromBody] CustomerViewModel value)
         {
             var newcustomer = _mapper.Map<Customer>(value);
             _unitOfWork.Customers.AddCustomer(newcustomer);
             _unitOfWork.SaveChanges();
+            return newcustomer;
         }
 
 

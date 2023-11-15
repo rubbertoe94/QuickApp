@@ -46,6 +46,17 @@ namespace QuickApp.Controllers
             return Ok(_mapper.Map<IEnumerable<ProductViewModel>>(allProducts));
         }
 
+        [HttpGet("search")]
+        public ActionResult<IEnumerable<ProductViewModel>> SearchProducts(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return Ok(new List<Product>());
+            }
+            var products = _unitOfWork.Products.SearchProducts(text);
+            return Ok(_mapper.Map<IEnumerable<ProductViewModel>>(products));
+        }
+
 
         [HttpGet("throw")]
         public IEnumerable<CustomerViewModel> Throw()

@@ -26,6 +26,17 @@ namespace DAL.Repositories
                 .ToList();
         }
 
+        public IEnumerable<Product> SearchProducts(string text) 
+        { 
+            text = text.ToLower();
+
+            var products = _appContext.Products
+                .Where(p => p.Name.Contains(text))
+                .ToList();
+
+            return products;
+        }
+
         public void AddProduct(Product product)
         {
             if (product == null)

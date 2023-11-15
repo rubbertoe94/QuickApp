@@ -45,11 +45,11 @@ export class CustomerService {
     return this.customersEndpoint.addCustomerEndpoint(customer);
   }
 
-  deleteCustomer(customerId: number): Observable<any> {
+  deleteCustomer(customerId: number): Observable<void> {
     return this.customersEndpoint.deleteCustomerEndpoint(customerId)
   }
 
-  updateCustomer(customerId: number, customerData: any): Observable<any> {
+  updateCustomer(customerId: number, customerData: any): Observable<void> {
     return this.customersEndpoint.updateCustomerEndpoint(customerId, customerData);
   }
 

@@ -1,1 +1,50 @@
-﻿
+﻿/* Styles for the page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Styles for the header */
+  h1 {
+    color: #333;
+  }
+  
+  /* Styles for the table */
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .table th, .table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .table th {
+    background-color: #f2f2f2;
+  }
+  
+  /* Styles for the rows */
+  .table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #ddd;
+  }
+  
+  /* Styles for the "No orders available" message */
+  .no-orders {
+    color: #888;
+    margin-top: 20px;
+  }

@@ -1,29 +1,28 @@
-<h1>Orders</h1>
-<div *ngIf="orders && orders.length > 0">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Discount</th>
-        <th>Comments</th>
-        <th>Customer ID</th>
-        <th>Cashier ID</th>
-        <th>Customer Name</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let order of orders">
-        <td>{{ order.id }}</td>
-        <td>{{ order.discount }}</td>
-        <td>{{ order.comments }}</td>
-        <td>{{ order.customerId }}</td>
-        <td>{{ order.cashierId }}</td>
-        <td>{{ order.customer.name }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<div class="container">
+  <h1 class="page-title">Orders</h1>
 
-<div *ngIf="!orders || orders.length === 0">
-  <p>No orders available.</p>
+  <div *ngIf="orders" class="orders-table">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Discount</th>
+          <th>Comments</th>
+          <th>Customer Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders" class="table-row">
+          <td>{{ order.id }}</td>
+          <td>{{ order.discount }}</td>
+          <td>{{ order.comments }}</td>
+          <td>{{ order.customer.name }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="!orders" class="no-orders">
+    <p>No orders available.</p>
+  </div>
 </div>

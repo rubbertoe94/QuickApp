@@ -13,5 +13,6 @@ namespace DAL.Repositories.Interfaces
     public interface IOrdersRepository : IRepository<Order>
     {
         IEnumerable<Order> GetAllOrders();
+        public void AddOrder(Order order);
     }
 }

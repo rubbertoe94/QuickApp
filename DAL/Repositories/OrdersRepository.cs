@@ -28,11 +28,19 @@ namespace DAL.Repositories
 
         public IEnumerable<Order> GetAllOrders()
         {
-            return _appContext.Orders.Include(o => o.Customer).ToList();
+            return _appContext.Orders
+                .Include(o => o.Customer)
+                .Include(o => o.OrderDetails).ThenInclude(d => d.Product)
+                .AsSingleQuery()
+                .OrderBy(o => o.DateCreated)
+                .ToList();
         }
 
 
-
+        public void AddOrder(Order order)
+        {
+             _appContext.Orders.Add(order);
+        }
         private ApplicationDbContext _appContext => (ApplicationDbContext)_context;
     }
 }

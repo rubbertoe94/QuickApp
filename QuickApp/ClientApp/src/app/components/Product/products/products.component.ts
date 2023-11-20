@@ -35,7 +35,6 @@ ngOnInit(): void{
 loadProducts(): void{
   this.productService.getProducts().subscribe({
     next: (result: ProductViewModel[]) => {
-      console.log('the result of next in getProducts is: ', result);
       this.products = result;
     },
     error: (er) => {
@@ -46,13 +45,20 @@ loadProducts(): void{
 }
 
 filterResults():void {
+  let matches: ProductViewModel[] = this.products.filter(p => p.name.toLowerCase().includes(this.searchTerm));
   console.log('searchTerm: ', this.searchTerm);
-  // fancy code to filter this.products by my search term
   if (!this.searchTerm) {
     this.loadProducts();
   } 
-  
-  this.filteredProducts = this.products.filter(p => p.name.toLowerCase().includes(this.searchTerm));
+
+    else if(matches.length === 0) {
+      alert("No matches were found for that search term")
+    }
+
+  else {
+    this.filteredProducts = this.products.filter(p => p.name.toLowerCase().includes(this.searchTerm));
+  }
+  console.log("Matches: ", matches);
   }
 
 clearFilter(): void {

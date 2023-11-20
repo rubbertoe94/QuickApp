@@ -7,6 +7,9 @@
 
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { EndpointBase } from './endpoint-base.service';
+import { ConfigurationService } from './configuration.service';
 
 
 import { OrderEndpoint } from './order.endpoints';

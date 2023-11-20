@@ -6,7 +6,7 @@
 // ======================================
 
 import { Component } from '@angular/core';
-import { fadeInOut } from '../../services/animations';
+import { fadeInOut } from '../../../services/animations';
 import { OrderEndpoint } from 'src/app/services/order.endpoints';
 import { OrderService } from 'src/app/services/order.service';
 import { OrderViewModelEdit } from 'src/app/models/order-model';
@@ -30,7 +30,6 @@ ngOnInit():void {
 loadOrders(): void {
   this.orderService.getOrders().subscribe({
     next: (result: OrderViewModelList[]) => {
-      console.log('the result of next in getOrders is:', result);
       this.orders = result;
     }, 
     error: (er) => {

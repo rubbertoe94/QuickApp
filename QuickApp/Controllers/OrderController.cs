@@ -61,7 +61,7 @@ namespace Pickleball_Website.Controllers
         public void Post([FromBody] OrderViewModelEdit value)
         {
             var order = _mapper.Map<Order>(value);
-            _unitOfWork.Orders.Add(order);
+            _unitOfWork.Orders.AddOrder(order);
             _unitOfWork.SaveChanges();
 
         }

@@ -42,7 +42,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { CustomersComponent } from './components/Customer/customers/customers.component';
 import { ProductsComponent } from './components/Product/products/products.component';
-import { OrdersComponent } from './components/orders/orders.component';
+import { OrdersComponent } from './components/Order/orders/orders.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { AboutComponent } from './components/about/about.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';

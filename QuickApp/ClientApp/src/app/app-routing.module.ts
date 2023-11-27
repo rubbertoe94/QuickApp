@@ -24,6 +24,7 @@ import { CustomerFormComponent } from './components/Customer/customer-form/custo
 import { CustomerDetailsComponent } from './components/Customer/customer-details/customer-details.component';
 import { ProductDetailsComponent } from './components/Product/product-details/product-details.component';
 import { ProductInputFormComponent } from './components/Product/product-input-form/product-input-form.component';
+import { OrderFormComponent } from './components/Order/order-form/order-form.component';
 
 @Injectable()
 export class LowerCaseUrlSerializer extends DefaultUrlSerializer {
@@ -62,6 +63,8 @@ const routes: Routes = [
   { path: 'product-details/:id', component: ProductDetailsComponent },
   { path: 'product-input-form', component: ProductInputFormComponent },
   { path: 'product-input-form/:id', component: ProductInputFormComponent },
+  { path: 'order-form', component: OrderFormComponent },
+  { path: 'order-form/:id', component: OrderFormComponent },
   { path: '**', component: NotFoundComponent, title: 'Page Not Found' },
 ];
 

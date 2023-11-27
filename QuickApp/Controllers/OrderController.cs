@@ -50,14 +50,14 @@ namespace Pickleball_Website.Controllers
         [HttpGet("{id}")]
         public OrderViewModelList GetOrder(int id)
         {
-            var order = _unitOfWork.Orders.Get(id);
+            var order = _unitOfWork.Orders.GetOrderById(id);
             return _mapper.Map<OrderViewModelList>(order);
         }
 
 
 
         // POST api/values
-        [HttpPost]
+        [HttpPost("addOrder")]
         public void Post([FromBody] OrderViewModelEdit value)
         {
             var order = _mapper.Map<Order>(value);
@@ -70,13 +70,16 @@ namespace Pickleball_Website.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] OrderViewModelEdit value)
+        public void Put(int id, [FromBody] OrderViewModelEdit order)
         {
-            var existingOrder = _unitOfWork.Orders.Get(id);
+            var orderToUpdate = _unitOfWork.Orders.GetOrderById(id);
 
-            _mapper.Map(value, existingOrder);
+            orderToUpdate.Discount = order.Discount;
+            orderToUpdate.Comments = order.Comments;
+            orderToUpdate.CustomerId = order.CustomerId;
+            orderToUpdate.CashierId = order.CashierId;
 
-            _unitOfWork.Orders.Update(existingOrder);
+            _unitOfWork.Orders.UpdateOrder(id, orderToUpdate);
             _unitOfWork.SaveChanges();
 
         }

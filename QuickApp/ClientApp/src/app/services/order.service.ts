@@ -39,5 +39,9 @@ export class OrderService {
     return this.orderEndpoint.getOrdersEndpoint();
   }
 
+  addOrder(order: OrderViewModelEdit): Observable<any> {
+    return this.orderEndpoint.addOrderEndpoint(order);
+  }
+
   
 }

@@ -8,11 +8,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+
+
 namespace DAL.Repositories.Interfaces
 {
     public interface IOrdersRepository : IRepository<Order>
     {
         IEnumerable<Order> GetAllOrders();
+        public Order GetOrderById(int id);
         public void AddOrder(Order order);
+        public void UpdateOrder(int id, Order order);
     }
 }

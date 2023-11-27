@@ -68,6 +68,7 @@ import { CustomerDetailsComponent } from './components/Customer/customer-details
 import { SearchBarComponent } from './components/Customer/search-bar/search-bar.component';
 import { ProductDetailsComponent } from './components/Product/product-details/product-details.component';
 import { ProductInputFormComponent } from './components/Product/product-input-form/product-input-form.component';
+import { OrderFormComponent } from './components/Order/order-form/order-form.component';
 
 
 @NgModule({
@@ -95,6 +96,7 @@ import { ProductInputFormComponent } from './components/Product/product-input-fo
     SearchBarComponent,
     ProductDetailsComponent,
     ProductInputFormComponent,
+    OrderFormComponent,
   ],
   imports: [
     BrowserModule,

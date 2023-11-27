@@ -13,6 +13,7 @@ import { catchError } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { EndpointBase } from './endpoint-base.service';
 import { ConfigurationService } from './configuration.service';
+import { OrderViewModelEdit } from '../models/order-model';
 
 
 @Injectable()
@@ -31,6 +32,16 @@ export class OrderEndpoint extends EndpointBase {
       catchError(error => {
         return this.handleError(error, () => this.getOrdersEndpoint<T>());
       }));
+  }
+
+  addOrderEndpoint<T>(order: OrderViewModelEdit): Observable<T> {
+    const endpointUrl = `${this.configurations.baseUrl}/api/order/addOrder`;
+    
+    return this.http.post<T>(endpointUrl, JSON.stringify(order), this.requestHeaders).pipe(
+      catchError(error => {
+        return this.handleError(error, () => this.addOrderEndpoint<T>(order));
+      })
+    );
   }
 
  

@@ -36,10 +36,24 @@ namespace DAL.Repositories
                 .ToList();
         }
 
+        public Order GetOrderById(int id)
+        {
+            var order = _appContext.Orders.FirstOrDefault(o => o.Id == id);
+
+            return order;
+        }
+
 
         public void AddOrder(Order order)
         {
              _appContext.Orders.Add(order);
+        }
+
+
+        public void UpdateOrder(int id, Order order)
+        {
+            _appContext.Orders.Attach(order);
+            _appContext.Entry(order).State = EntityState.Modified;
         }
         private ApplicationDbContext _appContext => (ApplicationDbContext)_context;
     }

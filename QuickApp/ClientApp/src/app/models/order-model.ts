@@ -15,4 +15,5 @@ export interface OrderViewModelList {
     customerId: number;
     cashierId: string;
     customer: CustomerViewModel;
+    
 }

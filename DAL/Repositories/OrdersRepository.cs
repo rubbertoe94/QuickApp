@@ -40,8 +40,10 @@ namespace DAL.Repositories
         {
             var order = _appContext.Orders
                 .Include(o => o.Customer)
-                .Include(o => o.OrderDetails).ThenInclude(o => o.Product)
+                .Include(o => o.Product)
                 .FirstOrDefault(o => o.Id == id);
+
+           
 
             return order;
         }

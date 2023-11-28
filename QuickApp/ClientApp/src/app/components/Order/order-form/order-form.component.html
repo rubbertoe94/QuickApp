@@ -17,6 +17,14 @@
         <label for="cashierId">Cashier Id:</label>
         <input type="text" id="cashierId" [(ngModel)]="order.cashierId" name="cashierId">
       </div>
+      <div>
+        <label for="productName">Product Name:</label>
+        <input type="text" id="productName" [(ngModel)]="order.product.name" name="productName">
+      </div>
+      <div>
+        <label for="productCategoryId">Product Category Id:</label>
+        <input type="number" id="productCategoryId" [(ngModel)]="order.product.productCategoryId" name="productCategoryId">
+      </div>
       <br>
       <button type="button" (click)="onSubmit()">Submit</button>
     </form>

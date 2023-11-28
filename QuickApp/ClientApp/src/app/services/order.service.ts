@@ -15,8 +15,7 @@ import { ConfigurationService } from './configuration.service';
 import { OrderEndpoint } from './order.endpoints';
 import { AuthService } from './auth.service';
 import { Role } from '../models/role.model';
-import { OrderViewModelEdit } from '../models/order-model';
-import { OrderViewModelList } from '../models/order-model';
+import { OrderViewModel } from '../models/order-model';
 
 export type RolesChangedOperation = 'add' | 'delete' | 'modify';
 export interface RolesChangedEventArg { roles: Role[] | string[]; operation: RolesChangedOperation; }
@@ -35,15 +34,15 @@ export class OrderService {
 
   }
 
-  getOrders(): Observable<OrderViewModelList[]> {
+  getOrders(): Observable<OrderViewModel[]> {
     return this.orderEndpoint.getOrdersEndpoint();
   }
 
-  addOrder(order: OrderViewModelEdit): Observable<any> {
+  addOrder(order: OrderViewModel): Observable<any> {
     return this.orderEndpoint.addOrderEndpoint(order);
   }
 
-  getOrderById(orderId: number): Observable<OrderViewModelList> {
+  getOrderById(orderId: number): Observable<OrderViewModel> {
     return this.orderEndpoint.getOrderByIdEndpoint(orderId);
   }
   

@@ -9,8 +9,7 @@ import { Component } from '@angular/core';
 import { fadeInOut } from '../../../services/animations';
 import { OrderEndpoint } from 'src/app/services/order.endpoints';
 import { OrderService } from 'src/app/services/order.service';
-import { OrderViewModelEdit } from 'src/app/models/order-model';
-import { OrderViewModelList } from 'src/app/models/order-model';
+import { OrderViewModel } from 'src/app/models/order-model';
 
 @Component({
   selector: 'app-orders',
@@ -19,7 +18,7 @@ import { OrderViewModelList } from 'src/app/models/order-model';
   animations: [fadeInOut]
 })
 export class OrdersComponent {
-orders: OrderViewModelList[];
+orders: OrderViewModel[];
 
 constructor(private orderService: OrderService) {}
 
@@ -29,7 +28,7 @@ ngOnInit():void {
 
 loadOrders(): void {
   this.orderService.getOrders().subscribe({
-    next: (result: OrderViewModelList[]) => {
+    next: (result: OrderViewModel[]) => {
       this.orders = result;
     }, 
     error: (er) => {

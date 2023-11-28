@@ -41,24 +41,24 @@ namespace Pickleball_Website.Controllers
         public IActionResult GetAllOrders()
         {
             var allOrders = _unitOfWork.Orders.GetAllOrders();
-            return Ok(_mapper.Map<IEnumerable<OrderViewModelList>>(allOrders));
+            return Ok(_mapper.Map<IEnumerable<OrderViewModel>>(allOrders));
         }
 
 
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public OrderViewModelList GetOrder(int id)
+        public OrderViewModel GetOrder(int id)
         {
             var order = _unitOfWork.Orders.GetOrderById(id);
-            return _mapper.Map<OrderViewModelList>(order);
+            return _mapper.Map<OrderViewModel>(order);
         }
 
 
 
         // POST api/values
         [HttpPost("addOrder")]
-        public void Post([FromBody] OrderViewModelEdit value)
+        public void Post([FromBody] OrderViewModel value)
         {
             var order = _mapper.Map<Order>(value);
             _unitOfWork.Orders.AddOrder(order);
@@ -70,7 +70,7 @@ namespace Pickleball_Website.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] OrderViewModelEdit order)
+        public void Put(int id, [FromBody] OrderViewModel order)
         {
             var orderToUpdate = _unitOfWork.Orders.GetOrderById(id);
 

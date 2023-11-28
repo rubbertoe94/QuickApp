@@ -13,7 +13,7 @@ import { catchError } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { EndpointBase } from './endpoint-base.service';
 import { ConfigurationService } from './configuration.service';
-import { OrderViewModelEdit } from '../models/order-model';
+import { OrderViewModel } from '../models/order-model';
 
 
 @Injectable()
@@ -34,7 +34,7 @@ export class OrderEndpoint extends EndpointBase {
       }));
   }
 
-  addOrderEndpoint<T>(order: OrderViewModelEdit): Observable<T> {
+  addOrderEndpoint<T>(order: OrderViewModel): Observable<T> {
     const endpointUrl = `${this.configurations.baseUrl}/api/order/addOrder`;
     
     return this.http.post<T>(endpointUrl, JSON.stringify(order), this.requestHeaders).pipe(

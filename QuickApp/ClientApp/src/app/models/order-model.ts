@@ -1,15 +1,7 @@
 import { CustomerViewModel } from "./customer-model";
 import { ProductViewModel } from "./product-model";
 
-export interface OrderViewModelEdit {
-    id: number;
-    discount: number;
-    comments: string;
-    customerId: number;
-    cashierId: string;
-}
-
-export interface OrderViewModelList {
+export class OrderViewModel {
     id: number;
     discount: number;
     comments: string;
@@ -17,10 +9,13 @@ export interface OrderViewModelList {
     cashierId: string;
     customer: CustomerViewModel;
     product: ProductViewModel;
-    
+
+   // constructor(){this.product = new ProductViewModel()}
 }
 
-export interface OrderDetailViewModel {
+
+
+export class OrderDetailViewModel {
     id: number;
     product: ProductViewModel;
     customer: CustomerViewModel;

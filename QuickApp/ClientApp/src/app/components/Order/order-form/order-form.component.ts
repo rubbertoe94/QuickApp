@@ -9,18 +9,20 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./order-form.component.scss']
 })
 export class OrderFormComponent {
-order: any = {
-  discount: null,
-  comments: '',
-  customerId: null,
-  cashierId: ''
-};
+order: OrderViewModelList;
 orderId: number;
 
 constructor(private orderservice: OrderService, private route: ActivatedRoute, private router: Router){}
 
 ngOnInit(): void {
-
+// this.route.params.subscribe(params => {
+//   this.orderId = +params['id']
+// });
+// if (this.orderId) {
+//   this.loadOrderDetails();
+// } else {
+//   this.order = new OrderViewModelEdit;
+// }
 }
 
 onSubmit(): void {

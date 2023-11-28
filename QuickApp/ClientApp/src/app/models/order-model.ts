@@ -1,4 +1,5 @@
 import { CustomerViewModel } from "./customer-model";
+import { ProductViewModel } from "./product-model";
 
 export interface OrderViewModelEdit {
     id: number;
@@ -15,5 +16,12 @@ export interface OrderViewModelList {
     customerId: number;
     cashierId: string;
     customer: CustomerViewModel;
+    product: ProductViewModel;
     
+}
+
+export interface OrderDetailViewModel {
+    id: number;
+    product: ProductViewModel;
+    customer: CustomerViewModel;
 }

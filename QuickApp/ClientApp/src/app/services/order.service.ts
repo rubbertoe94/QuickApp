@@ -43,5 +43,8 @@ export class OrderService {
     return this.orderEndpoint.addOrderEndpoint(order);
   }
 
+  getOrderById(orderId: number): Observable<OrderViewModelList> {
+    return this.orderEndpoint.getOrderByIdEndpoint(orderId);
+  }
   
 }

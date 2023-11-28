@@ -38,7 +38,10 @@ namespace DAL.Repositories
 
         public Order GetOrderById(int id)
         {
-            var order = _appContext.Orders.FirstOrDefault(o => o.Id == id);
+            var order = _appContext.Orders
+                .Include(o => o.Customer)
+                .Include(o => o.OrderDetails).ThenInclude(o => o.Product)
+                .FirstOrDefault(o => o.Id == id);
 
             return order;
         }

@@ -1,0 +1,58 @@
+/* style.css */
+
+/* Reset default margin and padding */
+body, h1, h2, div, span {
+    margin: 0;
+    padding: 0;
+}
+
+/* Basic styling for the body */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 20px;
+}
+
+/* Style for the main heading */
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Style for the section headings */
+h2 {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Style for label and span */
+label {
+    font-weight: bold;
+}
+
+p {
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Styling for individual details */
+#orderId {
+    font-weight: bold;
+    color: #009688;
+    /* Add additional styles as needed */
+}
+
+/* Styling for product details */
+#productName {
+    font-style: italic;
+    color: #333;
+}
+
+/* Styling for customer details */
+#customerName {
+    text-transform: uppercase;
+}

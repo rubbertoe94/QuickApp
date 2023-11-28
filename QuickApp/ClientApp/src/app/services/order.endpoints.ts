@@ -44,5 +44,14 @@ export class OrderEndpoint extends EndpointBase {
     );
   }
 
+  getOrderByIdEndpoint<T>(orderId: number): Observable<T> {
+    const endpointUrl = `${this.configurations.baseUrl}/api/order/${orderId}`;
+
+    return this.http.get<T>(endpointUrl, this.requestHeaders).pipe(
+      catchError(error => {
+        return this.handleError(error, () => this.getOrdersEndpoint<T>());
+      }));
+  }
+
  
 }

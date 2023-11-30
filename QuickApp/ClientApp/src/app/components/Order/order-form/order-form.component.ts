@@ -30,19 +30,34 @@ if (this.orderId) {
 }
 
 onSubmit(): void {
-  this.orderservice.addOrder(this.order).subscribe(() => {
-    console.log('order added successfully');
-    this.router.navigate(['/orders']);
-  })
+  if (this.orderId) {
+    this.updateOrder();
+  } else {
+    this.addOrder();
+  }
 }
 
-loadOrderDetails(): void {
-  this.orderservice.getOrderById(this.orderId).subscribe({
+loadOrderDetails() {
+  return this.orderservice.getOrderById(this.orderId).subscribe({
     next: (data: OrderViewModel) => {this.order = data},
     error: (err) => {console.log(err)}
   });
   this.product = this.order.product;
   this.customer = this.order.customer;
+  console.log("order: ", this.order)
+}
+
+addOrder(): void {
+  this.orderservice.addOrder(this.order).subscribe(() => {
+    this.router.navigate(['/orders']);
+  })
+}
+
+updateOrder(): void {
+  this.orderservice.updateOrder(this.orderId, this.order).subscribe({
+    next: () => {this.router.navigate(['/order-details', this.orderId])},
+    error: (err) => {console.error(err)}
+  })
 }
 
 }

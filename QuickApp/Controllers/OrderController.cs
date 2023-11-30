@@ -58,29 +58,58 @@ namespace Pickleball_Website.Controllers
 
         // POST api/values
         [HttpPost("addOrder")]
-        public void Post([FromBody] OrderViewModel value)
+        public IActionResult Post([FromBody] OrderViewModel value)
         {
+
+            if (_unitOfWork.Orders.DoesCustomerExist(value.CustomerId))
+            {
+                return BadRequest("Invalid Customer Id, Please choose from existing customers.");
+            };
+
+            if (_unitOfWork.Orders.DoesProductExist(value.Product.Id))
+            {
+                return BadRequest("Invalid Product Id, Please choose from existing products.");
+            };
+
             var order = _mapper.Map<Order>(value);
             _unitOfWork.Orders.AddOrder(order);
             _unitOfWork.SaveChanges();
 
+            return Ok("Order added successfully");
         }
 
 
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] OrderViewModel order)
+        public IActionResult Put(int id, [FromBody] OrderViewModel order)
         {
+            if (_unitOfWork.Orders.DoesCustomerExist(order.CustomerId))
+            {
+                return BadRequest("Invalid Customer Id, Please choose from existing customers.");
+            };
+
+            if (_unitOfWork.Orders.DoesProductExist(order.Product.Id))
+            {
+                return BadRequest("Invalid Product Id, Please choose from existing products.");
+            };
+
+
+
             var orderToUpdate = _unitOfWork.Orders.GetOrderById(id);
 
             orderToUpdate.Discount = order.Discount;
             orderToUpdate.Comments = order.Comments;
             orderToUpdate.CustomerId = order.CustomerId;
             orderToUpdate.CashierId = order.CashierId;
+            orderToUpdate.Product.Name = order.Product.Name;
+            orderToUpdate.Product.ProductCategoryId = order.Product.ProductCategoryId;
+            orderToUpdate.Product.Id = order.Product.Id;
 
             _unitOfWork.Orders.UpdateOrder(id, orderToUpdate);
             _unitOfWork.SaveChanges();
+
+            return Ok("Order updated successfully");
 
         }
 

@@ -6,11 +6,12 @@ export class OrderViewModel {
     discount: number;
     comments: string;
     customerId: number;
+    productId: number;
     cashierId: string;
     customer: CustomerViewModel;
     product: ProductViewModel;
 
-   // constructor(){this.product = new ProductViewModel()}
+   
 }
 
 

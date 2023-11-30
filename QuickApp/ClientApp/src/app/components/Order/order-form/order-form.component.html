@@ -1,7 +1,7 @@
 <div>
     <h2>Order Form</h2>
-    <form>
-      <div>
+    <form *ngIf="order">
+      <div >
         <label for="discount">Discount:</label>
         <input type="number" id="discount" [(ngModel)]="order.discount" name="discount">
       </div>
@@ -9,6 +9,7 @@
         <label for="comments">Comments:</label>
         <input type="text" id="comments" [(ngModel)]="order.comments" name="comments">
       </div>
+      
       <div>
         <label for="customerId">Customer Id:</label>
         <input type="number" id="customerId" [(ngModel)]="order.customerId" name="customerId">
@@ -17,14 +18,10 @@
         <label for="cashierId">Cashier Id:</label>
         <input type="text" id="cashierId" [(ngModel)]="order.cashierId" name="cashierId">
       </div>
-      <div>
-        <label for="productName">Product Name:</label>
-        <input type="text" id="productName" [(ngModel)]="order.product.name" name="productName">
-      </div>
-      <div>
-        <label for="productCategoryId">Product Category Id:</label>
-        <input type="number" id="productCategoryId" [(ngModel)]="order.product.productCategoryId" name="productCategoryId">
-      </div>
+  <div >
+    <label for="productId">Product Id:</label>
+    <input type="number" id="productId" [(ngModel)]="order.product.id" name="productId">
+  </div>
       <br>
       <button type="button" (click)="onSubmit()">Submit</button>
     </form>

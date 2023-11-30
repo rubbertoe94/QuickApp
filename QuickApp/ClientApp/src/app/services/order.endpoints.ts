@@ -49,7 +49,15 @@ export class OrderEndpoint extends EndpointBase {
 
     return this.http.get<T>(endpointUrl, this.requestHeaders).pipe(
       catchError(error => {
-        return this.handleError(error, () => this.getOrdersEndpoint<T>());
+        return this.handleError(error, () => this.getOrderByIdEndpoint<T>(orderId));
+      }));
+  }
+
+  updateOrderEndpoint<T>(orderId: number, order: OrderViewModel): Observable<T> {
+    const endpointUrl = `${this.configurations.baseUrl}/api/order/${orderId}`;
+    return this.http.put<T>(endpointUrl, JSON.stringify(order), this.requestHeaders).pipe(
+      catchError(error => {
+        return this.handleError(error, () => this.updateOrderEndpoint<T>(orderId, order));
       }));
   }
 

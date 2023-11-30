@@ -61,6 +61,16 @@ namespace DAL.Repositories
             _appContext.Orders.Attach(order);
             _appContext.Entry(order).State = EntityState.Modified;
         }
+
+        public bool DoesCustomerExist(int customerId)
+        {
+            return _appContext.Customers.Any(c => c.Id == customerId);
+        }
+
+        public bool DoesProductExist(int productId)
+        {
+            return _appContext.Products.Any(p => p.Id == productId);
+        }
         private ApplicationDbContext _appContext => (ApplicationDbContext)_context;
     }
 }

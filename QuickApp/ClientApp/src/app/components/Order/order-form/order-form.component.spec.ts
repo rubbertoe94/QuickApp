@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OrderFormComponent } from './order/order-form.component';
+import { OrderFormComponent } from './order-form.component';
 
 describe('OrderFormComponent', () => {
   let component: OrderFormComponent;

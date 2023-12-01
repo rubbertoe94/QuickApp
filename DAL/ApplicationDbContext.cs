@@ -61,6 +61,7 @@ namespace DAL
             builder.Entity<Order>().Property(o => o.Comments).HasMaxLength(500);
             builder.Entity<Order>().ToTable($"App{nameof(Orders)}");
             builder.Entity<Order>().Property(p => p.Discount).HasColumnType(priceDecimalType);
+            builder.Entity<Order>().HasOne(o => o.Product).WithMany().HasForeignKey(o => o.ProductId).OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<OrderDetail>().ToTable($"App{nameof(OrderDetails)}");
             builder.Entity<OrderDetail>().Property(p => p.UnitPrice).HasColumnType(priceDecimalType);

@@ -8,10 +8,7 @@ export class OrderViewModel {
     customerId: number;
     productId: number;
     cashierId: string;
-    customer: CustomerViewModel;
-    product: ProductViewModel;
-
-   
+    
 }
 
 

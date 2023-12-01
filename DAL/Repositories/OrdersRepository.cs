@@ -32,7 +32,7 @@ namespace DAL.Repositories
                 .Include(o => o.Customer)
                 .Include(o => o.OrderDetails).ThenInclude(d => d.Product)
                 .AsSingleQuery()
-                .OrderBy(o => o.DateCreated)
+                .OrderBy(o => o.Id)
                 .ToList();
         }
 
@@ -40,7 +40,7 @@ namespace DAL.Repositories
         {
             var order = _appContext.Orders
                 .Include(o => o.Customer)
-                .Include(o => o.Product)
+                .Include(o => o.OrderDetails).ThenInclude(od => od.Product)
                 .FirstOrDefault(o => o.Id == id);
 
            

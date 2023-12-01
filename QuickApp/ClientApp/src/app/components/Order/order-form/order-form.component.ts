@@ -42,8 +42,7 @@ loadOrderDetails() {
     next: (data: OrderViewModel) => {this.order = data},
     error: (err) => {console.log(err)}
   });
-  this.product = this.order.product;
-  this.customer = this.order.customer;
+  
   console.log("order: ", this.order)
 }
 

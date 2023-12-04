@@ -20,8 +20,8 @@ namespace QuickApp.ViewModels
         public int CustomerId { get; set; }
         public string CashierId { get; set; }
         public CustomerViewModel Customer { get; set; }
-
-        public List<OrderDetailViewModel> OrderDetails { get; set; }
+        public ProductViewModel Product { get; set; }
+        
 
     }
 

@@ -83,6 +83,7 @@ namespace Pickleball_Website.Controllers
             orderToUpdate.Comments = order.Comments;
             orderToUpdate.CustomerId = order.CustomerId;
             orderToUpdate.CashierId = order.CashierId;
+            orderToUpdate.Product.Id = order.Product.Id;
            
            
 

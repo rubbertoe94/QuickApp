@@ -23,7 +23,7 @@ namespace DAL
         public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderDetail> OrderDetails { get; set; }
+        
 
         public ApplicationDbContext(DbContextOptions options) : base(options)
         { }
@@ -63,9 +63,7 @@ namespace DAL
             builder.Entity<Order>().Property(p => p.Discount).HasColumnType(priceDecimalType);
             
 
-            builder.Entity<OrderDetail>().ToTable($"App{nameof(OrderDetails)}");
-            builder.Entity<OrderDetail>().Property(p => p.UnitPrice).HasColumnType(priceDecimalType);
-            builder.Entity<OrderDetail>().Property(p => p.Discount).HasColumnType(priceDecimalType);
+           
         }
 
         public override int SaveChanges()

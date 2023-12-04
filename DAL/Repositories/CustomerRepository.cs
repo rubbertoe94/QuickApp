@@ -21,7 +21,7 @@ namespace DAL.Repositories
         public IEnumerable<Customer> GetAllCustomersData()
         {
             return _appContext.Customers
-                .Include(c => c.Orders).ThenInclude(o => o.OrderDetails)
+                .Include(c => c.Orders)
                 .Include(c => c.Orders).ThenInclude(o => o.Cashier)
                 .AsSingleQuery()
                 .OrderBy(c => c.Name)
@@ -31,7 +31,7 @@ namespace DAL.Repositories
         public IEnumerable<Customer> GetAllCustomers()
         {
             return _appContext.Customers
-                .Include(c => c.Orders).ThenInclude(o => o.OrderDetails)
+                .Include(c => c.Orders)
                 .Include(c => c.Orders).ThenInclude(o => o.Cashier)
                 .AsSingleQuery()
                 .OrderBy(c => c.Name)

@@ -58,7 +58,6 @@ namespace QuickApp.ViewModels
                 .ReverseMap();
 
             CreateMap<Order, OrderViewModel>()
-    .ForMember(dest => dest.OrderDetails, opt => opt.MapFrom(src => src.OrderDetails))
     .ReverseMap();
 
             CreateMap<OrderDetail, OrderDetailViewModel>()

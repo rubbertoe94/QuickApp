@@ -192,11 +192,7 @@ namespace DAL
                     Customer = cust_1,
                     DateCreated = DateTime.UtcNow,
                     DateModified = DateTime.UtcNow,
-                    OrderDetails = new List<OrderDetail>
-                    {
-                        new OrderDetail {UnitPrice = prod_1.SellingPrice, Quantity=1, Product = prod_1 },
-                        new OrderDetail {UnitPrice = prod_2.SellingPrice, Quantity=1, Product = prod_2 },
-                    }
+
                 };
 
                 var ordr_2 = new Order
@@ -205,10 +201,7 @@ namespace DAL
                     Customer = cust_2,
                     DateCreated = DateTime.UtcNow,
                     DateModified = DateTime.UtcNow,
-                    OrderDetails = new List<OrderDetail>
-                    {
-                        new OrderDetail {UnitPrice = prod_2.SellingPrice, Quantity=1, Product = prod_2 },
-                    }
+
                 };
 
                 _context.Customers.Add(cust_1);

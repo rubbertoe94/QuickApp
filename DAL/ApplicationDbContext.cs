@@ -61,9 +61,11 @@ namespace DAL
             builder.Entity<Order>().Property(o => o.Comments).HasMaxLength(500);
             builder.Entity<Order>().ToTable($"App{nameof(Orders)}");
             builder.Entity<Order>().Property(p => p.Discount).HasColumnType(priceDecimalType);
-            
 
-           
+            builder.Entity<OrderDetail>().ToTable($"App{nameof(OrderDetail)}");
+            builder.Entity<OrderDetail>().Property(p => p.UnitPrice).HasColumnType(priceDecimalType);
+            builder.Entity<OrderDetail>().Property(p => p.Discount).HasColumnType(priceDecimalType);
+
         }
 
         public override int SaveChanges()

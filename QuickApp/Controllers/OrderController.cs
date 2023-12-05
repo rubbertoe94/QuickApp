@@ -92,7 +92,7 @@ namespace Pickleball_Website.Controllers
             _unitOfWork.Orders.UpdateOrder(id, orderToUpdate);
             _unitOfWork.SaveChanges();
 
-            return Ok("Order updated successfully");
+            return Ok(_mapper.Map<OrderViewModelDisplay>(order));
 
         }
 
@@ -100,11 +100,12 @@ namespace Pickleball_Website.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
             var order = _unitOfWork.Orders.Get(id);
             _unitOfWork.Orders.Remove(order);
             _unitOfWork.SaveChanges();
+            return NoContent();
         }
     }
 }

@@ -94,7 +94,7 @@ namespace QuickApp.Controllers
             }
 
             var customers = await _unitOfWork.Customers.SearchCustomersAsync(term);
-            return Ok(customers);
+            return Ok(_mapper.Map<List<Customer>>(customers));
         }
 
 
@@ -112,7 +112,7 @@ namespace QuickApp.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] CustomerViewModel customer)
+        public ActionResult Put(int id, [FromBody] CustomerViewModel customer)
         {
             var customerToUpdate = _unitOfWork.Customers.GetCustomerById(id);
 
@@ -128,13 +128,14 @@ namespace QuickApp.Controllers
 
                     _unitOfWork.Customers.UpdateCustomer(customerToUpdate);
                     _unitOfWork.SaveChanges();
+                    return Ok(_mapper.Map<CustomerViewModel>(customer));
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"An error occurred: {ex.Message}");   
+                 return StatusCode(500, $"an error occured: {ex.Message}"); 
                 }
             }
-
+            return NotFound();
         }
 
         // DELETE api/values/5

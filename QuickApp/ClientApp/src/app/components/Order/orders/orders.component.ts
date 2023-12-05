@@ -38,7 +38,8 @@ loadOrders(): void {
   })
 }
 
-deleteOrder(orderId): void {
+deleteOrder(orderId: number, event: Event): void {
+  event.stopPropagation();
 this.orderService.deleteOrder(orderId).subscribe({
   next: () => {
     this.orders = this.orders.filter((order) => order.id !== orderId)

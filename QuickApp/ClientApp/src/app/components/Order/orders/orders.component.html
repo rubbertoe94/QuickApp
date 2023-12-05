@@ -17,6 +17,7 @@
           <td>{{ order.discount }}</td>
           <td>{{ order.comments }}</td>
           <td>{{ order.customer.name }}</td>
+          <button type="button" (click)="deleteOrder(order.id)">Delete</button>
         </tr>
       </tbody>
     </table>

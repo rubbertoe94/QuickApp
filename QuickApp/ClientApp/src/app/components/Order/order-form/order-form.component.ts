@@ -48,6 +48,7 @@ loadOrderDetails() {
 
 addOrder(): void {
   this.orderservice.addOrder(this.order).subscribe(() => {
+    console.log("order is headed to endpoint")
     this.router.navigate(['/orders']);
   })
 }

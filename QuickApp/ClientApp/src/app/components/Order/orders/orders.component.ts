@@ -38,5 +38,16 @@ loadOrders(): void {
   })
 }
 
+deleteOrder(orderId): void {
+this.orderService.deleteOrder(orderId).subscribe({
+  next: () => {
+    this.orders = this.orders.filter((order) => order.id !== orderId)
+  },
+  error: (error) => {
+    console.error("error deleting order: ", error)
+  }
+})
+}
+
 
 }

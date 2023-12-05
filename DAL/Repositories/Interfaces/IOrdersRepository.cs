@@ -7,8 +7,7 @@ using DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
-
+using System.Threading.Tasks;
 
 namespace DAL.Repositories.Interfaces
 {
@@ -16,7 +15,7 @@ namespace DAL.Repositories.Interfaces
     {
         IEnumerable<Order> GetAllOrders();
         public Order GetOrderById(int id);
-        public void AddOrder(Order order);
+        public Task AddOrder(Order order);
         public void UpdateOrder(int id, Order order);
         public bool DoesCustomerExist(int customerId);
         public bool DoesProductExist(int productId);

@@ -106,7 +106,7 @@ namespace QuickApp.Controllers
             var newcustomer = _mapper.Map<Customer>(value);
             _unitOfWork.Customers.AddCustomer(newcustomer);
             _unitOfWork.SaveChanges();
-            return newcustomer;
+            return Ok(_mapper.Map<CustomerViewModel>(newcustomer));
         }
 
 

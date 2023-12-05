@@ -41,37 +41,38 @@ namespace Pickleball_Website.Controllers
         public IActionResult GetAllOrders()
         {
             var allOrders = _unitOfWork.Orders.GetAllOrders();
-            return Ok(_mapper.Map<IEnumerable<OrderViewModel>>(allOrders));
+            return Ok(_mapper.Map<IEnumerable<OrderViewModelDisplay>>(allOrders));
         }
 
 
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public OrderViewModel GetOrder(int id)
+        public OrderViewModelDisplay GetOrder(int id)
         {
             var order = _unitOfWork.Orders.GetOrderById(id);
-            return _mapper.Map<OrderViewModel>(order);
+            return _mapper.Map<OrderViewModelDisplay>(order);
         }
 
 
 
         // POST api/values
         [HttpPost("addOrder")]
-        public IActionResult Post([FromBody] OrderViewModel value)
+        public async Task<ActionResult<Order>> Post([FromBody] OrderViewModelAddOrEdit value)
         {
             var order = _mapper.Map<Order>(value);
-            _unitOfWork.Orders.AddOrder(order);
-            _unitOfWork.SaveChanges();
 
-            return Ok("Order added successfully");
+            await _unitOfWork.Orders.AddOrder(order);
+            await _unitOfWork.SaveChangesAsync();
+            return Ok(_mapper.Map<OrderViewModelDisplay>(order));
+            
         }
 
 
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] OrderViewModel order)
+        public IActionResult Put(int id, [FromBody] OrderViewModelAddOrEdit order)
         {
             
 
@@ -83,7 +84,8 @@ namespace Pickleball_Website.Controllers
             orderToUpdate.Comments = order.Comments;
             orderToUpdate.CustomerId = order.CustomerId;
             orderToUpdate.CashierId = order.CashierId;
-            orderToUpdate.Product.Id = order.Product.Id;
+            orderToUpdate.ProductId = order.ProductId;
+
            
            
 

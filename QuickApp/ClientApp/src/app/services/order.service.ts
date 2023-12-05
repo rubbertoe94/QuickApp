@@ -49,5 +49,9 @@ export class OrderService {
   updateOrder(orderId: number, order: OrderViewModel): Observable<any> {
     return this.orderEndpoint.updateOrderEndpoint(orderId, order);
   }
+
+  deleteOrder(orderId: number): Observable<any> {
+    return this.orderEndpoint.deleteOrderEndpoint(orderId);
+  }
   
 }

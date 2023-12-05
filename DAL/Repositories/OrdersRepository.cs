@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DAL.Repositories
 {
@@ -30,6 +31,7 @@ namespace DAL.Repositories
         {
             return _appContext.Orders
                 .Include(o => o.Customer)
+                .Include(o => o.Product)
                 .AsSingleQuery()
                 .OrderBy(o => o.Id)
                 .ToList();
@@ -39,6 +41,7 @@ namespace DAL.Repositories
         {
             var order = _appContext.Orders
                 .Include(o => o.Customer)
+                .Include(o => o.Product)
                 .FirstOrDefault(o => o.Id == id);
 
            
@@ -47,9 +50,15 @@ namespace DAL.Repositories
         }
 
 
-        public void AddOrder(Order order)
+        public Task AddOrder(Order order)
         {
-             _appContext.Orders.Add(order);
+            if (order == null)
+            {
+                throw new ArgumentNullException(nameof(order));
+            }
+
+            _appContext.Orders.Add(order);
+            return Task.CompletedTask;
         }
 
 

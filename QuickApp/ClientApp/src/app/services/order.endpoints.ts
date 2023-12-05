@@ -36,7 +36,7 @@ export class OrderEndpoint extends EndpointBase {
 
   addOrderEndpoint<T>(order: OrderViewModel): Observable<T> {
     const endpointUrl = `${this.configurations.baseUrl}/api/order/addOrder`;
-    
+    console.log("New Order has reached endpoint and is being sent to server")
     return this.http.post<T>(endpointUrl, JSON.stringify(order), this.requestHeaders).pipe(
       catchError(error => {
         return this.handleError(error, () => this.addOrderEndpoint<T>(order));
@@ -58,6 +58,14 @@ export class OrderEndpoint extends EndpointBase {
     return this.http.put<T>(endpointUrl, JSON.stringify(order), this.requestHeaders).pipe(
       catchError(error => {
         return this.handleError(error, () => this.updateOrderEndpoint<T>(orderId, order));
+      }));
+  }
+
+  deleteOrderEndpoint<T>(orderId: number): Observable<T> {
+    const endpointUrl = `${this.configurations.baseUrl}/api/order/${orderId}`;
+    return this.http.delete<T>(endpointUrl, this.requestHeaders).pipe(
+      catchError(error => {
+        return this.handleError(error, () => this.deleteOrderEndpoint<T>(orderId));
       }));
   }
 

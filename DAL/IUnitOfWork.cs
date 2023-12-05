@@ -8,6 +8,7 @@
 using DAL.Repositories.Interfaces;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace DAL
 {
@@ -18,5 +19,6 @@ namespace DAL
         IOrdersRepository Orders { get; }
 
         int SaveChanges();
+        Task<int> SaveChangesAsync();
     }
 }

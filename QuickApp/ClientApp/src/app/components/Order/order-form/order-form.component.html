@@ -11,17 +11,24 @@
       </div>
       
       <div>
-        <label for="customerId">Customer Id:</label>
-        <input type="number" id="customerId" [(ngModel)]="order.customerId" name="customerId">
+        <label for="customerSelection">Customer:</label>
+        <select  id="customerSelection" name="customerSelection" [(ngModel)]="order.customerId">
+          <option *ngFor="let customer of customers" [value]="customer.id">{{ customer.name }}</option>
+        </select>
       </div>
+
       <div>
         <label for="cashierId">Cashier Id:</label>
         <input type="text" id="cashierId" [(ngModel)]="order.cashierId" name="cashierId">
       </div>
-  <div >
-    <label for="productId">Product Id:</label>
-    <input type="number" id="productId" [(ngModel)]="order.productId" name="productId">
-  </div>
+
+      <div >
+        <label for="productSelection">Product:</label>
+        <select id="productSelection"  name="productSelection" [(ngModel)]="order.productid">
+          <option *ngFor="let product of products" [value]="product.id">{{ product.name }}</option>
+        </select>
+      </div>
+
       <br>
       <button type="button" (click)="onSubmit()">Submit</button>
     </form>

@@ -4,6 +4,8 @@ import { OrderViewModel } from 'src/app/models/order-model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductViewModel } from 'src/app/models/product-model';
 import { CustomerViewModel } from 'src/app/models/customer-model';
+import { ProductService } from 'src/app/services/product-service';
+import { CustomerService } from 'src/app/services/customer-service';
 
 @Component({
   selector: 'app-order-form',
@@ -13,10 +15,11 @@ import { CustomerViewModel } from 'src/app/models/customer-model';
 export class OrderFormComponent {
 order: OrderViewModel;
 orderId: number;
-product: ProductViewModel;
-customer: CustomerViewModel;
+//product: ProductViewModel;
+customers: any[] = [];
+products: any[] = [];
 
-constructor(private orderservice: OrderService, private route: ActivatedRoute, private router: Router){}
+constructor(private orderservice: OrderService, private productService: ProductService, private customerService: CustomerService, private route: ActivatedRoute, private router: Router){}
 
 ngOnInit(): void {
 this.route.params.subscribe(params => {
@@ -26,6 +29,9 @@ if (this.orderId) {
   this.loadOrderDetails();
 } else {
   this.order = new OrderViewModel();
+  this.getCustomers();
+  this.getProducts();
+  this.order.cashierId = "0192c35a-d211-4822-94be-d79631f0b4ba";
 }
 }
 
@@ -42,13 +48,11 @@ loadOrderDetails() {
     next: (data: OrderViewModel) => {this.order = data},
     error: (err) => {console.log(err)}
   });
-  
-  console.log("order: ", this.order)
 }
 
 addOrder(): void {
   this.orderservice.addOrder(this.order).subscribe(() => {
-    console.log("order is headed to endpoint")
+    window.alert("Order added successfully");
     this.router.navigate(['/orders']);
   })
 }
@@ -58,6 +62,17 @@ updateOrder(): void {
     next: () => {this.router.navigate(['/order-details', this.orderId])},
     error: (err) => {console.error(err)}
   })
+}
+
+getProducts() {
+  this.productService.getProducts().subscribe(
+(data) => this.products = data)
+}
+
+getCustomers() {
+this.customerService.getAllCustomers().subscribe(
+  data => {this.customers = data}
+)
 }
 
 }

@@ -50,15 +50,15 @@ namespace DAL.Repositories
         }
 
 
-        public Task AddOrder(Order order)
+        public async Task AddOrder(Order order)
         {
             if (order == null)
             {
                 throw new ArgumentNullException(nameof(order));
             }
 
-            _appContext.Orders.Add(order);
-            return Task.CompletedTask;
+           await _appContext.Orders.AddAsync(order);
+            await _appContext.SaveChangesAsync();
         }
 
 

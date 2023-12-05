@@ -20,6 +20,8 @@
       </tbody>
     </table>
     <button type="button" routerLink="/order-form">New Order</button>
+    <br>
+    <button type="button" (click)="copyAllOrders()">Copy All</button>
   </div>
 
   <div *ngIf="!orders" class="no-orders">

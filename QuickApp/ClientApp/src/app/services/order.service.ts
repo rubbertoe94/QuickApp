@@ -53,5 +53,9 @@ export class OrderService {
   deleteOrder(orderId: number): Observable<any> {
     return this.orderEndpoint.deleteOrderEndpoint(orderId);
   }
+
+  copyAllOrders(): Observable<any> {
+    return this.orderEndpoint.copyAllOrdersEndpoint();
+  }
   
 }

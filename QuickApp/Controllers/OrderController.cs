@@ -68,6 +68,45 @@ namespace Pickleball_Website.Controllers
             
         }
 
+        // POST api/values
+        [HttpPost("copyAllOrders")]
+        public async Task<ActionResult<Order>> CopyAllOrders()
+        {
+            try
+            {
+                var existingOrders = _unitOfWork.Orders.GetAllOrders(); 
+
+                foreach (var order in existingOrders)
+                {
+                    var newOrder = new Order
+                    {
+                        Discount = order.Discount,
+                        Comments = order.Comments,
+                        CashierId = order.CashierId,
+                        Cashier = order.Cashier,
+                        CustomerId = order.CustomerId,
+                        Customer = order.Customer,
+                        ProductId = order.ProductId,
+                        Product = order.Product,
+                        CreatedBy = order.CreatedBy,
+                        UpdatedBy = order.UpdatedBy,
+
+                    };
+
+                    await _unitOfWork.Orders.AddOrder(newOrder);
+                }
+
+                await _unitOfWork.SaveChangesAsync();
+
+                return Ok( new { Message = "All orders copied successfully" });
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal Server Error");
+            }
+
+        }
+
 
 
         // PUT api/values/5

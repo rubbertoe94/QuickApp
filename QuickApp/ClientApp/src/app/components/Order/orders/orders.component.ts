@@ -10,6 +10,7 @@ import { fadeInOut } from '../../../services/animations';
 import { OrderEndpoint } from 'src/app/services/order.endpoints';
 import { OrderService } from 'src/app/services/order.service';
 import { OrderViewModel } from 'src/app/models/order-model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-orders',
@@ -20,7 +21,7 @@ import { OrderViewModel } from 'src/app/models/order-model';
 export class OrdersComponent {
 orders: OrderViewModel[];
 
-constructor(private orderService: OrderService) {}
+constructor(private orderService: OrderService, private router: Router) {}
 
 ngOnInit():void {
   this.loadOrders();
@@ -48,6 +49,11 @@ this.orderService.deleteOrder(orderId).subscribe({
     console.error("error deleting order: ", error)
   }
 })
+}
+
+copyAllOrders() {
+  this.orderService.copyAllOrders().subscribe(
+    () => {window.alert('All order copied successfully')})
 }
 
 

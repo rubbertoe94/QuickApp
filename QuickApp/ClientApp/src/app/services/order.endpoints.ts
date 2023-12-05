@@ -14,11 +14,12 @@ import { AuthService } from './auth.service';
 import { EndpointBase } from './endpoint-base.service';
 import { ConfigurationService } from './configuration.service';
 import { OrderViewModel } from '../models/order-model';
+import { json } from 'stream/consumers';
 
 
 @Injectable()
 export class OrderEndpoint extends EndpointBase {
-  get getOrdersUrl() {return this.configurations.baseUrl + '/api/order'}
+  get basicUrl() {return this.configurations.baseUrl + '/api/order'}
  
 
   constructor(private configurations: ConfigurationService, http: HttpClient, authService: AuthService) {
@@ -26,7 +27,7 @@ export class OrderEndpoint extends EndpointBase {
   }
 
   getOrdersEndpoint<T>(): Observable<T> {
-    const endpointUrl = this.getOrdersUrl;
+    const endpointUrl = this.basicUrl;
 
     return this.http.get<T>(endpointUrl, this.requestHeaders).pipe(
       catchError(error => {
@@ -66,6 +67,14 @@ export class OrderEndpoint extends EndpointBase {
     return this.http.delete<T>(endpointUrl, this.requestHeaders).pipe(
       catchError(error => {
         return this.handleError(error, () => this.deleteOrderEndpoint<T>(orderId));
+      }));
+  }
+
+  copyAllOrdersEndpoint<T>(): Observable<T> {
+    const endpointUrl = this.basicUrl + '/copyAllOrders';
+    return this.http.post<T>(endpointUrl, this.requestHeaders).pipe(
+      catchError(error => {
+        return this.handleError(error, () => this.copyAllOrdersEndpoint<T>());
       }));
   }
 

@@ -44,7 +44,7 @@ namespace DAL.Repositories
                 .Include(o => o.Product)
                 .FirstOrDefault(o => o.Id == id);
 
-           
+
 
             return order;
         }
@@ -57,14 +57,14 @@ namespace DAL.Repositories
                 throw new ArgumentNullException(nameof(order));
             }
 
-           await _appContext.Orders.AddAsync(order);
+            await _appContext.Orders.AddAsync(order);
             await _appContext.SaveChangesAsync();
         }
 
 
         public void UpdateOrder(int id, Order order)
         {
-            
+
             _appContext.Orders.Attach(order);
             _appContext.Entry(order).State = EntityState.Modified;
         }
@@ -79,5 +79,8 @@ namespace DAL.Repositories
             return _appContext.Products.Any(p => p.Id == productId);
         }
         private ApplicationDbContext _appContext => (ApplicationDbContext)_context;
+
+
+        
     }
 }

@@ -37,6 +37,17 @@ namespace DAL.Repositories
                 .ToList();
         }
 
+        public IEnumerable<Order> GetOrdersPaged(int pageNumber, int pageSize)
+        {
+            return _appContext.Orders
+                .OrderBy(o => o.Id)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .Include(o => o.Customer)
+                .Include(o => o.Product)
+                .ToList();
+        }
+
         public Order GetOrderById(int id)
         {
             var order = _appContext.Orders

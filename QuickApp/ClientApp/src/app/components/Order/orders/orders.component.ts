@@ -20,6 +20,9 @@ import { Router } from '@angular/router';
 })
 export class OrdersComponent {
 orders: OrderViewModel[];
+pageNumber: number = 1;
+pageSize: number = 20;
+totalItems: number;
 
 constructor(private orderService: OrderService, private router: Router) {}
 
@@ -28,9 +31,12 @@ ngOnInit():void {
 }
 
 loadOrders(): void {
-  this.orderService.getOrders().subscribe({
-    next: (result: OrderViewModel[]) => {
-      this.orders = result;
+  this.orderService.getOrders(this.pageNumber, this.pageSize).subscribe({
+    next: (result: any) => {
+      this.orders = result.orders;
+      this.pageNumber = result.pageNumber;
+      this.pageSize = result.pageSize;
+      this.totalItems = result.totalItems;
     }, 
     error: (er) => {
       
@@ -53,7 +59,8 @@ this.orderService.deleteOrder(orderId).subscribe({
 
 copyAllOrders() {
   this.orderService.copyAllOrders().subscribe(
-    () => {window.alert('All order copied successfully')})
+    () => {window.alert('All order copied successfully')});
+    this.loadOrders();
 }
 
 

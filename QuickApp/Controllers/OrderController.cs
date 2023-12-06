@@ -37,11 +37,29 @@ namespace Pickleball_Website.Controllers
 
 
         // GET: api/values
-        [HttpGet]
-        public IActionResult GetAllOrders()
+        [HttpGet("getOrders")]
+        public IActionResult GetAllOrders(int pageNumber = 1, int pageSize = 20)
         {
-            var allOrders = _unitOfWork.Orders.GetAllOrders();
-            return Ok(_mapper.Map<IEnumerable<OrderViewModelDisplay>>(allOrders));
+         //   var allOrders = _unitOfWork.Orders.GetAllOrders();
+           // return Ok(_mapper.Map<IEnumerable<OrderViewModelDisplay>>(allOrders));
+           try
+            {
+                var totalOrders = _unitOfWork.Orders.Count();
+                var orders = _unitOfWork.Orders.GetOrdersPaged(pageNumber, pageSize);
+
+                var result = new
+                {
+                    TotalItems = totalOrders,
+                    PageNumber = pageNumber,
+                    PageSize = pageSize,
+                    Orders = orders
+                };
+                return Ok(result);
+            }
+            catch (Exception) 
+            {
+                return StatusCode(500, "Internal Server Error");
+            }
         }
 
 

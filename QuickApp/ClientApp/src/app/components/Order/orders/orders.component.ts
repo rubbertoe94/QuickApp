@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-inferrable-types */
 // ======================================
 // Author: Ebenezer Monney
 // Copyright (c) 2023 www.ebenmonney.com

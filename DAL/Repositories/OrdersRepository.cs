@@ -40,11 +40,12 @@ namespace DAL.Repositories
         public IEnumerable<Order> GetOrdersPaged(int pageNumber, int pageSize)
         {
             return _appContext.Orders
+                .Include(o => o.Customer)
+                .Include(o => o.Product)
                 .OrderBy(o => o.Id)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
-                .Include(o => o.Customer)
-                .Include(o => o.Product)
+                .OrderBy(o => o.Id)
                 .ToList();
         }
 

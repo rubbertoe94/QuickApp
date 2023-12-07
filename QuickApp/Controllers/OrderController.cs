@@ -52,7 +52,7 @@ namespace Pickleball_Website.Controllers
                     TotalItems = totalOrders,
                     PageNumber = pageNumber,
                     PageSize = pageSize,
-                    Orders = orders
+                    Orders = _mapper.Map<IEnumerable<OrderViewModelDisplay>>(orders)
                 };
                 return Ok(result);
             }

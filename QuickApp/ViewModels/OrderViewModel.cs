@@ -3,6 +3,7 @@
 // www.ebenmonney.com/templates
 // =============================
 
+using AutoMapper;
 using DAL.Models;
 using QuickApp.ViewModels;
 using System;

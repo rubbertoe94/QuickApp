@@ -18,6 +18,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ToastaModule } from 'ngx-toasta';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgChartsModule } from 'ng2-charts';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppErrorHandler } from './app-error.handler';
@@ -72,6 +73,7 @@ import { OrderFormComponent } from './components/Order/order-form/order-form.com
 import { OrderDetailsComponent } from './components/Order/order-details/order-details.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -121,7 +123,8 @@ import { OrderDetailsComponent } from './components/Order/order-details/order-de
     NgxDatatableModule,
     ToastaModule.forRoot(),
     NgSelectModule,
-    NgChartsModule
+    NgChartsModule,
+    NgxPaginationModule
   ],
   providers: [
     { provide: ErrorHandler, useClass: AppErrorHandler },

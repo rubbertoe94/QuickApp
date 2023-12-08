@@ -1,4 +1,9 @@
 <div class="container">
+
+  <div *ngIf="!orders" class="no-orders">
+    <p>Loading Orders...</p>
+  </div>
+
   <h1 class="page-title">Orders</h1>
 
   <div *ngIf="orders" class="orders-table">
@@ -11,20 +16,36 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let order of orders" class="table-row" [routerLink]="['/order-details', order.id]">
+        <tr *ngFor="let order of orders | paginate: {
+          pageSize: pageSize,
+          pageNumber: page,
+          totalItems: totalItems,
+          totalPages: totalPages
+        }"
+         class="table-row" [routerLink]="['/order-details', order.id]">
+
           <td>{{ order.id }}</td>
           <td>{{ order.comments }}</td>
           <td>{{ order.customer.name }}</td>
+
 <button type="button" (click)="deleteOrder(order.id, $event)" class="table-row">Delete</button>
+
         </tr>
       </tbody>
     </table>
+
+    <div class="col-md-12">
+      <pagination-controls
+        previousLabel="Prev"
+        nextLabel="Next"
+        (pageChange)="handlePageChange($event)"
+      ></pagination-controls>
+    </div>
+
+    <br>
     <button type="button" routerLink="/order-form">New Order</button>
     <br>
-    <button type="button" (click)="copyAllOrders()">Copy All</button>
-  </div>
 
-  <div *ngIf="!orders" class="no-orders">
-    <p>Loading Orders...</p>
+    <button type="button" (click)="copyAllOrders()">Copy All</button>
   </div>
 </div>

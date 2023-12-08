@@ -34,8 +34,8 @@ export class OrderService {
 
   }
 
-  getOrders(pageNumber: number, pageSize: number): Observable<any[]> {
-    return this.orderEndpoint.getOrdersEndpoint(pageNumber, pageSize);
+  getOrders(pageNumber: number): Observable<any[]> {
+    return this.orderEndpoint.getOrdersEndpoint(pageNumber);
   }
 
   addOrder(order: OrderViewModel): Observable<any> {

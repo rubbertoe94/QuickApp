@@ -26,12 +26,12 @@ export class OrderEndpoint extends EndpointBase {
     super(http, authService);
   }
 
-  getOrdersEndpoint<T>(pageNumber: number, pageSize: number): Observable<T> {
-    const endpointUrl = `${this.basicUrl}/getOrders?pageNumber=${pageNumber}&pageSize=${pageSize}`;
+  getOrdersEndpoint<T>(pageNumber: number): Observable<T> {
+    const endpointUrl = `${this.basicUrl}/getOrders?pageNumber=${pageNumber}`;
 
     return this.http.get<T>(endpointUrl, this.requestHeaders).pipe(
       catchError(error => {
-        return this.handleError(error, () => this.getOrdersEndpoint<T>(pageNumber, pageSize));
+        return this.handleError(error, () => this.getOrdersEndpoint<T>(pageNumber));
       }));
   }
 

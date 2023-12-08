@@ -46,12 +46,15 @@ namespace Pickleball_Website.Controllers
             {
                 var totalOrders = _unitOfWork.Orders.Count();
                 var orders = _unitOfWork.Orders.GetOrdersPaged(pageNumber, pageSize);
+                var totalPages = (int)Math.Ceiling((double)totalOrders / pageSize);
 
                 var result = new
                 {
                     TotalItems = totalOrders,
                     PageNumber = pageNumber,
                     PageSize = pageSize,
+                    TotalPages = totalPages,
+
                     Orders = _mapper.Map<IEnumerable<OrderViewModelDisplay>>(orders)
                 };
                 return Ok(result);

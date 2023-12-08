@@ -21,9 +21,11 @@ import { Router } from '@angular/router';
 })
 export class OrdersComponent {
 orders: OrderViewModel[];
-pageNumber: number = 1;
-pageSize: number = 20;
-totalItems: number;
+totalPages: number;
+
+page: number = 1;
+pageSize: number;
+totalItems: number; //called "count" in the blog tutorial
 
 constructor(private orderService: OrderService, private router: Router) {}
 
@@ -32,12 +34,13 @@ ngOnInit():void {
 }
 
 loadOrders(): void {
-  this.orderService.getOrders(this.pageNumber, this.pageSize).subscribe({
+  this.orderService.getOrders(this.page).subscribe({
     next: (result: any) => {
       this.orders = result.orders;
-      this.pageNumber = result.pageNumber;
+      this.page = result.pageNumber;
       this.pageSize = result.pageSize;
       this.totalItems = result.totalItems;
+      this.totalPages = result.totalPages
     }, 
     error: (er) => {
       
@@ -64,5 +67,9 @@ copyAllOrders() {
     this.loadOrders();
 }
 
+handlePageChange(event) {
+  this.page = event;
+  this.loadOrders();
+}
 
 }

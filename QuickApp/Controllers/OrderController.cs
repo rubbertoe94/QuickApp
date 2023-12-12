@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Duende.IdentityServer.Models;
 
 namespace Pickleball_Website.Controllers
 {
@@ -126,6 +127,36 @@ namespace Pickleball_Website.Controllers
                 return StatusCode(500, "Internal Server Error");
             }
 
+        }
+
+        [HttpPost("copyOrder")]
+        public async Task<ActionResult<object>> CopyOrder([FromBody] int orderId)
+        {
+            try
+            {
+                var order = _unitOfWork.Orders.GetOrderById(orderId);
+
+                var newOrder = new Order {
+
+                    Discount = order.Discount,
+                    Comments = order.Comments,
+                    CashierId = order.CashierId,
+                    Cashier = order.Cashier,
+                    CustomerId = order.CustomerId,
+                    Customer = order.Customer,
+                    ProductId = order.ProductId,
+                    Product = order.Product,
+                    CreatedBy = order.CreatedBy,
+                    UpdatedBy = order.UpdatedBy,
+                };
+                await _unitOfWork.Orders.AddOrder(newOrder);
+                await _unitOfWork.SaveChangesAsync();
+                return new { Message = "Order copied successfully" };
+            }
+            catch (Exception) 
+            {
+                return StatusCode(500, "Internal Server Error");
+            }
         }
 
 

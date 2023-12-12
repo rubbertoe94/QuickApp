@@ -78,5 +78,13 @@ export class OrderEndpoint extends EndpointBase {
       }));
   }
 
+  copyOrderEndpoint<T>(orderId: number): Observable<T> {
+    const endpointUrl = this.basicUrl + '/copyOrder';
+    return this.http.post<T>(endpointUrl, JSON.stringify(orderId), this.requestHeaders).pipe(
+      catchError(error => {
+        return this.handleError(error, () => this.copyOrderEndpoint<T>(orderId));
+      }));
+  }
+
  
 }

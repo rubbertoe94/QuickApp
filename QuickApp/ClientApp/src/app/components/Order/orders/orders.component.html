@@ -17,10 +17,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let order of orders | paginate: {
-          pageSize: pageSize,
-          pageNumber: page,
-          totalItems: totalItems,
-          totalPages: totalPages
+          itemsPerPage: pageSize,
+          currentPage: page,
+          totalItems: totalItems
         }"
          class="table-row" [routerLink]="['/order-details', order.id]">
 
@@ -29,6 +28,7 @@
           <td>{{ order.customer.name }}</td>
 
 <button type="button" (click)="deleteOrder(order.id, $event)" class="table-row">Delete</button>
+<button type="button" (click)="copyOrder(order.id, $event)" class="table-row">Copy</button>
 
         </tr>
       </tbody>

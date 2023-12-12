@@ -57,5 +57,9 @@ export class OrderService {
   copyAllOrders(): Observable<any> {
     return this.orderEndpoint.copyAllOrdersEndpoint();
   }
+
+  copyOrder(orderId: number): Observable<any> {
+    return this.orderEndpoint.copyOrderEndpoint(orderId);
+  }
   
 }

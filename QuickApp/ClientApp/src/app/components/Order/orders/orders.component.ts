@@ -11,7 +11,7 @@ import { fadeInOut } from '../../../services/animations';
 import { OrderEndpoint } from 'src/app/services/order.endpoints';
 import { OrderService } from 'src/app/services/order.service';
 import { OrderViewModel } from 'src/app/models/order-model';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-orders',
@@ -27,7 +27,7 @@ page: number = 1;
 pageSize: number;
 totalItems: number; //called "count" in the blog tutorial
 
-constructor(private orderService: OrderService, private router: Router) {}
+constructor(private orderService: OrderService, private router: Router, private route: ActivatedRoute) {}
 
 ngOnInit():void {
   this.loadOrders();
@@ -41,12 +41,11 @@ loadOrders(): void {
       this.pageSize = result.pageSize;
       this.totalItems = result.totalItems;
       this.totalPages = result.totalPages
-    }, 
-    error: (er) => {
-      
-      console.log(er);
-    }
-  })
+    }, error: (er) => {
+      console.log(er);}})}
+handlePageChange(event) {
+  this.page = event;
+  this.loadOrders();
 }
 
 deleteOrder(orderId: number, event: Event): void {
@@ -67,9 +66,16 @@ copyAllOrders() {
     this.loadOrders();
 }
 
-handlePageChange(event) {
-  this.page = event;
-  this.loadOrders();
-}
+copyOrder(orderId: number, event: Event) {
+  event.stopPropagation();
+  this.orderService.copyOrder(orderId).subscribe(
+    () => {window.alert('Order copied successfully');
+    this.loadOrders();
+  },
+    error => {
+      console.error('Error copying order:', error);
+      window.alert('Failed to copy order. Please try again.');
+    });
+  }
 
 }

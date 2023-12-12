@@ -55,9 +55,6 @@ namespace DAL.Repositories
                 .Include(o => o.Customer)
                 .Include(o => o.Product)
                 .FirstOrDefault(o => o.Id == id);
-
-
-
             return order;
         }
 

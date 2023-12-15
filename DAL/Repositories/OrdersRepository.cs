@@ -37,15 +37,15 @@ namespace DAL.Repositories
                 .ToList();
         }
 
-        public IEnumerable<Order> GetOrdersPaged(int pageNumber, int pageSize)
+        public IEnumerable<Order> GetOrdersPaged(int pageNumber, int pageSize, string searchTerm)
         {
             return _appContext.Orders
+                .Where(o => o.Comments.Contains(searchTerm) || o.Product.Name.Contains(searchTerm) || o.Customer.Name.Contains(searchTerm))
                 .Include(o => o.Customer)
                 .Include(o => o.Product)
                 .OrderBy(o => o.Id)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
-                .OrderBy(o => o.Id)
                 .ToList();
         }
 

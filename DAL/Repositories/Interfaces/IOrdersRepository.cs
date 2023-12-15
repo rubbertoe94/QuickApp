@@ -19,6 +19,6 @@ namespace DAL.Repositories.Interfaces
         public void UpdateOrder(int id, Order order);
         public bool DoesCustomerExist(int customerId);
         public bool DoesProductExist(int productId);
-        public IEnumerable<Order> GetOrdersPaged(int pageNumber, int pageSize);
+        public IEnumerable<Order> GetOrdersPaged(int pageNumber, int pageSize, string term);
     }
 }

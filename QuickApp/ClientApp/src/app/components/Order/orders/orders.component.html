@@ -1,12 +1,15 @@
-<div class="container">
-
-  <div *ngIf="!orders" class="no-orders">
-    <p>Loading Orders...</p>
-  </div>
+<div>
+  <input class="search-bar" name="searchBar" type="text" [(ngModel)]="searchTerm" placeholder="Search by comments, product or customer">
+  <button type="button" (click)="onSearch()">Search</button>
+  <button type="button" (click)="onClear()" [hidden]="!searchTerm">Clear</button>
+</div>
 
   <h1 class="page-title">Orders</h1>
 
-  <div *ngIf="orders" class="orders-table">
+
+<div class="container" *ngIf="!searchResults">
+
+  <div class="orders-table">
     <table class="table">
       <thead>
         <tr>
@@ -27,9 +30,8 @@
           <td>{{ order.comments }}</td>
           <td>{{ order.customer.name }}</td>
 
-<button type="button" (click)="deleteOrder(order.id, $event)" class="table-row">Delete</button>
-<button type="button" (click)="copyOrder(order.id, $event)" class="table-row">Copy</button>
-
+          <button type="button" (click)="deleteOrder(order.id, $event)" class="table-row">Delete</button>
+          <button type="button" (click)="copyOrder(order.id, $event)" class="table-row">Copy</button>
         </tr>
       </tbody>
     </table>
@@ -40,6 +42,73 @@
         nextLabel="Next"
         (pageChange)="handlePageChange($event)"
       ></pagination-controls>
+
+      <p>Items per page:</p>
+      <select (change)="onPageSizeChange($event)">
+        <option *ngFor="let size of pageSizes" [ngValue]="size">
+            {{ size }}
+        </option>
+      </select>
+    </div>
+
+  
+
+    <br>
+    <button type="button" routerLink="/order-form">New Order</button>
+    <br>
+
+    <button type="button" (click)="copyAllOrders()">Copy All</button>
+  </div>
+</div>
+
+
+
+
+
+<!--THIS IS FOR WHEN SEARCHRESULTS ARE PRESENT-->
+
+<div class="container" *ngIf="searchResults">
+
+  <div class="orders-table">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Comments</th>
+          <th>Customer Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of searchResults | paginate: {
+          itemsPerPage: pageSize,
+          currentPage: page,
+          totalItems: totalItems
+        }"
+         class="table-row" [routerLink]="['/order-details', order.id]">
+
+          <td>{{ order.id }}</td>
+          <td>{{ order.comments }}</td>
+          <td>{{ order.customer.name }}</td>
+
+          <button type="button" (click)="deleteOrder(order.id, $event)" class="table-row">Delete</button>
+          <button type="button" (click)="copyOrder(order.id, $event)" class="table-row">Copy</button>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="col-md-12">
+      <pagination-controls
+        previousLabel="Prev"
+        nextLabel="Next"
+        (pageChange)="handlePageChange($event)"
+      ></pagination-controls>
+
+      <p>Items per page:</p>
+      <select (change)="onPageSizeChange($event)">
+        <option *ngFor="let size of pageSizes" [ngValue]="size">
+            {{ size }}
+        </option>
+      </select>
     </div>
 
     <br>
@@ -49,3 +118,9 @@
     <button type="button" (click)="copyAllOrders()">Copy All</button>
   </div>
 </div>
+
+
+
+
+
+

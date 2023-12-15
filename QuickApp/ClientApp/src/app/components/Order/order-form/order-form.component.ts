@@ -65,7 +65,7 @@ updateOrder(): void {
 }
 
 getProducts() {
-  this.productService.getProducts().subscribe(
+  this.productService.getAllProducts().subscribe(
 (data) => this.products = data)
 }
 

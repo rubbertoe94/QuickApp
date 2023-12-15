@@ -22,7 +22,12 @@ import { ProductService } from 'src/app/services/product-service';
 export class ProductsComponent {
   products: ProductViewModel[];
   filteredProducts: ProductViewModel[] = [];
+
   searchTerm: string = '';
+  page: number = 1;
+  pageSize: number = 4;
+  totalItems: number;
+  totalPages: number
   
 
 constructor(private productService: ProductService) {}
@@ -32,13 +37,16 @@ ngOnInit(): void{
   this.loadProducts();
 }
 
-loadProducts(): void{
-  this.productService.getProducts().subscribe({
-    next: (result: ProductViewModel[]) => {
-      this.products = result;
+loadProducts() {
+  this.productService.getProductsPaged(this.page, this.pageSize, this.searchTerm).subscribe({
+    next: (result: any) => {
+      this.products = result.products;
+      this.page = result.pageNumber;
+      this.pageSize = result.pageSize;
+      this.totalItems = result.totalItems;
+      this.totalPages = result.totalPages;
     },
     error: (er) => {
-      
       console.log(er);
     }
   })
@@ -56,7 +64,7 @@ filterResults():void {
     }
 
   else {
-    this.filteredProducts = this.products.filter(p => p.name.toLowerCase().includes(this.searchTerm));
+    this.filteredProducts = matches;
   }
   console.log("Matches: ", matches);
   }

@@ -36,14 +36,54 @@ namespace QuickApp.Controllers
             _emailSender = emailSender;
         }
 
-       
-
         // GET: api/values
-        [HttpGet("allproducts")]
+        [HttpGet("getAllProducts")]
         public ActionResult<IEnumerable<ProductViewModel>> GetAllProducts()
         {
             var allProducts = _unitOfWork.Products.GetAllProducts();
             return Ok(_mapper.Map<IEnumerable<ProductViewModel>>(allProducts));
+        }
+
+            // GET: api/values
+            [HttpGet("getProductsPaged")]
+        public ActionResult<IEnumerable<ProductViewModel>> GetAllProducts(int pageNumber = 1, int pageSize = 4, string searchTerm = "")
+        {
+            /* var allProducts = _unitOfWork.Products.GetAllProducts();
+             return Ok(_mapper.Map<IEnumerable<ProductViewModel>>(allProducts));*/
+            if (searchTerm != null && !string.IsNullOrWhiteSpace(searchTerm))
+            {
+                var totalItems = _unitOfWork.Products.Count();
+                var products = _unitOfWork.Products.GetProductsPaged(pageNumber, pageSize, searchTerm);
+                var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+
+                var result = new
+                {
+                    TotalItems = totalItems,
+                    TotalPages = totalPages,
+                    PageNumber = pageNumber,
+                    PageSize = pageSize,
+                    SearchTerm = searchTerm,
+                    Products = _mapper.Map<ProductViewModel>(products)
+                };
+                return Ok(result);
+            }
+            else 
+            {
+                var totalItems = _unitOfWork.Products.Count();
+                var products = _unitOfWork.Products.GetProductsPaged(pageNumber, pageSize, string.Empty);
+                var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+
+                var result = new
+                {
+                    TotalItems = totalItems,
+                    TotalPages = totalPages,
+                    PageNumber = pageNumber,
+                    PageSize = pageSize,
+                    SearchTerm = searchTerm,
+                    Products = _mapper.Map<IEnumerable<ProductViewModel>>(products)
+                };
+                return Ok(result);
+            }
         }
 
         [HttpGet("search")]

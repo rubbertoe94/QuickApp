@@ -31,8 +31,12 @@ export class ProductService {
 
   }
 
-  getProducts(): Observable<ProductViewModel[]> {
+  getAllProducts(): Observable<any> {
     return this.productEndpoint.getAllProductsEndpoint();
+  }
+
+  getProductsPaged(pageNumber: number, pageSize: number, searchTerm: string): Observable<any> {
+    return this.productEndpoint.getProductsPagedEndpoint(pageNumber, pageSize, searchTerm);
   }
 
   getProductById(productId: number): Observable<any> {

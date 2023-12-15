@@ -24,8 +24,12 @@ orders: OrderViewModel[];
 totalPages: number;
 
 page: number = 1;
-pageSize: number;
-totalItems: number; //called "count" in the blog tutorial
+pageSize: number = 10;
+pageSizes: number[]= [10, 25, 50];
+totalItems: number;
+
+searchTerm: string = '';
+searchResults: OrderViewModel[];
 
 constructor(private orderService: OrderService, private router: Router, private route: ActivatedRoute) {}
 
@@ -34,7 +38,7 @@ ngOnInit():void {
 }
 
 loadOrders(): void {
-  this.orderService.getOrders(this.page).subscribe({
+  this.orderService.getOrders(this.page, this.pageSize, this.searchTerm).subscribe({
     next: (result: any) => {
       this.orders = result.orders;
       this.page = result.pageNumber;
@@ -43,8 +47,20 @@ loadOrders(): void {
       this.totalPages = result.totalPages
     }, error: (er) => {
       console.log(er);}})}
+
 handlePageChange(event) {
   this.page = event;
+  
+  if (this.searchTerm) {
+    this.onSearch();
+  } else {
+    this.loadOrders();
+  }
+}
+
+onPageSizeChange(event) {
+  this.pageSize = event.target.value;
+  this.page = 1;
   this.loadOrders();
 }
 
@@ -71,11 +87,39 @@ copyOrder(orderId: number, event: Event) {
   this.orderService.copyOrder(orderId).subscribe(
     () => {window.alert('Order copied successfully');
     this.loadOrders();
-  },
-    error => {
-      console.error('Error copying order:', error);
-      window.alert('Failed to copy order. Please try again.');
-    });
-  }
+  });}
+
+onSearch() {
+  if (!this.searchTerm) {this.loadOrders()} ;
+
+  this.orderService.getOrders(this.page, this.pageSize, this.searchTerm).subscribe({
+    next: (result: any) => {
+      this.searchResults = result.orders;
+      this.page = result.pageNumber;
+      this.pageSize = result.pageSize;
+      this.totalItems = result.totalItems;
+      this.totalPages = result.totalPages
+    }, error: (er) => {
+      console.log(er)}})
+}
+
+onClear() {
+  this.searchTerm = '';
+  this.searchResults = null;
+  this.orderService.getOrders(this.page, this.pageSize, '').subscribe({
+    next: (result: any) => {
+      this.orders = result.orders;
+      this.page = result.pageNumber;
+      this.pageSize = result.pageSize;
+      this.totalItems = result.totalItems;
+      this.totalPages = result.totalPages;
+    },
+    error: (er) => {
+      console.log(er);
+    }
+  });
+}
+
+
 
 }

@@ -39,14 +39,16 @@ namespace Pickleball_Website.Controllers
 
         // GET: api/values
         [HttpGet("getOrders")]
-        public IActionResult GetAllOrders(int pageNumber = 1, int pageSize = 20)
+        public IActionResult GetAllOrders(int pageNumber, int pageSize, string searchTerm)
         {
-         //   var allOrders = _unitOfWork.Orders.GetAllOrders();
-           // return Ok(_mapper.Map<IEnumerable<OrderViewModelDisplay>>(allOrders));
-           try
+            //   var allOrders = _unitOfWork.Orders.GetAllOrders();
+            // return Ok(_mapper.Map<IEnumerable<OrderViewModelDisplay>>(allOrders));
+
+            if (searchTerm != null && !string.IsNullOrWhiteSpace(searchTerm))
             {
+                // Code for handling non-null/non-empty search term
                 var totalOrders = _unitOfWork.Orders.Count();
-                var orders = _unitOfWork.Orders.GetOrdersPaged(pageNumber, pageSize);
+                var orders = _unitOfWork.Orders.GetOrdersPaged(pageNumber, pageSize, searchTerm);
                 var totalPages = (int)Math.Ceiling((double)totalOrders / pageSize);
 
                 var result = new
@@ -55,14 +57,26 @@ namespace Pickleball_Website.Controllers
                     PageNumber = pageNumber,
                     PageSize = pageSize,
                     TotalPages = totalPages,
-
                     Orders = _mapper.Map<IEnumerable<OrderViewModelDisplay>>(orders)
                 };
                 return Ok(result);
             }
-            catch (Exception) 
+            else
             {
-                return StatusCode(500, "Internal Server Error");
+                // Code for handling null/empty search term
+                var totalOrders = _unitOfWork.Orders.Count();
+                var orders = _unitOfWork.Orders.GetOrdersPaged(pageNumber, pageSize, string.Empty);
+                var totalPages = (int)Math.Ceiling((double)totalOrders / pageSize);
+
+                var result = new
+                {
+                    TotalItems = totalOrders,
+                    PageNumber = pageNumber,
+                    PageSize = pageSize,
+                    TotalPages = totalPages,
+                    Orders = _mapper.Map<IEnumerable<OrderViewModelDisplay>>(orders)
+                };
+                return Ok(result);
             }
         }
 

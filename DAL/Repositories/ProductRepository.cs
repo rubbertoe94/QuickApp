@@ -26,6 +26,16 @@ namespace DAL.Repositories
                 .ToList();
         }
 
+        public IEnumerable<Product> GetProductsPaged(int pageNumber, int pageSize, string searchTerm)
+        {
+            return _appContext.Products
+                .Where(p => p.Name.Contains(searchTerm))
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .OrderBy(p => p.Name)
+                .ToList();
+        }
+
         public IEnumerable<Product> SearchProducts(string text) 
         { 
             text = text.ToLower();

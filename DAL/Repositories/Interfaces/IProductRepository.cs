@@ -15,6 +15,7 @@ namespace DAL.Repositories.Interfaces
     public interface IProductRepository : IRepository<Product>
     {
         public IEnumerable<Product> GetAllProducts();
+        public IEnumerable<Product> GetProductsPaged(int pageNumber, int pageSize, string searchTerm);
         public Product GetProductById(int id);
         public void AddProduct(Product product);
         public void UpdateProduct(Product product);

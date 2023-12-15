@@ -27,11 +27,17 @@ export class ProductEndpoint extends EndpointBase {
     super(http, authService);
   }
 
+
   getAllProductsEndpoint<T>(): Observable<T> {
     const endpointUrl = this.getAllProductsUrl;
+    return this.http.get<T>(endpointUrl, this.requestHeaders)
+  }
+
+  getProductsPagedEndpoint<T>(pageNumber: number, pageSize: number, searchTerm: string): Observable<T> {
+    const endpointUrl =  `${this.configurations.baseUrl}/api/Product/getProductsPaged?pageNumber=${pageNumber}&pageSize=${pageSize}&searchTerm=${searchTerm}`;
     return this.http.get<T>(endpointUrl, this.requestHeaders).pipe(
       catchError(error => {
-        return this.handleError(error, () => this.getAllProductsEndpoint<T>());
+        return this.handleError(error, () => this.getProductsPagedEndpoint<T>(pageNumber, pageSize, searchTerm));
       }));
   }
 

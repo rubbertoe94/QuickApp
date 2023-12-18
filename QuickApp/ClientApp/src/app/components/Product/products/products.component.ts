@@ -25,7 +25,8 @@ export class ProductsComponent {
 
   searchTerm: string = '';
   page: number = 1;
-  pageSize: number = 4;
+  pageSize: number = 3;
+  pageSizes: number[] = [3, 6, 9]
   totalItems: number;
   totalPages: number
   
@@ -52,27 +53,50 @@ loadProducts() {
   })
 }
 
-filterResults():void {
-  let matches: ProductViewModel[] = this.products.filter(p => p.name.toLowerCase().includes(this.searchTerm));
-  console.log('searchTerm: ', this.searchTerm);
-  if (!this.searchTerm) {
-    this.loadProducts();
-  } 
+onSearch() {
+  if (!this.searchTerm) {this.loadProducts()} ;
 
-    else if(matches.length === 0) {
-      alert("No matches were found for that search term")
-    }
+  this.productService.getProductsPaged(this.page, this.pageSize, this.searchTerm).subscribe({
+    next: (result: any) => {
+      this.filteredProducts = result.products;
+      this.page = result.pageNumber;
+      this.pageSize = result.pageSize;
+      this.totalItems = result.totalItems;
+      this.totalPages = result.totalPages
+    }, error: (er) => {
+      console.log(er)}})
+}
 
-  else {
-    this.filteredProducts = matches;
+  onClear() {
+    this.searchTerm = '';
+    this.filteredProducts = null;
+    this.productService.getProductsPaged(this.page, this.pageSize, '').subscribe({
+      next: (result: any) => {
+        this.products = result.products;
+        this.page = result.pageNumber;
+        this.pageSize = result.pageSize;
+        this.totalItems = result.totalItems;
+        this.totalPages = result.totalPages;
+      },
+      error: (er) => {
+        console.log(er);
+      }
+    });
   }
-  console.log("Matches: ", matches);
-  }
 
-clearFilter(): void {
-  console.log('filter box cleared');
-  this.searchTerm = '';
-  this.filteredProducts = [];
+
+handlePageChange(event) {
+this.page = event;
+if (this.searchTerm) {
+  this.onSearch();
+} else {
+  this.loadProducts();
+}
+}
+
+handlePageSizeChange(event) {
+  this.pageSize = event.target.value;
+  this.page = 1;
   this.loadProducts();
 }
  

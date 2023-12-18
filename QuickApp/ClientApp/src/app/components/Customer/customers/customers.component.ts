@@ -21,7 +21,9 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
 export class CustomersComponent {
 
 customers: CustomerViewModel[] = [];
-
+page: number = 1;
+pageSize: number = 3;
+pageSizes: number[] = [3, 6, 9];
 
 
 
@@ -55,6 +57,16 @@ customers: CustomerViewModel[] = [];
     })
   }
   
+handlePageChange(event) {
+this.page = event;
+this.loadCustomers();
+}
+
+handlePageSizeChange(event) {
+this.pageSize = event.target.value;
+this.page = 1;
+this.loadCustomers();
+}
 
 
 }

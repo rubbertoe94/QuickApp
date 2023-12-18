@@ -30,9 +30,9 @@ namespace DAL.Repositories
         {
             return _appContext.Products
                 .Where(p => p.Name.Contains(searchTerm))
+                .OrderBy(p => p.Name)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
-                .OrderBy(p => p.Name)
                 .ToList();
         }
 

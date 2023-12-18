@@ -2,7 +2,10 @@
 
 <app-search-bar></app-search-bar>
 
-<div *ngFor="let customer of customers" class="customer-card">
+<div *ngFor="let customer of customers | paginate: {
+  itemsPerPage: pageSize,
+  currentPage: page
+}" class="customer-card">
 
   <span class="customer-name" routerLink="/customer-details/{{customer.id}}">
   <h2>{{ customer.name }}</h2>
@@ -13,6 +16,17 @@
   
 </div>
 
+<div>
+<pagination-controls
+previousLabel="Prev"
+nextLabel="Next"
+(pageChange)="handlePageChange($event)"></pagination-controls>
+
+<p>Items per page: </p>
+<select (change)="handlePageSizeChange($event)">
+  <option *ngFor="let size of pageSizes" [ngValue]="size"> {{ size }} </option>
+</select>
+</div>
 
 <br>
 <button type="button" routerLink="/customer-form">Add Customer</button>

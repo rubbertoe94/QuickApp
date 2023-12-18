@@ -46,7 +46,7 @@ namespace QuickApp.Controllers
 
             // GET: api/values
             [HttpGet("getProductsPaged")]
-        public ActionResult<IEnumerable<ProductViewModel>> GetAllProducts(int pageNumber = 1, int pageSize = 4, string searchTerm = "")
+        public ActionResult<IEnumerable<ProductViewModel>> GetAllProductsPaged(int pageNumber, int pageSize, string searchTerm)
         {
             /* var allProducts = _unitOfWork.Products.GetAllProducts();
              return Ok(_mapper.Map<IEnumerable<ProductViewModel>>(allProducts));*/

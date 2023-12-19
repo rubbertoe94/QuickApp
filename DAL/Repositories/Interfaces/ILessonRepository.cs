@@ -13,13 +13,13 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories.Interfaces
 {
-    public interface ICourtRepository : IRepository<Court>
+    public interface ILessonRepository : IRepository<Lesson>
     {
-      
-        IEnumerable<Court> GetAllCourts();
-        public Court GetCourtById(int id);
-        public void AddCourt(Court court);
-        public void UpdateCourt(Court court);
+
+        IEnumerable<Lesson> GetAllLessons();
+        public Lesson GetLessonById(int id);
+        public void AddLesson(Lesson lesson);
+        public void UpdateLesson(Lesson lesson);
 
     }
 }

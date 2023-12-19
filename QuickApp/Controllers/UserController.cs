@@ -19,14 +19,14 @@ namespace QuickApp.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CourtController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger _logger;
         private readonly IEmailSender _emailSender;
 
-        public CourtController(IMapper mapper, IUnitOfWork unitOfWork, ILogger<CourtController> logger, IEmailSender emailSender)
+        public UserController(IMapper mapper, IUnitOfWork unitOfWork, ILogger<UserController> logger, IEmailSender emailSender)
         {
             _mapper = mapper;
             _unitOfWork = unitOfWork;
@@ -34,18 +34,18 @@ namespace QuickApp.Controllers
             _emailSender = emailSender;
         }
 
-     
+
 
         // GET: api/values
-        [HttpGet("allCourts")]
-        public IActionResult GetAllCourts()
+        [HttpGet("allUsers")]
+        public IActionResult GetAllUsers()
         {
-            var allCourts = _unitOfWork.Courts.GetAllCourts();
-            return Ok(allCourts);       
+            var allUsers = _unitOfWork.Users.GetAllUsers();
+            return Ok(allUsers);
         }
 
         [HttpGet("throw")]
-        public IEnumerable<Court> Throw()
+        public IEnumerable<User> Throw()
         {
             throw new InvalidOperationException($"This is a test exception: {DateTime.Now}");
         }
@@ -53,19 +53,19 @@ namespace QuickApp.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public IActionResult GetCourtById(int id)
+        public IActionResult GetUserById(int id)
         {
-            var court = _unitOfWork.Courts.GetCourtById(id);
-            return Ok(court);
+            var User = _unitOfWork.Users.GetUserById(id);
+            return Ok(User);
         }
 
 
 
         // POST api/values
-        [HttpPost("addCourt")]
-        public IActionResult Post([FromBody] Court data)
+        [HttpPost("addUser")]
+        public IActionResult Post([FromBody] User data)
         {
-            _unitOfWork.Courts.AddCourt(data);
+            _unitOfWork.Users.AddUser(data);
             _unitOfWork.SaveChanges();
             return Ok(data);
         }
@@ -73,19 +73,17 @@ namespace QuickApp.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Court data)
+        public IActionResult Put(int id, [FromBody] User data)
         {
-            var courtToUpdate = _unitOfWork.Courts.GetCourtById(id);
+            var userToUpdate = _unitOfWork.Users.GetUserById(id);
 
-            if (courtToUpdate != null)
+            if (userToUpdate != null)
             {
                 try
                 {
-                    courtToUpdate.LocationId = data.LocationId;
-                    courtToUpdate.CourtNumber = data.CourtNumber;
-                   
+                    userToUpdate.Name = data.Name;
 
-                    _unitOfWork.Courts.UpdateCourt(courtToUpdate);
+                    _unitOfWork.Users.UpdateUser(userToUpdate);
                     _unitOfWork.SaveChanges();
                     return Ok(data);
                 }
@@ -101,8 +99,8 @@ namespace QuickApp.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var court = _unitOfWork.Courts.Get(id);
-            _unitOfWork.Courts.Remove(court);
+            var user = _unitOfWork.Users.Get(id);
+            _unitOfWork.Users.Remove(user);
             _unitOfWork.SaveChanges();
             return NoContent();
         }

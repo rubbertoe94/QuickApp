@@ -1,0 +1,110 @@
+﻿// ======================================
+// Author: Ebenezer Monney
+// Copyright (c) 2023 www.ebenmonney.com
+// 
+// ==> Gun4Hire: contact@ebenmonney.com
+// ======================================
+
+using AutoMapper;
+using DAL;
+using DAL.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using QuickApp.Helpers;
+using QuickApp.ViewModels;
+using System;
+using System.Collections.Generic;
+
+namespace QuickApp.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    public class CourtController : ControllerBase
+    {
+        private readonly IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly ILogger _logger;
+        private readonly IEmailSender _emailSender;
+
+        public CourtController(IMapper mapper, IUnitOfWork unitOfWork, ILogger<CourtController> logger, IEmailSender emailSender)
+        {
+            _mapper = mapper;
+            _unitOfWork = unitOfWork;
+            _logger = logger;
+            _emailSender = emailSender;
+        }
+
+     
+
+        // GET: api/values
+        [HttpGet("allCourts")]
+        public IActionResult GetAllCourts()
+        {
+            var allCourts = _unitOfWork.Courts.GetAllCourts();
+            return Ok(allCourts);       
+        }
+
+        [HttpGet("throw")]
+        public IEnumerable<Court> Throw()
+        {
+            throw new InvalidOperationException($"This is a test exception: {DateTime.Now}");
+        }
+
+
+        // GET api/values/5
+        [HttpGet("{id}")]
+        public IActionResult GetCourtById(int id)
+        {
+            var court = _unitOfWork.Courts.GetCourtById(id);
+            return Ok(court);
+        }
+
+
+
+        // POST api/values
+        [HttpPost("addCourt")]
+        public IActionResult<Court> Post([FromBody] Court data)
+        {
+            _unitOfWork.Courts.AddCourt(data);
+            _unitOfWork.SaveChanges();
+            return Ok(data);
+        }
+
+
+        // PUT api/values/5
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] Court data)
+        {
+            var courtToUpdate = _unitOfWork.Courts.GetCourtById(id);
+
+            if (courtToUpdate != null)
+            {
+                try
+                {
+                    courtToUpdate.LocationId = data.LocationId;
+                    courtToUpdate.CourtNumber = data.CourtNumber;
+                   
+
+                    _unitOfWork.Courts.UpdateCourt(courtToUpdate);
+                    _unitOfWork.SaveChanges();
+                    return Ok(data);
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(500, $"an error occured: {ex.Message}");
+                }
+            }
+            return NotFound();
+        }
+
+        // DELETE api/values/5
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var court = _unitOfWork.Courts.Get(id);
+            _unitOfWork.Courts.Remove(court);
+            _unitOfWork.SaveChanges();
+            return NoContent();
+        }
+    }
+}

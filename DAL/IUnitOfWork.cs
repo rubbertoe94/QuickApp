@@ -17,6 +17,8 @@ namespace DAL
         ICustomerRepository Customers { get; }
         IProductRepository Products { get; }
         IOrdersRepository Orders { get; }
+        ICourtRepository Courts { get; }
+        
 
         int SaveChanges();
         Task<int> SaveChangesAsync();

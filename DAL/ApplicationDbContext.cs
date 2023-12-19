@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -23,6 +24,10 @@ namespace DAL
         public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<Court> Courts { get; set; }
+        public DbSet<User> User { get; set; }
+        public DbSet<Location> Locations { get; set; }
+        public DbSet<Lesson> Lessons { get; set; }
         
 
         public ApplicationDbContext(DbContextOptions options) : base(options)
@@ -65,6 +70,8 @@ namespace DAL
             builder.Entity<OrderDetail>().ToTable($"App{nameof(OrderDetail)}");
             builder.Entity<OrderDetail>().Property(p => p.UnitPrice).HasColumnType(priceDecimalType);
             builder.Entity<OrderDetail>().Property(p => p.Discount).HasColumnType(priceDecimalType);
+
+       
 
         }
 

@@ -5,6 +5,7 @@
 // ==> Gun4Hire: contact@ebenmonney.com
 // ======================================
 
+using DAL.Models;
 using DAL.Repositories;
 using DAL.Repositories.Interfaces;
 using System;
@@ -19,6 +20,10 @@ namespace DAL
         private ICustomerRepository _customers;
         private IProductRepository _products;
         private IOrdersRepository _orders;
+        private IUserRepository _users;
+        private ICourtRepository _courts;
+        private ILocationRepository _locations;
+        private ILessonRepository _lessons;
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -54,6 +59,47 @@ namespace DAL
                 return _orders;
             }
         }
+
+        public IUserRepository Users
+        {
+            get
+            {
+                _users ??= new UserRepository(_context);
+
+                return _users;
+            }
+        }
+
+        public ICourtRepository Courts
+        {
+            get
+            {
+                _courts ??= new CourtRepository(_context);
+
+                return _courts;
+            }
+        }
+
+        public ILocationRepository Locations
+        {
+            get
+            {
+                _locations ??= new LocationRepository(_context);
+
+                return _locations;
+            }
+        }
+
+        public ILessonRepository Lessons
+        {
+            get
+            {
+                _lessons ??= new LessonRepository(_context);
+
+                return _lessons;
+            }
+        }
+
 
         public int SaveChanges()
         {

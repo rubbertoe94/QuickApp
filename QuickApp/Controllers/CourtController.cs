@@ -41,7 +41,7 @@ namespace QuickApp.Controllers
         public IActionResult GetAllCourts()
         {
             var allCourts = _unitOfWork.Courts.GetAllCourts();
-            return Ok(allCourts);       
+            return Ok(_mapper.Map<IEnumerable<CourtViewModel>>(allCourts));       
         }
 
         [HttpGet("throw")]
@@ -56,24 +56,24 @@ namespace QuickApp.Controllers
         public IActionResult GetCourtById(int id)
         {
             var court = _unitOfWork.Courts.GetCourtById(id);
-            return Ok(court);
+            return Ok(_mapper.Map<CourtViewModel>(court));
         }
 
 
 
         // POST api/values
         [HttpPost("addCourt")]
-        public IActionResult Post([FromBody] Court data)
+        public IActionResult Post([FromBody] CourtViewModel data)
         {
-            _unitOfWork.Courts.AddCourt(data);
+            _unitOfWork.Courts.AddCourt(_mapper.Map<Court>(data));
             _unitOfWork.SaveChanges();
-            return Ok(data);
+            return Ok(_mapper.Map<CourtViewModel>(data));
         }
 
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Court data)
+        public IActionResult Put(int id, [FromBody] CourtViewModel data)
         {
             var courtToUpdate = _unitOfWork.Courts.GetCourtById(id);
 
@@ -87,7 +87,7 @@ namespace QuickApp.Controllers
 
                     _unitOfWork.Courts.UpdateCourt(courtToUpdate);
                     _unitOfWork.SaveChanges();
-                    return Ok(data);
+                    return Ok(_mapper.Map<CourtViewModel>(data));
                 }
                 catch (Exception ex)
                 {

@@ -71,6 +71,9 @@ import { ProductDetailsComponent } from './components/Product/product-details/pr
 import { ProductInputFormComponent } from './components/Product/product-input-form/product-input-form.component';
 import { OrderFormComponent } from './components/Order/order-form/order-form.component';
 import { OrderDetailsComponent } from './components/Order/order-details/order-details.component';
+import { CourtsListComponent } from './components/Pickleball/Court/courts-list/courts-list.component';
+import { CourtsFormComponent } from './components/Pickleball/Court/courts-form/courts-form.component';
+import { CourtService } from './services/court.service';
 
 
 
@@ -101,6 +104,8 @@ import { OrderDetailsComponent } from './components/Order/order-details/order-de
     ProductInputFormComponent,
     OrderFormComponent,
     OrderDetailsComponent,
+    CourtsListComponent,
+    CourtsFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -143,7 +148,8 @@ import { OrderDetailsComponent } from './components/Order/order-details/order-de
     ProductEndpoint,
     ProductService,
     OrderEndpoint,
-    OrderService
+    OrderService,
+    CourtService
   ],
   bootstrap: [AppComponent]
 })

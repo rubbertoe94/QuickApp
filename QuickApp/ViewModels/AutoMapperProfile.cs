@@ -66,7 +66,16 @@ namespace QuickApp.ViewModels
 
             CreateMap<OrderDetail, OrderDetailViewModel>()
                  .ReverseMap();
-
+            CreateMap<Court, CourtViewModel>()
+                .ReverseMap();
+            CreateMap<User, PBUserViewModel>()
+                .ReverseMap();
+            CreateMap<Location, LocationViewModel>()
+                .ReverseMap();
+            CreateMap<Lesson, LessonViewModel>()
+                .ReverseMap();
+            CreateMap<Location, LocationViewModel>()
+                .ReverseMap();
         }
     }
 }

@@ -18,6 +18,9 @@ namespace DAL
         IProductRepository Products { get; }
         IOrdersRepository Orders { get; }
         ICourtRepository Courts { get; }
+        IUserRepository Users { get; }
+        ILocationRepository Locations { get; }
+        ILessonRepository Lessons { get; }
         
 
         int SaveChanges();

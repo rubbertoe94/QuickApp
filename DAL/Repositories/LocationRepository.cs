@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace DAL.Repositories
 {
     public class LocationRepository : Repository<Location>, ILocationRepository
@@ -15,9 +16,10 @@ namespace DAL.Repositories
 
 
 
-        public IEnumerable<Location> GetAllLocation()
+        public IEnumerable<Location> GetAllLocations()
         {
             return _appContext.Locations
+                .Include(l => l.Courts)
                 .OrderBy(c => c.Id)
                 .ToList();
         }

@@ -28,6 +28,9 @@
           <li class="nav-item" routerLinkActive="active" *ngIf="canViewOrders">
             <a class="nav-link" routerLink="/orders">{{'mainMenu.Orders' | translate}}</a>
           </li>
+          <li class="nav-item" routerLinkActive="active" *ngIf="canViewCourts">
+            <a class="nav-link" routerLink="/courts-list">Courts</a>
+          </li>
           <li class="nav-item" routerLinkActive="active">
             <a class="nav-link" routerLink="/about">{{'mainMenu.About' | translate}}</a>
           </li>

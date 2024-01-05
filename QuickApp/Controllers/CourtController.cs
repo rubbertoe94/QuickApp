@@ -63,7 +63,7 @@ namespace QuickApp.Controllers
 
         // POST api/values
         [HttpPost("addCourt")]
-        public IActionResult Post([FromBody] CourtViewModel data)
+        public IActionResult Post([FromBody] CourtViewModelAddOrEdit data)
         {
             _unitOfWork.Courts.AddCourt(_mapper.Map<Court>(data));
             _unitOfWork.SaveChanges();

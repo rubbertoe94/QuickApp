@@ -18,6 +18,7 @@ namespace DAL.Repositories
         public IEnumerable<Court> GetAllCourts()
         {
             return _appContext.Courts
+                .Include(c => c.Location)
                 .OrderBy(c => c.LocationId)
                 .ThenBy(c => c.Id)
                 .ToList();

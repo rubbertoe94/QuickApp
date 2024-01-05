@@ -1,6 +1,6 @@
 <h1>Courts!</h1>
 
-<div *ngFor="let court of courts">
-<p>Location Id: {{ court.locationId }}</p>
-<p>Court Number: {{ court.courtNumber }}</p>
+<div *ngFor="let court of courts" class="court-card">
+  <p>Location: {{ court.location.title }}</p>
+  <p>Court Number: {{ court.courtNumber }}</p>
 </div>

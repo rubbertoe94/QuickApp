@@ -19,7 +19,7 @@ import { json } from 'stream/consumers';
 
 @Injectable()
 export class CourtEndpoint extends EndpointBase {
-  get basicUrl() {return this.configurations.baseUrl + '/api/court'}
+  get basicUrl() {return this.configurations.baseUrl + '/api/Court'}
  
 
   constructor(private configurations: ConfigurationService, http: HttpClient, authService: AuthService) {

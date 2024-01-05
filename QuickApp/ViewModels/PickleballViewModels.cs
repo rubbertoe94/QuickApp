@@ -16,16 +16,30 @@ namespace QuickApp.ViewModels
     {
         public int Id { get; set; }
         public int LocationId { get; set; }
+        public LocationViewModelMinusCourts Location { get; set; }
+        public int CourtNumber { get; set; }
+
+    }
+    public class CourtViewModelAddOrEdit
+    {
+        public int Id { get; set; }
+        public int LocationId { get; set; }
         public int CourtNumber { get; set; }
 
     }
 
-    public class LocationViewModel
+    public class LocationViewModelMinusCourts
     {
         public int Id { get; set; }
         public string Title { get; set; }
         public string Address { get; set; }
-        public IEnumerable<CourtViewModel> Courts { get; set; }
+    }
+    public class LocationViewModelDisplay
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Address { get; set; }
+        public ICollection<CourtViewModel> Courts { get; set; }
     }
 
     public class PBUserViewModel

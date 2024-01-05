@@ -41,7 +41,7 @@ namespace QuickApp.Controllers
         public IActionResult GetAllLocations()
         {
             var allLocations = _unitOfWork.Locations.GetAllLocations();
-            return Ok(_mapper.Map<IEnumerable<LocationViewModel>>(allLocations));
+            return Ok(_mapper.Map<IEnumerable<LocationViewModelDisplay>>(allLocations));
         }
 
         [HttpGet("throw")]
@@ -56,25 +56,25 @@ namespace QuickApp.Controllers
         public IActionResult GetLocationById(int id)
         {
             var location = _unitOfWork.Locations.GetLocationById(id);
-            return Ok(_mapper.Map<LocationViewModel>(location));
+            return Ok(_mapper.Map<LocationViewModelDisplay>(location));
         }
 
 
 
         // POST api/values
         [HttpPost("addLocation")]
-        public IActionResult Post([FromBody] LocationViewModel data)
+        public IActionResult Post([FromBody] LocationViewModelMinusCourts data)
         {
 
             _unitOfWork.Locations.AddLocation(_mapper.Map<Location>(data));
             _unitOfWork.SaveChanges();
-            return Ok(_mapper.Map<LocationViewModel>(data));
+            return Ok(_mapper.Map<LocationViewModelMinusCourts>(data));
         }
 
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] LocationViewModel data)
+        public IActionResult Put(int id, [FromBody] LocationViewModelMinusCourts data)
         {
             var locationToUpdate = _unitOfWork.Locations.GetLocationById(id);
 
@@ -88,7 +88,7 @@ namespace QuickApp.Controllers
 
                     _unitOfWork.Locations.UpdateLocation(locationToUpdate);
                     _unitOfWork.SaveChanges();
-                    return Ok(_mapper.Map<LocationViewModel>(data));
+                    return Ok(_mapper.Map<LocationViewModelMinusCourts>(data));
                 }
                 catch (Exception ex)
                 {

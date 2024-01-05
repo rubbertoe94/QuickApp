@@ -300,6 +300,10 @@ export class AppComponent implements OnInit, OnDestroy {
     return this.accountService.userHasPermission(Permission.viewUsers); // eg. viewProductsPermission
   }
 
+  get canViewCourts() {
+    return this.accountService.userHasPermission(Permission.viewUsers); // eg. viewCourtsPermission
+  }
+
   get canViewOrders() {
     return true; // eg. viewOrdersPermission
   }

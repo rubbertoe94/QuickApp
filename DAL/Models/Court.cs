@@ -13,6 +13,7 @@ namespace DAL.Models
     {
         public int Id { get; set; }
         public int LocationId { get; set; }
+        public Location Location { get; set; }
         public int CourtNumber { get; set; }
 
         

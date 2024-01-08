@@ -35,40 +35,38 @@ export class CourtEndpoint extends EndpointBase {
       }));
   }
 
-  // addOrderEndpoint<T>(order: OrderViewModel): Observable<T> {
-  //   const endpointUrl = `${this.configurations.baseUrl}/api/order/addOrder`;
-  //   console.log("New Order has reached endpoint and is being sent to server")
-  //   return this.http.post<T>(endpointUrl, JSON.stringify(order), this.requestHeaders).pipe(
-  //     catchError(error => {
-  //       return this.handleError(error, () => this.addOrderEndpoint<T>(order));
-  //     })
-  //   );
-  // }
+  addCourtEndpoint<T>(Court: CourtViewModel): Observable<T> {
+    const endpointUrl = this.basicUrl + '/addCourt';
+    return this.http.post<T>(endpointUrl, JSON.stringify(Court), this.requestHeaders).pipe(
+      catchError(error => {
+        return this.handleError(error, () => this.addCourtEndpoint<T>(Court));
+      }));
+  }
 
-  // getOrderByIdEndpoint<T>(orderId: number): Observable<T> {
-  //   const endpointUrl = `${this.configurations.baseUrl}/api/order/${orderId}`;
+  getCourtByIdEndpoint<T>(CourtId: number): Observable<T> {
+    const endpointUrl = `${this.configurations.baseUrl}/api/Court/${CourtId}`;
 
-  //   return this.http.get<T>(endpointUrl, this.requestHeaders).pipe(
-  //     catchError(error => {
-  //       return this.handleError(error, () => this.getOrderByIdEndpoint<T>(orderId));
-  //     }));
-  // }
+    return this.http.get<T>(endpointUrl, this.requestHeaders).pipe(
+      catchError(error => {
+        return this.handleError(error, () => this.getCourtByIdEndpoint<T>(CourtId));
+      }));
+  }
 
-  // updateOrderEndpoint<T>(orderId: number, order: OrderViewModel): Observable<T> {
-  //   const endpointUrl = `${this.configurations.baseUrl}/api/order/${orderId}`;
-  //   return this.http.put<T>(endpointUrl, JSON.stringify(order), this.requestHeaders).pipe(
-  //     catchError(error => {
-  //       return this.handleError(error, () => this.updateOrderEndpoint<T>(orderId, order));
-  //     }));
-  // }
+  updateCourtEndpoint<T>(CourtId: number, Court: CourtViewModel): Observable<T> {
+    const endpointUrl = `${this.configurations.baseUrl}/api/Court/${CourtId}`;
+    return this.http.put<T>(endpointUrl, JSON.stringify(Court), this.requestHeaders).pipe(
+      catchError(error => {
+        return this.handleError(error, () => this.updateCourtEndpoint<T>(CourtId, Court));
+      }));
+  }
 
-  // deleteOrderEndpoint<T>(orderId: number): Observable<T> {
-  //   const endpointUrl = `${this.configurations.baseUrl}/api/order/${orderId}`;
-  //   return this.http.delete<T>(endpointUrl, this.requestHeaders).pipe(
-  //     catchError(error => {
-  //       return this.handleError(error, () => this.deleteOrderEndpoint<T>(orderId));
-  //     }));
-  // }
+  deleteCourtEndpoint<T>(CourtId: number): Observable<T> {
+    const endpointUrl = `${this.configurations.baseUrl}/api/Court/${CourtId}`;
+    return this.http.delete<T>(endpointUrl, this.requestHeaders).pipe(
+      catchError(error => {
+        return this.handleError(error, () => this.deleteCourtEndpoint<T>(CourtId));
+      }));
+  }
 
  
 }

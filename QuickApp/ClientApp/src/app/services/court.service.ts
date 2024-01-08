@@ -38,5 +38,8 @@ export class CourtService {
     return this.courtEndpoint.getCourtsEndpoint();
   }
 
+  addCourt(court: CourtViewModel): Observable<any> {
+    return this.courtEndpoint.addCourtEndpoint(court);
+  }
  
 }

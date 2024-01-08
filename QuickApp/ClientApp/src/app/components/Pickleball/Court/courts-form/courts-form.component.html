@@ -1,1 +1,15 @@
-<p>courts-form works!</p>
+<div class="add-court-form">
+    <h2>Add New Court</h2>
+    <form (ngSubmit)="addCourt()">
+
+      <label for="locationId">Location:</label>
+      <select id="locationId" [(ngModel)]="court.locationId" name="location" >
+        <option *ngFor="let location of locations" [value]="location.id">{{ location.title }}</option>
+      </select> 
+  
+      <label for="courtNumber">Court Number:</label>
+      <input type="number" id="courtNumber" [(ngModel)]="court.courtNumber" name="courtNumber" required>
+  
+      <button type="submit">Save</button>
+    </form>
+  </div>

@@ -75,6 +75,7 @@ import { CourtsListComponent } from './components/Pickleball/Court/courts-list/c
 import { CourtsFormComponent } from './components/Pickleball/Court/courts-form/courts-form.component';
 import { CourtService } from './services/court.service';
 import { CourtEndpoint } from './services/court.endpoint';
+import { LocationEndpoint, LocationService } from './services/location.service';
 
 
 
@@ -151,7 +152,9 @@ import { CourtEndpoint } from './services/court.endpoint';
     OrderEndpoint,
     OrderService,
     CourtService,
-    CourtEndpoint
+    CourtEndpoint,
+    LocationEndpoint,
+    LocationService
   ],
   bootstrap: [AppComponent]
 })

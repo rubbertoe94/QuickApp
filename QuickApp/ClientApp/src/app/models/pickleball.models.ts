@@ -1,22 +1,22 @@
-export interface CourtViewModel {
+export class CourtViewModel {
     id: number;
     locationId: number;
     courtNumber: number;
 }
 
-export interface LocationViewModel {
+export class LocationViewModel {
     id: number;
     title: string;
     address: string;
     courts: CourtViewModel[];
 }
 
-export interface UserViewModel {
+export class UserViewModel {
     id: number;
     name: string;
 }
 
-export interface LessonViewModel {
+export class LessonViewModel {
     lessonId: number;
     date: string;
     coachId: number;

@@ -1,0 +1,15 @@
+<h1>Locations!</h1>
+
+<div *ngFor="let location of locations" class="location-card">
+    <p><strong>Title: </strong> {{ location.title }}</p>
+    <p><strong>Address: </strong>{{ location.address }}</p>
+
+    <div class="courts-container">
+      <div *ngFor="let court of location.courts" class="court">
+        {{ court.courtNumber }}
+      </div>
+    </div>
+
+</div>
+
+<button type="button" routerLink="/location-form">Add Location</button>

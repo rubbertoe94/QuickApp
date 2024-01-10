@@ -10,6 +10,11 @@ export class LocationViewModel {
     address: string;
     courts: CourtViewModel[];
 }
+export class AddLocationViewModel {
+    id: number;
+    title: string;
+    address: string;
+}
 
 export class UserViewModel {
     id: number;

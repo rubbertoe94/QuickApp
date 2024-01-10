@@ -76,6 +76,8 @@ import { CourtsFormComponent } from './components/Pickleball/Court/courts-form/c
 import { CourtService } from './services/court.service';
 import { CourtEndpoint } from './services/court.endpoint';
 import { LocationEndpoint, LocationService } from './services/location.service';
+import { LocationListComponent } from './components/Pickleball/Location/location-list/location-list.component';
+import { LocationFormComponent } from './components/Pickleball/Location/location-form/location-form.component';
 
 
 
@@ -108,6 +110,8 @@ import { LocationEndpoint, LocationService } from './services/location.service';
     OrderDetailsComponent,
     CourtsListComponent,
     CourtsFormComponent,
+    LocationListComponent,
+    LocationFormComponent,
   ],
   imports: [
     BrowserModule,

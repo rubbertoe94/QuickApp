@@ -28,6 +28,8 @@ import { OrderFormComponent } from './components/Order/order-form/order-form.com
 import { OrderDetailsComponent } from './components/Order/order-details/order-details.component';
 import { CourtsListComponent } from './components/Pickleball/Court/courts-list/courts-list.component';
 import { CourtsFormComponent } from './components/Pickleball/Court/courts-form/courts-form.component';
+import { LocationListComponent } from './components/Pickleball/Location/location-list/location-list.component';
+import { LocationFormComponent } from './components/Pickleball/Location/location-form/location-form.component';
 
 @Injectable()
 export class LowerCaseUrlSerializer extends DefaultUrlSerializer {
@@ -71,6 +73,8 @@ const routes: Routes = [
   { path: 'order-details/:id', component: OrderDetailsComponent },
   { path: 'courts-list', component: CourtsListComponent },
   { path: 'courts-form', component: CourtsFormComponent },
+  { path: 'location-list', component: LocationListComponent },
+  { path: 'location-form', component: LocationFormComponent },
   { path: '**', component: NotFoundComponent, title: 'Page Not Found' },
 ];
 

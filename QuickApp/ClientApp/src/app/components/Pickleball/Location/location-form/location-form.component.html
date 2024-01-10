@@ -1,1 +1,13 @@
-<p>location-form works!</p>
+<div class="add-location-form">
+    <h2>Add New Location</h2>
+    <form (ngSubmit)="addLocation()">
+
+      <label for="locationTitle">Title:</label>
+      <input type="text" id="locationTitle" [(ngModel)]="location.title" name="locationTitle" required>
+  
+      <label for="locationAddress">Address:</label>
+      <input type="text" id="locationAddress" [(ngModel)]="location.address" name="locationAddress" required>
+  
+      <button type="submit">Save</button>
+    </form>
+  </div>

@@ -14,7 +14,7 @@ import { Role } from '../models/role.model';
 import { AuthService } from './auth.service';
 import { EndpointBase } from './endpoint-base.service';
 import { ConfigurationService } from './configuration.service';
-import { LocationViewModel } from '../models/pickleball.models';
+import { LocationViewModel, AddLocationViewModel } from '../models/pickleball.models';
 import { json } from 'stream/consumers';
 
 export type RolesChangedOperation = 'add' | 'delete' | 'modify';
@@ -39,7 +39,7 @@ export class LocationEndpoint extends EndpointBase {
       }));
   }
 
-  addLocationEndpoint<T>(Location: LocationViewModel): Observable<T> {
+  addLocationEndpoint<T>(Location: AddLocationViewModel): Observable<T> {
     const endpointUrl = this.basicUrl + '/addLocation';
     return this.http.post<T>(endpointUrl, JSON.stringify(Location), this.requestHeaders).pipe(
       catchError(error => {
@@ -93,7 +93,7 @@ export class LocationService {
   getLocations(): Observable<any> {
     return this.LocationEndpoint.getLocationsEndpoint();
   }
-  addLocation(Location: LocationViewModel): Observable<any> {
-    return this.LocationEndpoint.addLocationEndpoint(Location);
+  addLocation(location: AddLocationViewModel): Observable<any> {
+    return this.LocationEndpoint.addLocationEndpoint(location);
   }
 }

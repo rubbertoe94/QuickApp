@@ -20,6 +20,7 @@ namespace DAL.Repositories.Interfaces
         public Court GetCourtById(int id);
         public void AddCourt(Court court);
         public void UpdateCourt(Court court);
+        bool DoesCourtExistAtLocation(int locationId, int courtNumber);
 
     }
 }

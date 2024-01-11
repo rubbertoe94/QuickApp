@@ -27,19 +27,47 @@ addCourt() {
     this.existingCourts = data;
 
     const courtNumberExists = this.existingCourts.some(
-      existingCourt => existingCourt.courtNumber === this.court.courtNumber
+      existingCourt => existingCourt.courtNumber === this.court.courtNumber && existingCourt.locationId === this.court.locationId
     );
 
     if (courtNumberExists) {
-      window.alert('Court number already exists. Please choose a new one.');
+      window.alert('Court number already exists at this location. Please choose a different number.');
     } else {
-      this.courtService.addCourt(this.court).subscribe(() => {
-        window.alert('Court added successfully');
-        this.router.navigate(['/courts-list']);
-      });
+      this.courtService.addCourt(this.court).subscribe(
+        () => {
+          window.alert('Court added successfully');
+          this.router.navigate(['/courts-list']);
+        },
+        (error) => {
+          if (error.error && error.error.Message) {
+            window.alert(error.error.Message);
+          } else {
+            window.alert('Court number already exists at this location. Please choose a different number.');
+          }
+        }
+      );
     }
   });
 }
+// addCourt() {
+//   this.courtService.getCourts().subscribe(data => {
+//     this.existingCourts = data;
+
+//     const courtNumberExists = this.existingCourts.some(
+//       existingCourt => existingCourt.courtNumber === this.court.courtNumber &&
+//                         existingCourt.locationId === this.court.locationId
+//       );
+
+//     if (courtNumberExists) {
+//       window.alert('Court number already exists. Please choose a new one.');
+//     } else {
+//       this.courtService.addCourt(this.court).subscribe(() => {
+//         window.alert('Court added successfully');
+//         this.router.navigate(['/courts-list']);
+//       });
+//     }
+//   });
+// }
 
 getLocations() {
   this.locationService.getLocations().subscribe(result =>

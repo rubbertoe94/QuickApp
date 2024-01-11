@@ -65,8 +65,21 @@ namespace QuickApp.Controllers
         [HttpPost("addCourt")]
         public IActionResult Post([FromBody] CourtViewModelAddOrEdit data)
         {
+            if (!ModelState.IsValid)
+            {
+                // Model validation failed; return 400 Bad Request with error messages
+                return BadRequest(ModelState);
+            }
+
+            // Check for duplicate court number at the location
+            if (_unitOfWork.Courts.DoesCourtExistAtLocation(data.LocationId, data.CourtNumber))
+            {
+                return BadRequest(new { Message = "Court number already exists at this location. Please choose a different number." });
+            }
+
             _unitOfWork.Courts.AddCourt(_mapper.Map<Court>(data));
             _unitOfWork.SaveChanges();
+
             return Ok(_mapper.Map<CourtViewModel>(data));
         }
 

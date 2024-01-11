@@ -17,6 +17,8 @@ namespace DAL.Models
 
         public int CoachId { get; set; }
         public virtual User Coach { get; set; }
+        public int UserId { get; set; }
+        public virtual User Participant { get; set; }
 
         public int LocationId { get; set; }
         public virtual Location Location { get; set; }

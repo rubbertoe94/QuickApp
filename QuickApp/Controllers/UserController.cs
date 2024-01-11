@@ -63,9 +63,9 @@ namespace QuickApp.Controllers
 
         // POST api/values
         [HttpPost("addUser")]
-        public IActionResult Post([FromBody] User data)
+        public IActionResult Post([FromBody] PBUserViewModel data)
         {
-            _unitOfWork.Users.AddUser(data);
+            _unitOfWork.Users.AddUser(_mapper.Map<User>(data));
             _unitOfWork.SaveChanges();
             return Ok(data);
         }

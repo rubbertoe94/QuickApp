@@ -8,6 +8,7 @@
 using DAL.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace QuickApp.ViewModels
@@ -23,9 +24,12 @@ namespace QuickApp.ViewModels
     public class CourtViewModelAddOrEdit
     {
         public int Id { get; set; }
-        public int LocationId { get; set; }
-        public int CourtNumber { get; set; }
 
+        [Required(ErrorMessage = "LocationId is required.")]
+        public int LocationId { get; set; }
+
+        [Required(ErrorMessage = "CourtNumber is required.")]
+        public int CourtNumber { get; set; }
     }
 
     public class LocationViewModelMinusCourts
@@ -55,6 +59,8 @@ namespace QuickApp.ViewModels
 
         public int CoachId { get; set; }
         public virtual User Coach { get; set; }
+        public int UserId { get; set; }
+        public virtual User Participant { get; set; }
 
         public int LocationId { get; set; }
         public virtual Location Location { get; set; }

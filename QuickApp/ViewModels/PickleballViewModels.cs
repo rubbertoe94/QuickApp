@@ -52,21 +52,34 @@ namespace QuickApp.ViewModels
         public string Name { get; set; }
     }
 
-    public class LessonViewModel
+    public class LessonViewModelDisplay
     {
         public int LessonId { get; set; }
         public DateTime Date { get; set; }
 
         public int CoachId { get; set; }
-        public virtual User Coach { get; set; }
-        public int UserId { get; set; }
-        public virtual User Participant { get; set; }
+        public virtual PBUserViewModel Coach { get; set; }
+        public int ParticipantId { get; set; }
+        public virtual PBUserViewModel Participant { get; set; }
 
         public int LocationId { get; set; }
-        public virtual Location Location { get; set; }
+        public virtual LocationViewModelDisplay Location { get; set; }
 
         public int CourtId { get; set; }
-        public Court Court { get; set; }
+        public CourtViewModel Court { get; set; }
+    }
+
+    public class LessonViewModelAddOrEdit
+    {
+        public int LessonId { get; set; }
+        public DateTime Date { get; set; }
+
+        public int CoachId { get; set; }
+        public int ParticipantId { get; set; }
+
+        public int LocationId { get; set; }
+
+        public int CourtId { get; set; }
     }
 
 }

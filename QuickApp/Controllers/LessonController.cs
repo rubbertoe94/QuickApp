@@ -41,7 +41,7 @@ namespace QuickApp.Controllers
         public IActionResult GetAllLessons()
         {
             var allLessons = _unitOfWork.Lessons.GetAllLessons();
-            return Ok(allLessons);
+            return Ok(_mapper.Map<LessonViewModelDisplay>(allLessons));
         }
 
         [HttpGet("throw")]
@@ -56,24 +56,24 @@ namespace QuickApp.Controllers
         public IActionResult GetLessonById(int id)
         {
             var lesson = _unitOfWork.Lessons.GetLessonById(id);
-            return Ok(lesson);
+            return Ok(_mapper.Map<LessonViewModelDisplay>(lesson));
         }
 
 
 
         // POST api/values
         [HttpPost("addLesson")]
-        public IActionResult Post([FromBody] Lesson data)
+        public IActionResult Post([FromBody] LessonViewModelAddOrEdit data)
         {
-            _unitOfWork.Lessons.AddLesson(data);
+            _unitOfWork.Lessons.AddLesson(_mapper.Map<Lesson>(data));
             _unitOfWork.SaveChanges();
-            return Ok(data);
+            return Ok(_mapper.Map<LessonViewModelAddOrEdit>(data));
         }
 
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Lesson data)
+        public IActionResult Put(int id, [FromBody] LessonViewModelAddOrEdit data)
         {
             var lessonToUpdate = _unitOfWork.Lessons.GetLessonById(id);
 
@@ -89,7 +89,7 @@ namespace QuickApp.Controllers
 
                     _unitOfWork.Lessons.UpdateLesson(lessonToUpdate);
                     _unitOfWork.SaveChanges();
-                    return Ok(data);
+                    return Ok(_mapper.Map<LessonViewModelAddOrEdit>(data));
                 }
                 catch (Exception ex)
                 {

@@ -56,7 +56,7 @@ namespace QuickApp.Controllers
         public IActionResult GetUserById(int id)
         {
             var User = _unitOfWork.Users.GetUserById(id);
-            return Ok(User);
+            return Ok(_mapper.Map<UserViewModel>(User));
         }
 
 
@@ -67,7 +67,7 @@ namespace QuickApp.Controllers
         {
             _unitOfWork.Users.AddUser(_mapper.Map<User>(data));
             _unitOfWork.SaveChanges();
-            return Ok(data);
+            return Ok(_mapper.Map <PBUserViewModel>(data));
         }
 
 

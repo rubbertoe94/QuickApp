@@ -1,1 +1,15 @@
-<p>lessons-list works!</p>
+<h1>Lessons!</h1>
+
+<div *ngFor="let lesson of lessons" class="Lesson-card">
+    <p><strong>Title: </strong> {{ lesson.title }}</p>
+    <p><strong>Address: </strong>{{ lesson.address }}</p>
+
+    <div>
+      <div *ngFor="let court of Lesson.courts">
+        {{ court.courtNumber }}
+      </div>
+    </div>
+
+</div>
+
+<button type="button" routerLink="/Lesson-form">Add Lesson</button>

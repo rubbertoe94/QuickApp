@@ -18,7 +18,11 @@ namespace DAL.Repositories
         public IEnumerable<Lesson> GetAllLessons()
         {
             return _appContext.Lessons
-                .OrderBy(c => c.LessonId)
+                .Include(l => l.Location)
+                .Include(l => l.Court)
+                .Include (l => l.Coach)
+                .Include(l => l.Participant)
+                .OrderBy(l => l.LessonId)
                 .ToList();
         }
 

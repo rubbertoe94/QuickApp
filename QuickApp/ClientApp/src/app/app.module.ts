@@ -78,8 +78,10 @@ import { CourtEndpoint } from './services/court.endpoint';
 import { LocationEndpoint, LocationService } from './services/location.service';
 import { LocationListComponent } from './components/Pickleball/Location/location-list/location-list.component';
 import { LocationFormComponent } from './components/Pickleball/Location/location-form/location-form.component';
-import { LessonsListComponent } from './components/pickleball/lesson/lessons-list/lessons-list.component';
-import { LessonsFormComponent } from './components/pickleball/lesson/lessons-form/lessons-form.component';
+import { LessonsListComponent } from './components/Pickleball/Lesson/lessons-list/lessons-list.component';
+import { LessonsFormComponent } from './components/Pickleball/Lesson/lessons-form/lessons-form.component';
+import { UserEndpoint, UserService } from './services/user.service';
+import { LessonEndpoint, LessonService } from './services/lesson.service';
 
 
 
@@ -162,7 +164,11 @@ import { LessonsFormComponent } from './components/pickleball/lesson/lessons-for
     CourtService,
     CourtEndpoint,
     LocationEndpoint,
-    LocationService
+    LocationService,
+    UserService,
+    UserEndpoint,
+    LessonService,
+    LessonEndpoint
   ],
   bootstrap: [AppComponent]
 })

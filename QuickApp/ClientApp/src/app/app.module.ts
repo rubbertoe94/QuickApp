@@ -78,6 +78,8 @@ import { CourtEndpoint } from './services/court.endpoint';
 import { LocationEndpoint, LocationService } from './services/location.service';
 import { LocationListComponent } from './components/Pickleball/Location/location-list/location-list.component';
 import { LocationFormComponent } from './components/Pickleball/Location/location-form/location-form.component';
+import { LessonsListComponent } from './components/pickleball/lesson/lessons-list/lessons-list.component';
+import { LessonsFormComponent } from './components/pickleball/lesson/lessons-form/lessons-form.component';
 
 
 
@@ -112,6 +114,8 @@ import { LocationFormComponent } from './components/Pickleball/Location/location
     CourtsFormComponent,
     LocationListComponent,
     LocationFormComponent,
+    LessonsListComponent,
+    LessonsFormComponent,
   ],
   imports: [
     BrowserModule,

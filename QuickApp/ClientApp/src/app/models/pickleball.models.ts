@@ -24,8 +24,16 @@ export class UserViewModel {
 export class LessonViewModel {
     lessonId: number;
     date: string;
+
     coachId: number;
     coach: UserViewModel;
+
+    participantId: number;
+    participant: UserViewModel;
+
     locationId: number;
+    location: LocationViewModel;
+
     courtId: number;
+    court: CourtViewModel;
 }

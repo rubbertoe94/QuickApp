@@ -41,7 +41,7 @@ namespace QuickApp.Controllers
         public IActionResult GetAllUsers()
         {
             var allUsers = _unitOfWork.Users.GetAllUsers();
-            return Ok(allUsers);
+            return Ok(_mapper.Map<IEnumerable<UserViewModel>>(allUsers));
         }
 
         [HttpGet("throw")]

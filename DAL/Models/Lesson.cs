@@ -16,12 +16,12 @@ namespace DAL.Models
         public DateTime Date { get; set; }
 
         public int CoachId { get; set; }
-        public virtual User Coach { get; set; }
-        public int UserId { get; set; }
-        public virtual User Participant { get; set; }
+        public  User Coach { get; set; }
+        public int ParticipantId { get; set; }
+        public  User Participant { get; set; }
 
         public int LocationId { get; set; }
-        public virtual Location Location { get; set; }
+        public  Location Location { get; set; }
 
         public int CourtId { get; set; }
         public Court Court { get; set; }

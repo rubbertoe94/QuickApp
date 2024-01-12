@@ -41,7 +41,7 @@ namespace QuickApp.Controllers
         public IActionResult GetAllLessons()
         {
             var allLessons = _unitOfWork.Lessons.GetAllLessons();
-            return Ok(_mapper.Map<LessonViewModelDisplay>(allLessons));
+            return Ok(_mapper.Map<IEnumerable<LessonViewModelDisplay>>(allLessons));
         }
 
         [HttpGet("throw")]

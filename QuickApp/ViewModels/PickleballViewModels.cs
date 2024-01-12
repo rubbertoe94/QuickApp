@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
+
 namespace QuickApp.ViewModels
 {
     public class CourtViewModel

@@ -311,4 +311,8 @@ export class AppComponent implements OnInit, OnDestroy {
   get canViewLocations() {
     return this.accountService.userHasPermission(Permission.viewUsers); // eg. viewLocationsPermission
   }
+
+  get canViewLessons() {
+    return this.accountService.userHasPermission(Permission.viewUsers); // eg. viewLessonsPermission
+  }
 }

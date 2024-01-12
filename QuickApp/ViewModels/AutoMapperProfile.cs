@@ -10,6 +10,7 @@ using DAL.Core;
 using DAL.Models;
 using Microsoft.AspNetCore.Identity;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace QuickApp.ViewModels
@@ -84,12 +85,14 @@ namespace QuickApp.ViewModels
             CreateMap<LessonViewModelDisplay, LessonViewModelAddOrEdit>()
                 .ReverseMap();
 
+
             CreateMap<Location, LocationViewModelMinusCourts>()
                 .ReverseMap();
             CreateMap<Location, LocationViewModelDisplay>()
                 .ReverseMap();
             CreateMap<LocationViewModelMinusCourts, LocationViewModelDisplay>()
                 .ReverseMap();
+
         }
     }
 }

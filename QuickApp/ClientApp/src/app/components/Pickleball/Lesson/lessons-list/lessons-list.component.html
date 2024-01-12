@@ -1,14 +1,8 @@
 <h1>Lessons!</h1>
 
 <div *ngFor="let lesson of lessons" class="Lesson-card">
-    <p><strong>Title: </strong> {{ lesson.title }}</p>
-    <p><strong>Address: </strong>{{ lesson.address }}</p>
-
-    <div>
-      <div *ngFor="let court of Lesson.courts">
-        {{ court.courtNumber }}
-      </div>
-    </div>
+    <p><strong>Date: </strong> {{ lesson.date }}</p>
+    <p><strong>Location: </strong>{{ lesson.location.title }}</p>
 
 </div>
 

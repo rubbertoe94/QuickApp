@@ -11,14 +11,12 @@ import { LessonService } from 'src/app/services/lesson.service';
 })
 export class LessonsListComponent {
   lessons: LessonViewModel[];
-  users: UserViewModel[];
 
   
   constructor(private userService: UserService, private lessonService: LessonService, private route: ActivatedRoute, private router: Router) {}
   
   ngOnInit() {
     this.loadLessons();
-    this.loadUsers();
   }
   
   loadLessons() {
@@ -29,12 +27,12 @@ export class LessonsListComponent {
     )
   }
 
-  loadUsers() {
-    this.userService.getUsers().subscribe(
-      result => {
-        this.users = result;
-      }
-    )
-  }
+  // loadUsers() {
+  //   this.userService.getUsers().subscribe(
+  //     result => {
+  //       this.users = result;
+  //     }
+  //   )
+  // }
   
   }

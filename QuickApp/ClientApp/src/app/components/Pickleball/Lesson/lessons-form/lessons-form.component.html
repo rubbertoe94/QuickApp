@@ -1,1 +1,26 @@
-<p>lessons-form works!</p>
+<h1>Add a New Lesson</h1>
+
+<form #lessonForm="ngForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" [(ngModel)]="lesson.date" required>
+  </div>
+  <div class="form-group">
+    <label for="coachName">Coach Name:</label>
+    <input type="text" id="coachName" name="coachName" [(ngModel)]="lesson.coach.name" required>
+  </div>
+  <div class="form-group">
+    <label for="locationTitle">Location:</label>
+    <input type="text" id="locationTitle" name="locationTitle" [(ngModel)]="lesson.location.title" required>
+  </div>
+  <div class="form-group">
+    <label for="courtNumber">Court Number:</label>
+    <input type="number" id="courtNumber" name="courtNumber" [(ngModel)]="lesson.court.courtNumber" required>
+  </div>
+  <div class="form-group">
+    <label for="participantName">Participant Name:</label>
+    <input type="text" id="participantName" name="participantName" [(ngModel)]="lesson.participant.name" required>
+  </div>
+
+  <button type="submit" [disabled]="!lessonForm.valid">Add Lesson</button>
+</form>

@@ -1,9 +1,24 @@
-<h1>Lessons!</h1>
+<h1>Lessons</h1>
 
-<div *ngFor="let lesson of lessons" class="Lesson-card">
-    <p><strong>Date: </strong> {{ lesson.date }}</p>
-    <p><strong>Location: </strong>{{ lesson.location.title }}</p>
+<table class="lesson-table">
+  <thead>
+    <tr>
+      <th>Date, Time</th>
+      <th>Coach</th>
+      <th>Location</th>
+      <th>Court</th>
+      <th>Participant</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let lesson of lessons">
+      <td>{{ lesson.date | date: 'short' }}</td>
+      <td>{{ lesson.coach.name }}</td>
+      <td>{{ lesson.location.title }}</td>
+      <td>{{ lesson.court.courtNumber }}</td>
+      <td>{{ lesson.participant.name }}</td>
+    </tr>
+  </tbody>
+</table>
 
-</div>
-
-<button type="button" routerLink="/Lesson-form">Add Lesson</button>
+<button type="button" routerLink="/lessons-form">Add Lesson</button>

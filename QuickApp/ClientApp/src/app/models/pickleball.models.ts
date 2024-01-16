@@ -37,3 +37,12 @@ export class LessonViewModel {
     courtId: number;
     court: CourtViewModel;
 }
+
+export class LessonViewModelAddOrEdit {
+    lessonId: number;
+    date: string;
+    coachId: number;
+    participantId: number;
+    locationId: number;
+    courtId: number;
+}

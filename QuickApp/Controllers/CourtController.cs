@@ -52,6 +52,14 @@ namespace QuickApp.Controllers
 
 
         // GET api/values/5
+        [HttpGet("locationId/{id}")]
+        public IActionResult GetCourtsByLocationId(int id)
+        {
+            var courts = _unitOfWork.Courts.GetCourtsByLocationId(id);
+            return Ok(_mapper.Map<IEnumerable<CourtViewModel>>(courts));
+        }
+
+        // GET api/values/5
         [HttpGet("{id}")]
         public IActionResult GetCourtById(int id)
         {

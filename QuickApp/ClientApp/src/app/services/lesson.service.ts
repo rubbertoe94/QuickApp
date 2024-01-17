@@ -14,7 +14,7 @@ import { Role } from '../models/role.model';
 import { AuthService } from './auth.service';
 import { EndpointBase } from './endpoint-base.service';
 import { ConfigurationService } from './configuration.service';
-import { LessonViewModel, AddLocationViewModel, UserViewModel, CourtViewModel } from '../models/pickleball.models';
+import { LessonViewModel, AddLocationViewModel, UserViewModel, CourtViewModel, LessonViewModelAddOrEdit } from '../models/pickleball.models';
 import { json } from 'stream/consumers';
 
 export type RolesChangedOperation = 'add' | 'delete' | 'modify';
@@ -39,7 +39,7 @@ export class LessonEndpoint extends EndpointBase {
       }));
   }
 
-  addLessonEndpoint<T>(lesson: LessonViewModel): Observable<T> {
+  addLessonEndpoint<T>(lesson: LessonViewModelAddOrEdit): Observable<T> {
     const endpointUrl = this.basicUrl + '/addLesson';
     return this.http.post<T>(endpointUrl, JSON.stringify(lesson), this.requestHeaders).pipe(
       catchError(error => {
@@ -93,7 +93,7 @@ export class LessonService {
   getLessons(): Observable<any> {
     return this.LessonEndpoint.getLessonsEndpoint();
   }
-  addLesson(lesson: LessonViewModel): Observable<any> {
+  addLesson(lesson: LessonViewModelAddOrEdit): Observable<any> {
     return this.LessonEndpoint.addLessonEndpoint(lesson);
   }
   getLessonById(lessonId: number): Observable<any> {

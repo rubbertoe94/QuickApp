@@ -41,7 +41,7 @@ namespace QuickApp.Controllers
         public IActionResult GetAllUsers()
         {
             var allUsers = _unitOfWork.Users.GetAllUsers();
-            return Ok(_mapper.Map<IEnumerable<UserViewModel>>(allUsers));
+            return Ok(_mapper.Map<IEnumerable<PBUserViewModel>>(allUsers));
         }
 
         [HttpGet("throw")]
@@ -56,7 +56,7 @@ namespace QuickApp.Controllers
         public IActionResult GetUserById(int id)
         {
             var User = _unitOfWork.Users.GetUserById(id);
-            return Ok(_mapper.Map<UserViewModel>(User));
+            return Ok(_mapper.Map<PBUserViewModel>(User));
         }
 
 
@@ -73,7 +73,7 @@ namespace QuickApp.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] User data)
+        public IActionResult Put(int id, [FromBody] PBUserViewModel data)
         {
             var userToUpdate = _unitOfWork.Users.GetUserById(id);
 

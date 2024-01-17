@@ -38,6 +38,10 @@ export class CourtService {
     return this.courtEndpoint.getCourtsEndpoint();
   }
 
+  getCourtsByLocationId(id: number): Observable<any> {
+    return this.courtEndpoint.getCourtsByLocationIdEndpoint(id);
+  }
+
   addCourt(court: CourtViewModel): Observable<any> {
     return this.courtEndpoint.addCourtEndpoint(court);
   }

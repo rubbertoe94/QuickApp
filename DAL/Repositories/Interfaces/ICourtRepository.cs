@@ -18,6 +18,7 @@ namespace DAL.Repositories.Interfaces
       
         IEnumerable<Court> GetAllCourts();
         public Court GetCourtById(int id);
+        public IEnumerable<Court> GetCourtsByLocationId(int id);
         public void AddCourt(Court court);
         public void UpdateCourt(Court court);
         bool DoesCourtExistAtLocation(int locationId, int courtNumber);

@@ -35,6 +35,15 @@ export class CourtEndpoint extends EndpointBase {
       }));
   }
 
+  getCourtsByLocationIdEndpoint<T>(id: number): Observable<T> {
+    const endpointUrl = this.basicUrl + `/locationId/${id}`;
+
+    return this.http.get<T>(endpointUrl, this.requestHeaders).pipe(
+      catchError(error => {
+        return this.handleError(error, () => this.getCourtsByLocationIdEndpoint<T>(id));
+      }));
+  }
+
   addCourtEndpoint<T>(Court: CourtViewModel): Observable<T> {
     const endpointUrl = this.basicUrl + '/addCourt';
     return this.http.post<T>(endpointUrl, JSON.stringify(Court), this.requestHeaders).pipe(

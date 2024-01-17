@@ -6,20 +6,28 @@
     <input type="date" id="date" name="date" [(ngModel)]="lesson.date" required>
   </div>
   <div class="form-group">
-    <label for="coachName">Coach Name:</label>
-    <input type="text" id="coachName" name="coachName" [(ngModel)]="lesson.coach.name" required>
+    <label for="coach">Coach:</label>
+    <select id="coach" name="coach" [(ngModel)]="lesson.coachId" required>
+      <option *ngFor="let coach of users" [value]="coach.id">{{ coach.name }}</option>
+    </select>
   </div>
   <div class="form-group">
-    <label for="locationTitle">Location:</label>
-    <input type="text" id="locationTitle" name="locationTitle" [(ngModel)]="lesson.location.title" required>
+    <label for="location">Location:</label>
+    <select id="location" name="location" [(ngModel)]="lesson.locationId" (change)="onLocationChange()" required>
+      <option *ngFor="let location of locations" [value]="location.id">{{ location.title }}</option>
+    </select>
   </div>
   <div class="form-group">
-    <label for="courtNumber">Court Number:</label>
-    <input type="number" id="courtNumber" name="courtNumber" [(ngModel)]="lesson.court.courtNumber" required>
+    <label for="court">Court Number:</label>
+    <select id="court" name="court" [(ngModel)]="lesson.courtId">
+      <option *ngFor="let court of courts" [value]="court.id">{{ court.courtNumber }}</option>
+    </select>
   </div>
   <div class="form-group">
-    <label for="participantName">Participant Name:</label>
-    <input type="text" id="participantName" name="participantName" [(ngModel)]="lesson.participant.name" required>
+    <label for="participant">Participant:</label>
+    <select id="participant" name="participant" [(ngModel)]="lesson.participantId" required>
+      <option *ngFor="let participant of users" [value]="participant.id">{{ participant.name }}</option>
+    </select>
   </div>
 
   <button type="submit" [disabled]="!lessonForm.valid">Add Lesson</button>

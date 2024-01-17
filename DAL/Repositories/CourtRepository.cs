@@ -30,6 +30,14 @@ namespace DAL.Repositories
 
         }
 
+        public IEnumerable<Court> GetCourtsByLocationId(int id)
+        {
+            return _appContext.Courts
+                .Where(c => c.LocationId == id)
+                .OrderBy(c => c.Id)
+                .ToList();
+        }
+
 
         public void AddCourt(Court court)
         {

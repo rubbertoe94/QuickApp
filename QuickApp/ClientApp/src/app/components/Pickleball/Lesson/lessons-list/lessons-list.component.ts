@@ -11,6 +11,7 @@ import { LessonService } from 'src/app/services/lesson.service';
 })
 export class LessonsListComponent {
   lessons: LessonViewModel[];
+  
 
   
   constructor(private userService: UserService, private lessonService: LessonService, private route: ActivatedRoute, private router: Router) {}

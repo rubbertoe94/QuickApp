@@ -305,7 +305,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   get canViewOrders() {
-    return true; // eg. viewOrdersPermission
+    return this.accountService.userHasPermission(Permission.viewUsers); // eg. viewOrdersPermission
   }
 
   get canViewLocations() {
@@ -315,4 +315,8 @@ export class AppComponent implements OnInit, OnDestroy {
   get canViewLessons() {
     return this.accountService.userHasPermission(Permission.viewUsers); // eg. viewLessonsPermission
   }
+
+
+
+
 }
